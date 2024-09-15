@@ -1,0 +1,109 @@
+@startuml First 
+
+class casilla{
+    +int id
+    +int[] cords
+    -bool canMove
+
+    +int getId()
+    +void moveOrDelete()
+}
+
+class personaje {
+    +string name
+    +string status
+    +int lifePoints
+    +int manaPoints
+    +int[] maxMinDamage
+    +int level
+    +string team
+    +string element
+    +int maxMove
+    +habilidades[] lista
+
+    +void levelUp()
+    +int attack()
+    +int useAbility()
+    +int getMaxMove()
+    +void receivingDamage(int maxDamage)
+    +void death()
+}
+
+class habilidades{
+    +string name
+    +int[] maxMinDamage
+    +int[] manaUse
+
+    +void upgrade()
+    +int getDamage()
+    +int getMana()
+}
+
+class torre{
+    +int lifePoints
+    +bool destroyed
+    +string team
+
+    +int getLifePoints()
+    +void seMurio()
+    +void receivingDamage(int totalDamage)
+}
+
+class arena{
+    +casilla[] matrizJuego
+    +string tipoArena
+    -int ladoJugador1
+    -int ladoJugador2
+
+    -void establecerLados(int x,int y)
+    +string getTipoArena()
+}
+
+class juego{
+    +personaje[] jugadoresTeam1
+    +personaje[] jugadoresTeam2
+    +bool torresTeam1
+    +bool torresTeam2
+
+    +void revivirJugador(int x,int y)
+    -void establecerGanadar()
+    +void establerTurno()
+
+}
+
+class estadisticas{
+    +int partidasJugadas
+    +int partidasGanadas
+    +int partidasPerdidas
+    +int muertesTotalesPersonajes
+    +int muertesTorresPersonajes
+    +int muertesTotalesPersonajesUsados
+    +int rendimientoPartidas
+
+    +int getPartidasJugados()
+    +int getPartidasGanados()
+    +int getpartidasPerdidas()
+    +int getMuertesTotalesPersonajes()
+    +int getMuertesTorresPersonajes()
+    +int getMuertesTotalesPersonajesUsados()
+    +float getRendimientoPartidas()
+    +void setPartidasJugados()
+    +void setPartidasGanados(int)
+    +void setPartidasPerdidos(int)
+    +void setMuertesTotalesPersonajes(int)
+    +void setMuertesTorresPersonajes(int)
+    +void setMuertesTotalesPersonajesUsados(int)
+    +void setRendimientoPartidas(float)
+
+}
+
+
+torre->casilla
+personaje->casilla
+arena->juego
+habilidades-*personaje
+estadisticas-*personaje
+casilla-*arena
+
+
+@enduml

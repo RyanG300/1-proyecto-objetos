@@ -5,12 +5,36 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class home extends JFrame{
-    private JPanel panel1;
+    private JPanel Todo;
+    private JPanel JPanelJuego;
+    private JPanel JPanelEditor;
+    private JPanel JPanelChampions;
+    private JPanel JPanelAbajoXD;
+    private JPanel JPanelTituloEditor;
+    private JPanel JPanelTamaño;
+    private JPanel JPanelTipo;
+    private JPanel JPanelTorres;
+    private JLabel JLabelTitulosEditos;
+    private JLabel JLabelTamaño;
+    private JTextField textFieldX;
+    private JLabel LabelX;
+    private JLabel LabelY;
+    private JTextField textFieldY;
+    private JLabel LabelTipo;
+    private JCheckBox fuegoCheckBox;
+    private JCheckBox aguaCheckBox;
+    private JCheckBox tierraCheckBox;
+    private JCheckBox aireCheckBox;
+    private JLabel LabelTorres;
+    private JTextField textField1;
+    private JPanel JPanelTal;
+    private JLabel Shit;
+    private JLabel tal;
     private JButton PlayButtonMenu;
     private JButton SalirButtonMenu;
 
     public home() {
-        setContentPane(panel1);
+        setContentPane(Todo);
         setTitle("LeagueTEC");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -32,22 +56,6 @@ public class home extends JFrame{
         setVisible(true);
         setSize(800, 600);
 
-
-
-
-
-        SalirButtonMenu.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        PlayButtonMenu.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
     }
 }
 

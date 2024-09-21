@@ -26,10 +26,10 @@ public class home extends JFrame{
     private JCheckBox tierraCheckBox;
     private JCheckBox aireCheckBox;
     private JLabel LabelTorres;
-    private JTextField textField1;
     private JPanel JPanelTal;
     private JLabel Shit;
     private JLabel tal;
+    private JComboBox comboBox1;
     private JButton PlayButtonMenu;
     private JButton SalirButtonMenu;
 
@@ -45,6 +45,10 @@ public class home extends JFrame{
 
         JMenuItem NuevoJuegoItem = new JMenuItem("Nuevo Juego");
         JMenuItem RendirseItem = new JMenuItem("Rendirse");
+        String opciones[]={"1","2","3","4","5"};
+        comboBox1 = new JComboBox(opciones);
+        comboBox1.setBounds(50, 50,90,20);
+        JPanelTorres.add(comboBox1);
 
         juego.add(NuevoJuegoItem);
         juego.add(RendirseItem);

@@ -2,7 +2,7 @@ package casillaObjetos;
 
 public class Character {
     public double mana;
-    private String name;
+    public String name;
     private int level;
     double life;
     private double damage;

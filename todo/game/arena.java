@@ -21,13 +21,25 @@ public class arena extends juego{
         return tipoArena;
     }
 
-    public void colocarPersonaje(int x, int y,String name) {
-        matrizJuego[x][y].id=1;
-        for(int i=0;i>jugadoresTeam1.length;i++){
-
+    public void colocarPersonaje(int x, int y,String name,boolean queLista) {
+        if(queLista){
+            for(int i=0;i>jugadoresTeam1.length;i++){
+                if (jugadoresTeam1[i].name==name) {
+                    matrizJuego[x][y].id=1;
+                    matrizJuego[x][y].personajeDentro=jugadoresTeam1[i];
+                }
+            }
         }
-        matrizJuego[x][y].personajeDentro=
+        else{
+            for(int i=0;i>jugadoresTeam2.length;i++){
+                if (jugadoresTeam2[i].name==name) {
+                    matrizJuego[x][y].id=1;
+                    matrizJuego[x][y].personajeDentro=jugadoresTeam2[i];
+                }
+            }
+        }
+    }
+    public void colocarTorre(int x,int y){ //falta
 
     }
-
 }

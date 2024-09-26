@@ -1,18 +1,18 @@
 package game;
-import casillaObjetos.personaje;
+import casillaObjetos.Character;
 
 public class juego {
-    public personaje[] jugadoresTeam1;
-    public personaje[] jugadoresTeam2;
+    public Character[] jugadoresTeam1;
+    public Character[] jugadoresTeam2;
     public boolean torresTeam1 = true;
     public boolean torresTeam2 = true;
 
     public juego(int cantidaPersonajes) {
-        jugadoresTeam1 = new personaje[cantidaPersonajes];
-        jugadoresTeam2 = new personaje[cantidaPersonajes];
+        jugadoresTeam1 = new Character[cantidaPersonajes];
+        jugadoresTeam2 = new Character[cantidaPersonajes];
     }
 
-    public void setJugadores(personaje[] jugadoresTeam, int cual) {
+    public void setJugadores(Character[] jugadoresTeam, int cual) {
         if (cual == 1) {
             jugadoresTeam1 = jugadoresTeam;
         } else {

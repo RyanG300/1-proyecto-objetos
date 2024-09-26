@@ -98,8 +98,7 @@ class estadisticas{
 }
 
 
-torre->casilla
-personaje->casilla
+
 arena->juego
 habilidades-*personaje
 estadisticas-*personaje

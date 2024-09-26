@@ -1,6 +1,7 @@
 package game;
 import casillaObjetos.casilla;
 
+
 public class arena extends juego{
     public casilla[][] matrizJuego;
     public String tipoArena;
@@ -19,4 +20,14 @@ public class arena extends juego{
     public String getTipoArena(){
         return tipoArena;
     }
+
+    public void colocarPersonaje(int x, int y,String name) {
+        matrizJuego[x][y].id=1;
+        for(int i=0;i>jugadoresTeam1.length;i++){
+
+        }
+        matrizJuego[x][y].personajeDentro=
+
+    }
+
 }

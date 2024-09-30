@@ -44,23 +44,25 @@ public class home extends JFrame{
     private JPanel Champion3;
     private JPanel Champion4;
     private JPanel Champion5;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
-    private JButton button6;
-    private JButton button7;
-    private JButton button8;
-    private JButton button9;
-    private JButton button10;
+    private JButton buttonChampion1;
+    private JButton buttonChampion2;
+    private JButton buttonChampion3;
+    private JButton buttonChampion4;
+    private JButton buttonChampion5;
+    private JButton buttonChampion6;
+    private JButton buttonChampion7;
+    private JButton buttonChampion8;
+    private JButton buttonChampion9;
+    private JButton buttonChampion10;
     private JPanel JPanelQuienToca;
     private JPanel JPanelTitulos;
     private JLabel TitulosText;
     private JLabel TurnoJugadorText;
     private JComboBox comboBoxCantidadP;
+    private JButton ConfirmarButton;
     private JButton PlayButtonMenu;
     private JButton SalirButtonMenu;
+    private int cantidadPersonajes;
 
     public home() {
         setContentPane(Todo);
@@ -81,7 +83,6 @@ public class home extends JFrame{
         menuBar.add(juego);
         menuBar.add(ayuda);
         this.setJMenuBar(menuBar);
-
 
         setVisible(true);
         setSize(800, 600);
@@ -171,6 +172,30 @@ public class home extends JFrame{
                 //Aqui iria la inicializacion de la clase arena xdxdxd
             }
         });
+        ConfirmarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //if(ConfirmarButton./*isSelected()*/) {
+                ConfirmarButton.setEnabled(false);
+                comboBoxCantidadP.setEnabled(false);
+                buttonChampion1.setEnabled(true);
+                buttonChampion2.setEnabled(true);
+                buttonChampion3.setEnabled(true);
+                buttonChampion4.setEnabled(true);
+                buttonChampion5.setEnabled(true);
+                buttonChampion6.setEnabled(true);
+                buttonChampion7.setEnabled(true);
+                buttonChampion8.setEnabled(true);
+                buttonChampion9.setEnabled(true);
+                buttonChampion10.setEnabled(true);
+                cantidadPersonajes=comboBoxCantidadP.getSelectedIndex()+1;
+                System.out.println(cantidadPersonajes);
+                //}
+                /*else{
+                    comboBoxCantidadP.setEnabled(true);
+                }*/
+            }
+        });
     }
 
     public void pintar(Graphics g){
@@ -188,6 +213,7 @@ public class home extends JFrame{
         comboBoxCantidadP.setBounds(50, 50,90,20);
         //JPanelTorres.add(comboBox1);
     }
+
 }
 
 

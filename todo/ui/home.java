@@ -39,7 +39,6 @@ public class home extends JFrame{
     private JButton ButtonEmpezar;
     private JPanel JPanelCantidadPersonajes;
     private JLabel LabelCantidadP;
-    private JTextField textFieldCantidadP;
     private JPanel Champion1;
     private JPanel Champion2;
     private JPanel Champion3;
@@ -59,6 +58,7 @@ public class home extends JFrame{
     private JPanel JPanelTitulos;
     private JLabel TitulosText;
     private JLabel TurnoJugadorText;
+    private JComboBox comboBoxCantidadP;
     private JButton PlayButtonMenu;
     private JButton SalirButtonMenu;
 
@@ -184,6 +184,8 @@ public class home extends JFrame{
         String opciones[]={"1","2","3","4","5"};
         comboBox1 = new JComboBox(opciones);
         comboBox1.setBounds(50, 50,90,20);
+        comboBoxCantidadP = new JComboBox(opciones);
+        comboBoxCantidadP.setBounds(50, 50,90,20);
         //JPanelTorres.add(comboBox1);
     }
 }

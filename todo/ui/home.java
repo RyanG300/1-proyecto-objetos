@@ -218,26 +218,26 @@ public class home extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonChampion1.setEnabled(false);
-                cantidadPersonajes--;
-                if(cantidadPersonajes==0){
-                    buttonChampion2.setEnabled(false);
-                    buttonChampion3.setEnabled(false);
-                    buttonChampion4.setEnabled(false);
-                    buttonChampion5.setEnabled(false);
-                    buttonChampion6.setEnabled(false);
-                    buttonChampion7.setEnabled(false);
-                    buttonChampion8.setEnabled(false);
-                    buttonChampion9.setEnabled(false);
-                    buttonChampion10.setEnabled(false);
-                    TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
-                    return;
-                }
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
-                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")")){
+                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
                 }
                 else{
+                    cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    if(cantidadPersonajes==0){
+                        buttonChampion2.setEnabled(false);
+                        buttonChampion3.setEnabled(false);
+                        buttonChampion4.setEnabled(false);
+                        buttonChampion5.setEnabled(false);
+                        buttonChampion6.setEnabled(false);
+                        buttonChampion7.setEnabled(false);
+                        buttonChampion8.setEnabled(false);
+                        buttonChampion9.setEnabled(false);
+                        buttonChampion10.setEnabled(false);
+                        TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        return;
+                    }
                 }
             }
         });
@@ -245,26 +245,26 @@ public class home extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonChampion2.setEnabled(false);
-                cantidadPersonajes--;
-                if(cantidadPersonajes==0){
-                    buttonChampion1.setEnabled(false);
-                    buttonChampion3.setEnabled(false);
-                    buttonChampion4.setEnabled(false);
-                    buttonChampion5.setEnabled(false);
-                    buttonChampion6.setEnabled(false);
-                    buttonChampion7.setEnabled(false);
-                    buttonChampion8.setEnabled(false);
-                    buttonChampion9.setEnabled(false);
-                    buttonChampion10.setEnabled(false);
-                    TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
-                    return;
-                }
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
-                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")")){
+                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
                 }
                 else{
+                    cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    if(cantidadPersonajes==0){
+                        buttonChampion1.setEnabled(false);
+                        buttonChampion3.setEnabled(false);
+                        buttonChampion4.setEnabled(false);
+                        buttonChampion5.setEnabled(false);
+                        buttonChampion6.setEnabled(false);
+                        buttonChampion7.setEnabled(false);
+                        buttonChampion8.setEnabled(false);
+                        buttonChampion9.setEnabled(false);
+                        buttonChampion10.setEnabled(false);
+                        TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        return;
+                    }
                 }
             }
         });
@@ -272,26 +272,26 @@ public class home extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonChampion3.setEnabled(false);
-                cantidadPersonajes--;
-                if(cantidadPersonajes==0){
-                    buttonChampion1.setEnabled(false);
-                    buttonChampion2.setEnabled(false);
-                    buttonChampion4.setEnabled(false);
-                    buttonChampion5.setEnabled(false);
-                    buttonChampion6.setEnabled(false);
-                    buttonChampion7.setEnabled(false);
-                    buttonChampion8.setEnabled(false);
-                    buttonChampion9.setEnabled(false);
-                    buttonChampion10.setEnabled(false);
-                    TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
-                    return;
-                }
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
-                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")")){
+                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
                 }
                 else{
+                    cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    if(cantidadPersonajes==0){
+                        buttonChampion1.setEnabled(false);
+                        buttonChampion2.setEnabled(false);
+                        buttonChampion4.setEnabled(false);
+                        buttonChampion5.setEnabled(false);
+                        buttonChampion6.setEnabled(false);
+                        buttonChampion7.setEnabled(false);
+                        buttonChampion8.setEnabled(false);
+                        buttonChampion9.setEnabled(false);
+                        buttonChampion10.setEnabled(false);
+                        TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        return;
+                    }
                 }
             }
         });
@@ -299,26 +299,26 @@ public class home extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonChampion4.setEnabled(false);
-                cantidadPersonajes--;
-                if(cantidadPersonajes==0){
-                    buttonChampion1.setEnabled(false);
-                    buttonChampion2.setEnabled(false);
-                    buttonChampion3.setEnabled(false);
-                    buttonChampion5.setEnabled(false);
-                    buttonChampion6.setEnabled(false);
-                    buttonChampion7.setEnabled(false);
-                    buttonChampion8.setEnabled(false);
-                    buttonChampion9.setEnabled(false);
-                    buttonChampion10.setEnabled(false);
-                    TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
-                    return;
-                }
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
-                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")")){
+                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
                 }
                 else{
+                    cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    if(cantidadPersonajes==0){
+                        buttonChampion1.setEnabled(false);
+                        buttonChampion2.setEnabled(false);
+                        buttonChampion3.setEnabled(false);
+                        buttonChampion5.setEnabled(false);
+                        buttonChampion6.setEnabled(false);
+                        buttonChampion7.setEnabled(false);
+                        buttonChampion8.setEnabled(false);
+                        buttonChampion9.setEnabled(false);
+                        buttonChampion10.setEnabled(false);
+                        TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        return;
+                    }
                 }
             }
         });
@@ -326,26 +326,26 @@ public class home extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonChampion5.setEnabled(false);
-                cantidadPersonajes--;
-                if(cantidadPersonajes==0){
-                    buttonChampion1.setEnabled(false);
-                    buttonChampion2.setEnabled(false);
-                    buttonChampion3.setEnabled(false);
-                    buttonChampion4.setEnabled(false);
-                    buttonChampion6.setEnabled(false);
-                    buttonChampion7.setEnabled(false);
-                    buttonChampion8.setEnabled(false);
-                    buttonChampion9.setEnabled(false);
-                    buttonChampion10.setEnabled(false);
-                    TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
-                    return;
-                }
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
-                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")")){
+                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
                 }
                 else{
+                    cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    if(cantidadPersonajes==0){
+                        buttonChampion1.setEnabled(false);
+                        buttonChampion2.setEnabled(false);
+                        buttonChampion3.setEnabled(false);
+                        buttonChampion4.setEnabled(false);
+                        buttonChampion6.setEnabled(false);
+                        buttonChampion7.setEnabled(false);
+                        buttonChampion8.setEnabled(false);
+                        buttonChampion9.setEnabled(false);
+                        buttonChampion10.setEnabled(false);
+                        TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        return;
+                    }
                 }
             }
         });
@@ -353,26 +353,26 @@ public class home extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonChampion6.setEnabled(false);
-                cantidadPersonajes--;
-                if(cantidadPersonajes==0){
-                    buttonChampion1.setEnabled(false);
-                    buttonChampion2.setEnabled(false);
-                    buttonChampion3.setEnabled(false);
-                    buttonChampion4.setEnabled(false);
-                    buttonChampion5.setEnabled(false);
-                    buttonChampion7.setEnabled(false);
-                    buttonChampion8.setEnabled(false);
-                    buttonChampion9.setEnabled(false);
-                    buttonChampion10.setEnabled(false);
-                    TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
-                    return;
-                }
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
-                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")")){
+                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
                 }
                 else{
+                    cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    if(cantidadPersonajes==0){
+                        buttonChampion1.setEnabled(false);
+                        buttonChampion2.setEnabled(false);
+                        buttonChampion3.setEnabled(false);
+                        buttonChampion4.setEnabled(false);
+                        buttonChampion5.setEnabled(false);
+                        buttonChampion7.setEnabled(false);
+                        buttonChampion8.setEnabled(false);
+                        buttonChampion9.setEnabled(false);
+                        buttonChampion10.setEnabled(false);
+                        TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        return;
+                    }
                 }
             }
         });
@@ -380,26 +380,26 @@ public class home extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonChampion7.setEnabled(false);
-                cantidadPersonajes--;
-                if(cantidadPersonajes==0){
-                    buttonChampion1.setEnabled(false);
-                    buttonChampion2.setEnabled(false);
-                    buttonChampion3.setEnabled(false);
-                    buttonChampion4.setEnabled(false);
-                    buttonChampion5.setEnabled(false);
-                    buttonChampion6.setEnabled(false);
-                    buttonChampion8.setEnabled(false);
-                    buttonChampion9.setEnabled(false);
-                    buttonChampion10.setEnabled(false);
-                    TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
-                    return;
-                }
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
-                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")")){
+                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
                 }
                 else{
+                    cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    if(cantidadPersonajes==0){
+                        buttonChampion1.setEnabled(false);
+                        buttonChampion2.setEnabled(false);
+                        buttonChampion3.setEnabled(false);
+                        buttonChampion4.setEnabled(false);
+                        buttonChampion5.setEnabled(false);
+                        buttonChampion6.setEnabled(false);
+                        buttonChampion8.setEnabled(false);
+                        buttonChampion9.setEnabled(false);
+                        buttonChampion10.setEnabled(false);
+                        TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        return;
+                    }
                 }
             }
         });
@@ -407,26 +407,26 @@ public class home extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonChampion8.setEnabled(false);
-                cantidadPersonajes--;
-                if(cantidadPersonajes==0){
-                    buttonChampion1.setEnabled(false);
-                    buttonChampion2.setEnabled(false);
-                    buttonChampion3.setEnabled(false);
-                    buttonChampion4.setEnabled(false);
-                    buttonChampion5.setEnabled(false);
-                    buttonChampion6.setEnabled(false);
-                    buttonChampion7.setEnabled(false);
-                    buttonChampion9.setEnabled(false);
-                    buttonChampion10.setEnabled(false);
-                    TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
-                    return;
-                }
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
-                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")")){
+                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
                 }
                 else{
+                    cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    if(cantidadPersonajes==0){
+                        buttonChampion1.setEnabled(false);
+                        buttonChampion2.setEnabled(false);
+                        buttonChampion3.setEnabled(false);
+                        buttonChampion4.setEnabled(false);
+                        buttonChampion5.setEnabled(false);
+                        buttonChampion6.setEnabled(false);
+                        buttonChampion7.setEnabled(false);
+                        buttonChampion9.setEnabled(false);
+                        buttonChampion10.setEnabled(false);
+                        TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        return;
+                    }
                 }
             }
         });
@@ -434,26 +434,26 @@ public class home extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonChampion9.setEnabled(false);
-                cantidadPersonajes--;
-                if(cantidadPersonajes==0){
-                    buttonChampion1.setEnabled(false);
-                    buttonChampion2.setEnabled(false);
-                    buttonChampion3.setEnabled(false);
-                    buttonChampion4.setEnabled(false);
-                    buttonChampion5.setEnabled(false);
-                    buttonChampion6.setEnabled(false);
-                    buttonChampion7.setEnabled(false);
-                    buttonChampion8.setEnabled(false);
-                    buttonChampion10.setEnabled(false);
-                    TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
-                    return;
-                }
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
-                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")")){
+                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
                 }
                 else{
+                    cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    if(cantidadPersonajes==0){
+                        buttonChampion1.setEnabled(false);
+                        buttonChampion2.setEnabled(false);
+                        buttonChampion3.setEnabled(false);
+                        buttonChampion4.setEnabled(false);
+                        buttonChampion5.setEnabled(false);
+                        buttonChampion6.setEnabled(false);
+                        buttonChampion7.setEnabled(false);
+                        buttonChampion8.setEnabled(false);
+                        buttonChampion10.setEnabled(false);
+                        TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        return;
+                    }
                 }
             }
         });
@@ -461,26 +461,25 @@ public class home extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonChampion10.setEnabled(false);
-                cantidadPersonajes--;
-                if(cantidadPersonajes==0){
-                    buttonChampion1.setEnabled(false);
-                    buttonChampion2.setEnabled(false);
-                    buttonChampion3.setEnabled(false);
-                    buttonChampion4.setEnabled(false);
-                    buttonChampion5.setEnabled(false);
-                    buttonChampion6.setEnabled(false);
-                    buttonChampion7.setEnabled(false);
-                    buttonChampion8.setEnabled(false);
-                    buttonChampion9.setEnabled(false);
-                    TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
-                    return;
-                }
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
-                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")")){
+                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
                 }
                 else{
+                    cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    if(cantidadPersonajes==0){
+                        buttonChampion1.setEnabled(false);
+                        buttonChampion2.setEnabled(false);
+                        buttonChampion3.setEnabled(false);
+                        buttonChampion4.setEnabled(false);
+                        buttonChampion5.setEnabled(false);
+                        buttonChampion6.setEnabled(false);
+                        buttonChampion7.setEnabled(false);
+                        buttonChampion8.setEnabled(false);
+                        buttonChampion9.setEnabled(false);
+                        TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                    }
                 }
             }
         });

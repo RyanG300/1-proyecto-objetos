@@ -200,7 +200,8 @@ public class home extends JFrame{
                     return;
                 }
                 //Inicialización clase arena
-                System.out.println(tipoArena+" "+Integer.parseInt(textFieldX.getText())+" "+Integer.parseInt(textFieldY.getText()));
+                ButtonEmpezar.setEnabled(false);
+                System.out.println(tipoArena+" "+Integer.parseInt(textFieldX.getText())+" "+Integer.parseInt(textFieldY.getText())+" "+Integer.parseInt(comboBoxTorres.getSelectedItem().toString()));
                 Tower[] listaTorresTeam1=new Tower[Integer.parseInt(comboBoxTorres.getSelectedItem().toString())];
                 for(int X=0;X<listaTorresTeam1.length;X++){
                     listaTorresTeam1[X]=new Tower(10000);

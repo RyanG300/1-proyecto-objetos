@@ -8,7 +8,7 @@ public class arena extends juego{
     public casilla[][] matrizJuego;
     public String tipoArena;
 
-    public arena(int x, int y, int cantidadPersonajes, String tipo, Character[] jugadoresTeam1, Character[] jugadoresTeam2, Tower[] torres1,Tower[] torres2){
+    public arena(int x, int y,String tipo, Character[] jugadoresTeam1, Character[] jugadoresTeam2, Tower[] torres1,Tower[] torres2){
         super(jugadoresTeam1,jugadoresTeam2,torres1,torres2);
         casilla[][] matrizJuego = new casilla[x][y];
         for (int i = 0; i < y; i++) {

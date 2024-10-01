@@ -1,12 +1,12 @@
 package ui;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import casillaObjetos.Character;
 import casillaObjetos.Ability;
-import java.awt.*;
+import casillaObjetos.Tower;
+import game.*;
 
 public class home extends JFrame{
     private JPanel Todo;
@@ -32,7 +32,7 @@ public class home extends JFrame{
     private JPanel JPanelTal;
     private JLabel Shit;
     private JLabel tal;
-    private JComboBox comboBox1;
+    private JComboBox comboBoxTorres;
     private JLabel imageFuego;
     private JLabel imageAgua;
     private JLabel imageTierra;
@@ -70,6 +70,8 @@ public class home extends JFrame{
     private String tipoArena;
     private Character[] listaJugadoresTeam1;
     private Character[] listaJugadoresTeam2;
+    private arena Arena;
+    private int prueba;
 
     public home() {
         setContentPane(Todo);
@@ -92,7 +94,7 @@ public class home extends JFrame{
         this.setJMenuBar(menuBar);
 
         setVisible(true);
-        setSize(1000, 600);
+        setSize(1300, 600);
 
         //Estos son los checkBox que determinan el tipo de la arena de juego.
         fuegoCheckBox.addActionListener(new ActionListener() {
@@ -173,14 +175,17 @@ public class home extends JFrame{
             }
         });
 
+        //Botón empezar partida y confirmar cantidad de campeones
         ButtonEmpezar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(textFieldX.getText().equals("")) {
                     JOptionPane.showMessageDialog(ButtonEmpezar,"Error: No se digitó el tamaño de la arena.");
+                    return;
                 }
                 else if (textFieldY.getText().equals("")) {
                     JOptionPane.showMessageDialog(ButtonEmpezar,"Error: No se digitó el tamaño de la arena.");
+                    return;
                 }
 
                 if(!aguaCheckBox.isSelected()
@@ -188,8 +193,26 @@ public class home extends JFrame{
                         && !aireCheckBox.isSelected()
                         && !tierraCheckBox.isSelected()) {
                     JOptionPane.showMessageDialog(ButtonEmpezar,"Error: No se selecionó el tipo de arena.");
+                    return;
                 }
-                //Aqui iria la inicializacion de la clase arena xdxdxd
+                if(Integer.parseInt(textFieldX.getText())<10 || Integer.parseInt(textFieldY.getText())<10){
+                    JOptionPane.showMessageDialog(ButtonEmpezar,"Error: Tamaño de la arena no valida (x mín: 10,y mín: 10).");
+                    return;
+                }
+                //Inicialización clase arena
+                System.out.println(tipoArena+" "+Integer.parseInt(textFieldX.getText())+" "+Integer.parseInt(textFieldY.getText()));
+                Tower[] listaTorresTeam1=new Tower[Integer.parseInt(comboBoxTorres.getSelectedItem().toString())];
+                for(int X=0;X<listaTorresTeam1.length;X++){
+                    listaTorresTeam1[X]=new Tower(10000);
+                }
+                Tower[]listaTorresTeam2=new Tower[Integer.parseInt(comboBoxTorres.getSelectedItem().toString())];
+                for(int X=0;X<listaTorresTeam2.length;X++){
+                    listaTorresTeam2[X]=new Tower(10000);
+                }
+
+                Arena=new arena(Integer.parseInt(textFieldX.getText()),Integer.parseInt(textFieldY.getText()),tipoArena,listaJugadoresTeam1,listaJugadoresTeam2,listaTorresTeam1,listaTorresTeam2);
+
+
             }
         });
         ConfirmarButton.addActionListener(new ActionListener() {
@@ -288,6 +311,7 @@ public class home extends JFrame{
                         buttonChampion9.setEnabled(false);
                         buttonChampion10.setEnabled(false);
                         TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        ButtonEmpezar.setEnabled(true);
                         return;
                     }
                 }
@@ -298,7 +322,7 @@ public class home extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 buttonChampion2.setEnabled(false);
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
-                if (TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: " + (cantidadPersonajes) + ")")) {
+                if (TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: " + (cantidadPersonajes) +")")) {
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: " + cantidadPersonajes + ")");
                     //Inicialización del campeón bananirou
                     Ability habilidad1 = new Ability("La pechea", 35, 85);
@@ -352,6 +376,7 @@ public class home extends JFrame{
                         buttonChampion9.setEnabled(false);
                         buttonChampion10.setEnabled(false);
                         TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        ButtonEmpezar.setEnabled(true);
                         return;
                     }
                 }
@@ -387,7 +412,6 @@ public class home extends JFrame{
                 else{
                     cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
-                    TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
                     Ability habilidad1 = new Ability("Confusión", 120, 150);
                     Ability habilidad2 = new Ability("Psicorrayo", 220, 250);
                     Ability[] habilidadesAlakazam = new Ability[2];
@@ -417,6 +441,7 @@ public class home extends JFrame{
                         buttonChampion9.setEnabled(false);
                         buttonChampion10.setEnabled(false);
                         TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        ButtonEmpezar.setEnabled(true);
                         return;
                     }
                 }
@@ -481,6 +506,7 @@ public class home extends JFrame{
                         buttonChampion9.setEnabled(false);
                         buttonChampion10.setEnabled(false);
                         TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        ButtonEmpezar.setEnabled(true);
                         return;
                     }
                 }
@@ -546,6 +572,7 @@ public class home extends JFrame{
                         buttonChampion9.setEnabled(false);
                         buttonChampion10.setEnabled(false);
                         TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        ButtonEmpezar.setEnabled(true);
                         return;
                     }
                 }
@@ -573,6 +600,7 @@ public class home extends JFrame{
                         buttonChampion9.setEnabled(false);
                         buttonChampion10.setEnabled(false);
                         TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        ButtonEmpezar.setEnabled(true);
                         return;
                     }
                 }
@@ -600,6 +628,7 @@ public class home extends JFrame{
                         buttonChampion9.setEnabled(false);
                         buttonChampion10.setEnabled(false);
                         TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        ButtonEmpezar.setEnabled(true);
                         return;
                     }
                 }
@@ -627,6 +656,7 @@ public class home extends JFrame{
                         buttonChampion9.setEnabled(false);
                         buttonChampion10.setEnabled(false);
                         TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        ButtonEmpezar.setEnabled(true);
                         return;
                     }
                 }
@@ -654,6 +684,7 @@ public class home extends JFrame{
                         buttonChampion8.setEnabled(false);
                         buttonChampion10.setEnabled(false);
                         TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        ButtonEmpezar.setEnabled(true);
                         return;
                     }
                 }
@@ -681,28 +712,29 @@ public class home extends JFrame{
                         buttonChampion8.setEnabled(false);
                         buttonChampion9.setEnabled(false);
                         TurnoJugadorText.setText("Campeones elegidos, ya se puede empezar la partida.");
+                        ButtonEmpezar.setEnabled(true);
                     }
                 }
             }
         });
     }
-
+/*
     public void pintar(Graphics g){
         Toolkit t=Toolkit.getDefaultToolkit();
         Image i=t.getImage(System.getProperty("user.dir")+"\\todo\\images\\0000 tucksi.jfif");
         g.drawImage(i, 120,100,this);
-    }
+    }*/
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
         String opciones[]={"1","2","3","4","5"};
         String opciones2[]={"3","4","5"};
-        comboBox1 = new JComboBox(opciones);
-        comboBox1.setBounds(50, 50,90,20);
+        comboBoxTorres = new JComboBox(opciones);
+        comboBoxTorres.setBounds(50, 50,90,20);
         comboBoxCantidadP = new JComboBox(opciones2);
         comboBoxCantidadP.setBounds(50, 50,90,20);
         System.out.println(comboBoxCantidadP.getItemAt(2));
-        //JPanelTorres.add(comboBox1);
+        //JPanelTorres.add(comboBoxTorres);
     }
 
 }

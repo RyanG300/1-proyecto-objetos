@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import casillaObjetos.Character;
+import casillaObjetos.Ability;
 
 public class home extends JFrame{
     private JPanel Todo;
@@ -65,6 +67,8 @@ public class home extends JFrame{
     //Datos importantes para emepzar la partida
     private int cantidadPersonajes;
     private String tipoArena;
+    private Character[] listaJugadoresTeam1;
+    private Character[] listaJugadoresTeam2;
 
     public home() {
         setContentPane(Todo);
@@ -206,6 +210,8 @@ public class home extends JFrame{
                 cantidadPersonajes=Integer.parseInt(comboBoxCantidadP.getSelectedItem().toString());
                 System.out.println(cantidadPersonajes);
                 TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")" );
+                listaJugadoresTeam1=new Character[cantidadPersonajes];
+                listaJugadoresTeam2=new Character[cantidadPersonajes];
                 //}
                 /*else{
                     comboBoxCantidadP.setEnabled(true);
@@ -221,10 +227,55 @@ public class home extends JFrame{
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
                 if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    //Inicialización del campeón T34
+                    Ability habilidad1=new Ability("Disparo de precisión",80,95);
+                    Ability habilidad2=new Ability("Disparo a quemarropa",160,180);
+                    Ability[] habilidadesT34= new Ability[2];
+                    habilidadesT34[0]=habilidad1;
+                    habilidadesT34[1]=habilidad2;
+                    Character t34=new Character("t34",0,600,58,"Tierra",habilidadesT34,250);
+                    //Colocarlo en la lista del team1
+                    if(listaJugadoresTeam1[0]==null){
+                        listaJugadoresTeam1[0]=t34;
+                    }
+                    else if(listaJugadoresTeam1[1]==null){
+                        listaJugadoresTeam1[1]=t34;
+                    }
+                    else if(listaJugadoresTeam1[2]==null){
+                        listaJugadoresTeam1[2]=t34;
+                    }
+                    else if(listaJugadoresTeam1[3]==null){
+                        listaJugadoresTeam1[3]=t34;
+                    }
+                    else if(listaJugadoresTeam1[4]==null){
+                        listaJugadoresTeam1[4]=t34;
+                    }
                 }
                 else{
                     cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    Ability habilidad1=new Ability("Disparo de precisión",80,95);
+                    Ability habilidad2=new Ability("Disparo a quemarropa",160,180);
+                    Ability[] habilidadesT34= new Ability[2];
+                    habilidadesT34[0]=habilidad1;
+                    habilidadesT34[1]=habilidad2;
+                    Character t34=new Character("t34",0,600,58,"Tierra",habilidadesT34,250);
+                    //Colocarlo en la lista del team1
+                    if(listaJugadoresTeam2[0]==null){
+                        listaJugadoresTeam2[0]=t34;
+                    }
+                    else if(listaJugadoresTeam2[1]==null){
+                        listaJugadoresTeam2[1]=t34;
+                    }
+                    else if(listaJugadoresTeam2[2]==null){
+                        listaJugadoresTeam2[2]=t34;
+                    }
+                    else if(listaJugadoresTeam2[3]==null){
+                        listaJugadoresTeam2[3]=t34;
+                    }
+                    else if(listaJugadoresTeam2[4]==null){
+                        listaJugadoresTeam2[4]=t34;
+                    }
                     if(cantidadPersonajes==0){
                         buttonChampion2.setEnabled(false);
                         buttonChampion3.setEnabled(false);
@@ -246,13 +297,50 @@ public class home extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 buttonChampion2.setEnabled(false);
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
-                if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
-                    TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                if (TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: " + (cantidadPersonajes) + ")")) {
+                    TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: " + cantidadPersonajes + ")");
+                    //Inicialización del campeón bananirou
+                    Ability habilidad1 = new Ability("La pechea", 35, 85);
+                    Ability habilidad2 = new Ability("El salto del papu", 120, 120);
+                    Ability[] habilidadesBananinou = new Ability[2];
+                    habilidadesBananinou[0] = habilidad1;
+                    habilidadesBananinou[1] = habilidad2;
+                    Character bananinou = new Character("bananinou", 0, 530, 62, "Agua", habilidadesBananinou, 172);
+                    //Colocarlo en la lista del team1
+                    if (listaJugadoresTeam1[0] == null) {
+                        listaJugadoresTeam1[0] = bananinou;
+                    } else if (listaJugadoresTeam1[1] == null) {
+                        listaJugadoresTeam1[1] = bananinou;
+                    } else if (listaJugadoresTeam1[2] == null) {
+                        listaJugadoresTeam1[2] = bananinou;
+                    } else if (listaJugadoresTeam1[3] == null) {
+                        listaJugadoresTeam1[3] = bananinou;
+                    } else if (listaJugadoresTeam1[4] == null) {
+                        listaJugadoresTeam1[4] = bananinou;
+                    }
                 }
-                else{
+                else {
                     cantidadPersonajes--;
-                    TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
-                    if(cantidadPersonajes==0){
+                    TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: " + cantidadPersonajes + ")");
+                    Ability habilidad1 = new Ability("La pechea", 35, 85);
+                    Ability habilidad2 = new Ability("El salto del papu", 120, 120);
+                    Ability[] habilidadesBananinou = new Ability[2];
+                    habilidadesBananinou[0] = habilidad1;
+                    habilidadesBananinou[1] = habilidad2;
+                    Character bananinou = new Character("bananinou", 0, 530, 62, "Agua", habilidadesBananinou, 172);
+                    //Colocarlo en la lista del team1
+                    if (listaJugadoresTeam2[0] == null) {
+                        listaJugadoresTeam2[0] = bananinou;
+                    } else if (listaJugadoresTeam2[1] == null) {
+                        listaJugadoresTeam2[1] = bananinou;
+                    } else if (listaJugadoresTeam2[2] == null) {
+                        listaJugadoresTeam2[2] = bananinou;
+                    } else if (listaJugadoresTeam2[3] == null) {
+                        listaJugadoresTeam2[3] = bananinou;
+                    } else if (listaJugadoresTeam2[4] == null) {
+                        listaJugadoresTeam2[4] = bananinou;
+                    }
+                    if (cantidadPersonajes == 0) {
                         buttonChampion1.setEnabled(false);
                         buttonChampion3.setEnabled(false);
                         buttonChampion4.setEnabled(false);
@@ -275,10 +363,48 @@ public class home extends JFrame{
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
                 if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    //Inicialización del campeón alakazam
+                    Ability habilidad1 = new Ability("Confusión", 120, 150);
+                    Ability habilidad2 = new Ability("Psicorrayo", 220, 250);
+                    Ability[] habilidadesAlakazam = new Ability[2];
+                    habilidadesAlakazam[0] = habilidad1;
+                    habilidadesAlakazam[1] = habilidad2;
+                    Character alakazam = new Character("alakazam", 0, 360, 85, "Aire", habilidadesAlakazam, 325);
+                    //Colocarlo en la lista del team1
+                    if (listaJugadoresTeam1[0] == null) {
+                        listaJugadoresTeam1[0] = alakazam;
+                    } else if (listaJugadoresTeam1[1] == null) {
+                        listaJugadoresTeam1[1] = alakazam;
+                    } else if (listaJugadoresTeam1[2] == null) {
+                        listaJugadoresTeam1[2] = alakazam;
+                    } else if (listaJugadoresTeam1[3] == null) {
+                        listaJugadoresTeam1[3] = alakazam;
+                    } else if (listaJugadoresTeam1[4] == null) {
+                        listaJugadoresTeam1[4] = alakazam;
+                    }
                 }
                 else{
                     cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    Ability habilidad1 = new Ability("Confusión", 120, 150);
+                    Ability habilidad2 = new Ability("Psicorrayo", 220, 250);
+                    Ability[] habilidadesAlakazam = new Ability[2];
+                    habilidadesAlakazam[0] = habilidad1;
+                    habilidadesAlakazam[1] = habilidad2;
+                    Character alakazam = new Character("alakazam", 0, 360, 85, "Aire", habilidadesAlakazam, 325);
+                    //Colocarlo en la lista del team1
+                    if (listaJugadoresTeam2[0] == null) {
+                        listaJugadoresTeam2[0] = alakazam;
+                    } else if (listaJugadoresTeam2[1] == null) {
+                        listaJugadoresTeam2[1] = alakazam;
+                    } else if (listaJugadoresTeam2[2] == null) {
+                        listaJugadoresTeam2[2] = alakazam;
+                    } else if (listaJugadoresTeam2[3] == null) {
+                        listaJugadoresTeam2[3] = alakazam;
+                    } else if (listaJugadoresTeam2[4] == null) {
+                        listaJugadoresTeam2[4] = alakazam;
+                    }
                     if(cantidadPersonajes==0){
                         buttonChampion1.setEnabled(false);
                         buttonChampion2.setEnabled(false);
@@ -302,10 +428,47 @@ public class home extends JFrame{
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
                 if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    //Inicialización del campeón Ranni the witch
+                    Ability habilidad1 = new Ability("Espada luz de la noche", 80, 105);
+                    Ability habilidad2 = new Ability("Era de las estrellas", 250, 260);
+                    Ability[] habilidadesRanniTheWitch = new Ability[2];
+                    habilidadesRanniTheWitch[0] = habilidad1;
+                    habilidadesRanniTheWitch[1] = habilidad2;
+                    Character ranniTheWitch = new Character("Ranni the witch", 0, 670, 55, "Fuego", habilidadesRanniTheWitch, 305);
+                    //Colocarlo en la lista del team1
+                    if (listaJugadoresTeam1[0] == null) {
+                        listaJugadoresTeam1[0] = ranniTheWitch;
+                    } else if (listaJugadoresTeam1[1] == null) {
+                        listaJugadoresTeam1[1] = ranniTheWitch;
+                    } else if (listaJugadoresTeam1[2] == null) {
+                        listaJugadoresTeam1[2] = ranniTheWitch;
+                    } else if (listaJugadoresTeam1[3] == null) {
+                        listaJugadoresTeam1[3] = ranniTheWitch;
+                    } else if (listaJugadoresTeam1[4] == null) {
+                        listaJugadoresTeam1[4] = ranniTheWitch;
+                    }
                 }
                 else{
                     cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    Ability habilidad1 = new Ability("Espada luz de la noche", 80, 105);
+                    Ability habilidad2 = new Ability("Era de las estrellas", 250, 260);
+                    Ability[] habilidadesRanniTheWitch = new Ability[2];
+                    habilidadesRanniTheWitch[0] = habilidad1;
+                    habilidadesRanniTheWitch[1] = habilidad2;
+                    Character ranniTheWitch = new Character("Ranni the witch", 0, 670, 55, "Fuego", habilidadesRanniTheWitch, 305);
+                    //Colocarlo en la lista del team1
+                    if (listaJugadoresTeam2[0] == null) {
+                        listaJugadoresTeam2[0] = ranniTheWitch;
+                    } else if (listaJugadoresTeam2[1] == null) {
+                        listaJugadoresTeam2[1] = ranniTheWitch;
+                    } else if (listaJugadoresTeam2[2] == null) {
+                        listaJugadoresTeam2[2] = ranniTheWitch;
+                    } else if (listaJugadoresTeam2[3] == null) {
+                        listaJugadoresTeam2[3] = ranniTheWitch;
+                    } else if (listaJugadoresTeam2[4] == null) {
+                        listaJugadoresTeam2[4] = ranniTheWitch;
+                    }
                     if(cantidadPersonajes==0){
                         buttonChampion1.setEnabled(false);
                         buttonChampion2.setEnabled(false);
@@ -329,10 +492,48 @@ public class home extends JFrame{
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
                 if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    //Inicialización del campeón freddy
+                    Ability habilidad1 = new Ability("Jumpscare", 80, 130);
+                    Ability habilidad2 = new Ability("Arararararar", 120, 200);
+                    Ability[] habilidadesFreddy = new Ability[2];
+                    habilidadesFreddy[0] = habilidad1;
+                    habilidadesFreddy[1] = habilidad2;
+                    Character Freddy = new Character("Freddy", 0, 320, 72, "Aire", habilidadesFreddy, 120);
+                    //Colocarlo en la lista del team1
+                    if (listaJugadoresTeam1[0] == null) {
+                        listaJugadoresTeam1[0] = Freddy;
+                    } else if (listaJugadoresTeam1[1] == null) {
+                        listaJugadoresTeam1[1] = Freddy;
+                    } else if (listaJugadoresTeam1[2] == null) {
+                        listaJugadoresTeam1[2] = Freddy;
+                    } else if (listaJugadoresTeam1[3] == null) {
+                        listaJugadoresTeam1[3] = Freddy;
+                    } else if (listaJugadoresTeam1[4] == null) {
+                        listaJugadoresTeam1[4] = Freddy;
+                    }
                 }
                 else{
                     cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    //Inicialización del campeón freddy
+                    Ability habilidad1 = new Ability("Jumpscare", 80, 130);
+                    Ability habilidad2 = new Ability("Arararararar", 120, 200);
+                    Ability[] habilidadesFreddy = new Ability[2];
+                    habilidadesFreddy[0] = habilidad1;
+                    habilidadesFreddy[1] = habilidad2;
+                    Character Freddy = new Character("Freddy", 0, 320, 72, "Fuego", habilidadesFreddy, 120);
+                    //Colocarlo en la lista del team1
+                    if (listaJugadoresTeam2[0] == null) {
+                        listaJugadoresTeam2[0] = Freddy;
+                    } else if (listaJugadoresTeam2[1] == null) {
+                        listaJugadoresTeam2[1] = Freddy;
+                    } else if (listaJugadoresTeam2[2] == null) {
+                        listaJugadoresTeam2[2] = Freddy;
+                    } else if (listaJugadoresTeam2[3] == null) {
+                        listaJugadoresTeam2[3] = Freddy;
+                    } else if (listaJugadoresTeam2[4] == null) {
+                        listaJugadoresTeam2[4] = Freddy;
+                    }
                     if(cantidadPersonajes==0){
                         buttonChampion1.setEnabled(false);
                         buttonChampion2.setEnabled(false);

@@ -8,13 +8,14 @@ public class Character {
     private double damage;
     private String element;
     private Ability[] abilities;
-    public Character(String name, int level, double life, double damage, String element, Ability[] abilities) {
+    public Character(String name, int level, double life, double damage, String element, Ability[] abilities,double mana) {
         this.name = name;
         this.level = level;
         this.life = life;
         this.damage = damage;
         this.element = element;
         this.abilities = abilities;
+        this.mana = mana;
     }
 
     public String getElement() {

@@ -1,6 +1,7 @@
 package ui;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import casillaObjetos.Character;
@@ -65,13 +66,25 @@ public class home extends JFrame{
     private JButton ConfirmarButton;
     private JButton PlayButtonMenu;
     private JButton SalirButtonMenu;
+
     //Datos importantes para emepzar la partida
     private int cantidadPersonajes;
     private String tipoArena;
     private Character[] listaJugadoresTeam1;
     private Character[] listaJugadoresTeam2;
     private arena Arena;
-    private int prueba;
+
+    //UI para la parte del juego//UI para la parte del juego//UI para la parte del juego
+    //UI para la parte del juego//UI para la parte del juego//UI para la parte del juego
+    //UI para la parte del juego//UI para la parte del juego//UI para la parte del juego
+
+    //Paneles
+    private JLayeredPane juegoMain;
+    private JLayeredPane interfazJuego;
+
+    //JLabel
+    private JLabel imagenJuegoMain;
+
 
     public home() {
         setContentPane(Todo);
@@ -94,6 +107,8 @@ public class home extends JFrame{
         this.setJMenuBar(menuBar);
 
         setVisible(true);
+        setResizable(false);
+        //setLayout(null);
         setSize(1300, 600);
 
         //Estos son los checkBox que determinan el tipo de la arena de juego.
@@ -212,8 +227,31 @@ public class home extends JFrame{
                 }
 
                 Arena=new arena(Integer.parseInt(textFieldX.getText()),Integer.parseInt(textFieldY.getText()),tipoArena,listaJugadoresTeam1,listaJugadoresTeam2,listaTorresTeam1,listaTorresTeam2);
-
-
+                //Todo.setVisible(false);
+                JPanelChampions.setVisible(false);
+                JPanelAbajoXD.setVisible(false);
+                juegoMain=new JLayeredPane();
+                interfazJuego=new JLayeredPane();
+                juegoMain.setLayout(null);
+                interfazJuego.setLayout(null);
+                juegoMain.setBounds(0,0,1300,400);
+                interfazJuego.setBounds(0,400,1300,200);
+                if(tipoArena=="Fuego"){
+                    juegoMain.setBackground(Color.RED);
+                    imagenJuegoMain=new JLabel();
+                    imagenJuegoMain.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\texturaLavaTipoArena.png"));
+                    imagenJuegoMain.setBounds(0,0,1300,400);
+                    juegoMain.add(imagenJuegoMain,Integer.valueOf(0)); //JLayeredPane.DEFAULT_LAYER
+                    //JButton prueba=new JButton();
+                    //prueba.setBounds(10,10,15,15);
+                    //prueba.setText("Prueba");
+                    //juegoMain.add(prueba);
+                }
+                interfazJuego.setBackground(Color.GREEN);
+                juegoMain=Arena.dibujarArena(juegoMain);
+                add(juegoMain);
+                add(interfazJuego);
+                //add(juegoMain);
             }
         });
         ConfirmarButton.addActionListener(new ActionListener() {

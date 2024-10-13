@@ -1,6 +1,7 @@
 package ui;
 
 import javax.swing.*;
+import javax.swing.text.TabExpander;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -80,7 +81,7 @@ public class home extends JFrame{
 
     //Paneles
     private JLayeredPane juegoMain;
-    private JLayeredPane interfazJuego;
+    private JPanel interfazJuego;
 
     //JLabel
     private JLabel imagenJuegoMain;
@@ -226,32 +227,77 @@ public class home extends JFrame{
                     listaTorresTeam2[X]=new Tower(10000);
                 }
 
-                Arena=new arena(Integer.parseInt(textFieldX.getText()),Integer.parseInt(textFieldY.getText()),tipoArena,listaJugadoresTeam1,listaJugadoresTeam2,listaTorresTeam1,listaTorresTeam2);
+                Arena=new arena(Integer.parseInt(textFieldX.getText()),Integer.parseInt(textFieldY.getText()),tipoArena,listaJugadoresTeam1,listaJugadoresTeam2,listaTorresTeam1,listaTorresTeam2,Integer.parseInt(comboBoxTorres.getSelectedItem().toString()));
                 //Todo.setVisible(false);
                 JPanelChampions.setVisible(false);
                 JPanelAbajoXD.setVisible(false);
                 juegoMain=new JLayeredPane();
-                interfazJuego=new JLayeredPane();
+                //interfazJuego=new JLayeredPane();
                 juegoMain.setLayout(null);
-                interfazJuego.setLayout(null);
-                juegoMain.setBounds(0,0,1300,400);
-                interfazJuego.setBounds(0,400,1300,200);
+                //interfazJuego.setLayout(null);
+                juegoMain.setBounds(0,0,1300,600);
+                //interfazJuego.setBounds(900,0,400,600);
                 if(tipoArena=="Fuego"){
                     juegoMain.setBackground(Color.RED);
-                    imagenJuegoMain=new JLabel();
+                    String tipoImagenCasilla=System.getProperty("user.dir")+"\\todo\\images\\texturaLavaTipoArena.png";
+                    /*imagenJuegoMain=new JLabel();
                     imagenJuegoMain.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\texturaLavaTipoArena.png"));
                     imagenJuegoMain.setBounds(0,0,1300,400);
-                    juegoMain.add(imagenJuegoMain,Integer.valueOf(0)); //JLayeredPane.DEFAULT_LAYER
+                    juegoMain.add(imagenJuegoMain,Integer.valueOf(0)); //JLayeredPane.DEFAULT_LAYER*/
                     //JButton prueba=new JButton();
                     //prueba.setBounds(10,10,15,15);
                     //prueba.setText("Prueba");
                     //juegoMain.add(prueba);
+                    juegoMain=Arena.dibujarArena(juegoMain);
+
                 }
-                interfazJuego.setBackground(Color.GREEN);
-                juegoMain=Arena.dibujarArena(juegoMain);
+                else if(tipoArena=="Aire"){
+                    juegoMain.setBackground(Color.WHITE);
+                    //Falta poner imagen
+                    String tipoImagenCasilla=System.getProperty("user.dir")+"\\todo\\images\\texturaLavaTipoArena.png";
+                    juegoMain=Arena.dibujarArena(juegoMain);
+
+                }
+                else if(tipoArena=="Agua"){
+                    juegoMain.setBackground(Color.BLUE);
+                    String tipoImagenCasilla=System.getProperty("user.dir")+"\\todo\\images\\texturaAguaTipoArena.png";
+                    juegoMain=Arena.dibujarArena(juegoMain);
+
+                }
+                else if(tipoArena=="Tierra"){
+                    juegoMain.setBackground(Color.WHITE);
+                    //Falta poner imagen y color
+                    String tipoImagenCasilla=System.getProperty("user.dir")+"\\todo\\images\\texturaLavaTipoArena.png";
+                    juegoMain=Arena.dibujarArena(juegoMain);
+
+                }
+                //interfazJuego.setBackground(Color.GREEN);
+                JLabel textoPorDefectoTurnos=new JLabel();
+                textoPorDefectoTurnos.setText("Jugador 1#, por favor eliga la ubicación de su torre (Quedan "+listaTorresTeam1.length+")");
+                textoPorDefectoTurnos.setBounds(810,50,500,50);
+                textoPorDefectoTurnos.setForeground(Color.BLACK);
+                //textoPorDefectoTurnos.setBackground(Color.decode("#d8e390"));
+                textoPorDefectoTurnos.setFont(new Font("Arial",Font.BOLD,14));
+
+                interfazJuego=new JPanel();
+                interfazJuego.setLayout(null);
+                interfazJuego.setBounds(800,0,500,600);
+                interfazJuego.setBackground(Color.decode("#c18559"));
+                juegoMain.add(interfazJuego);
+                juegoMain.add(textoPorDefectoTurnos,Integer.valueOf(1));
                 add(juegoMain);
-                add(interfazJuego);
-                //add(juegoMain);
+                while(true){
+                    if(Arena.textoTurnos==1){
+                        textoPorDefectoTurnos.setText("Jugador 1#, por favor eliga la ubicación de su torre (Quedan "+Arena.cantidadTorresColocacion+")");
+                    }
+                    else if(Arena.textoTurnos==2){
+                        textoPorDefectoTurnos.setText("Jugador 2#, por favor eliga la ubicación de su torre (Quedan "+Arena.cantidadTorresColocacion+")");
+                    }
+                    else if(Arena.textoTurnos==3){
+                        textoPorDefectoTurnos.setText("Error: No se puede colocar una torre en el lado contrario de la arena");
+                    }
+                }
+                //add(interfazJuego);
             }
         });
         ConfirmarButton.addActionListener(new ActionListener() {

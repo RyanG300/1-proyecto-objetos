@@ -9,13 +9,15 @@ public class juego {
     public Tower[] torresTeam2;
     public boolean torresTeam1Estado = true;
     public boolean torresTeam2Estado = true;
+    public int cantidadTorres;
 
 
-    public juego(Character[] jugadoresTeam1, Character[] jugadoresTeam2, Tower[] torresTeam1, Tower[] torresTeam2) {
+    public juego(Character[] jugadoresTeam1, Character[] jugadoresTeam2, Tower[] torresTeam1, Tower[] torresTeam2,int cantidadTorres) {
         this.jugadoresTeam1 = jugadoresTeam1;
         this.jugadoresTeam2 = jugadoresTeam2;
         this.torresTeam1 = torresTeam1;
         this.torresTeam2 = torresTeam2;
+        this.cantidadTorres=cantidadTorres;
     }
 
 /*

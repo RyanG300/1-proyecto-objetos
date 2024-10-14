@@ -3,6 +3,7 @@ import casillaObjetos.Character;
 import casillaObjetos.Tower;
 import casillaObjetos.casilla;
 import pruebaMovimiento.Arena;
+import ui.home;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +17,10 @@ public class arena extends juego{
     private int x;
     private int y;
     private int quienVaTorres=1;
-    public int textoTurnos;
+    //public int textoTurnos;
     public int cantidadTorresColocacion= torresTeam1.length;
+    public boolean estadoColocacionPersonajes=false;
+    public Character guardadoSeleccionado;
 
     public arena(int x, int y,String tipo, Character[] jugadoresTeam1, Character[] jugadoresTeam2, Tower[] torres1,Tower[] torres2,int cantidadTorres){
         super(jugadoresTeam1,jugadoresTeam2,torres1,torres2,cantidadTorres);
@@ -62,142 +65,195 @@ public class arena extends juego{
 
     }
 
-    public JLayeredPane dibujarArena(JLayeredPane juego){
-    int puntoDibujoX=50;
-    int puntoDibujoY=40;
-    int widthHeight= (int) (50-((this.x >10) ? Math.round(this.x*0.9): 0));
-    for(int i=1;i<=this.y;i++){
-        for(int j=1;j<=this.x;j++){
-            JButton casilla=new JButton();
-            casilla.setBounds(puntoDibujoX,puntoDibujoY,widthHeight,widthHeight);
-            //casilla.setFont(new Font("Arial",Font.BOLD,(this.x >10) ? 3:10));
-            //casilla.setText(i+" "+j);
-            casilla.setBackground(Color.WHITE);
-            casilla.setOpaque(true);
-            //JLabel imagenCasilla=new JLabel();
-            //ImageIcon iconoBoton =new ImageIcon(tipoImagenCasilla);
-            //Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
-            //imagenCasilla.setIcon(iconBotonDeVerdad);
-            //casilla.setIcon(iconBotonDeVerdad);
-            if(j<=this.x/2){
-                if(this.matrizJuego[i-1][j-1].id==0){
-                    casilla.setBackground(Color.red);
-                }
-                else if(this.matrizJuego[i-1][j-1].id==1){
-                    /*ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
-                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
-                    casilla.setIcon(iconBotonDeVerdad);*/
-                    casilla.setBackground(Color.red);
-                }
-                else if(this.matrizJuego[i-1][j-1].id==2){
-                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
-                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
-                    casilla.setIcon(iconBotonDeVerdad);
-                    casilla.setBackground(Color.red);
-                }
-            }
-            else{
-                if(this.matrizJuego[i-1][j-1].id==0){
-                    casilla.setBackground(Color.blue);
-                }
-                else if(this.matrizJuego[i-1][j-1].id==1){
-                    /*ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
-                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
-                    casilla.setIcon(iconBotonDeVerdad);*/
-                    casilla.setBackground(Color.blue);
-                }
-                else if(this.matrizJuego[i-1][j-1].id==2){
-                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
-                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
-                    casilla.setIcon(iconBotonDeVerdad);
-                    casilla.setBackground(Color.blue);
-                }
-            }
-            int finalJ = j;
-            int finalI = i;
-            casilla.addActionListener(new ActionListener() {
-                private int mitadArena=getMitadArena();
-                private int x= finalJ-1;
-                private int y= finalI-1;
+    public JLayeredPane dibujarArena(JLayeredPane juego){ //JLabel TEXTO
+        int puntoDibujoX=50;
+        int puntoDibujoY=40;
+        int widthHeight= (int) (50-((this.x >10) ? Math.round(this.x*0.9): 0));
+        for(int i=1;i<=this.y;i++){
+            for(int j=1;j<=this.x;j++){
+                JButton casilla=new JButton();
+                casilla.setBounds(puntoDibujoX,puntoDibujoY,widthHeight,widthHeight);
+                //casilla.setFont(new Font("Arial",Font.BOLD,(this.x >10) ? 3:10));
+                //casilla.setText(i+" "+j);
+                casilla.setBackground(Color.WHITE);
+                casilla.setOpaque(true);
+                casilla.setLayout(null);
+                //JLabel imagenCasilla=new JLabel();
+                //ImageIcon iconoBoton =new ImageIcon(tipoImagenCasilla);
+                //Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                //imagenCasilla.setIcon(iconBotonDeVerdad);
+                //casilla.setIcon(iconBotonDeVerdad);
+                if(j<=this.x/2){
+                    if(this.matrizJuego[i-1][j-1].id==0){
+                        casilla.setBackground(Color.red);
+                    }
+                    else if(this.matrizJuego[i-1][j-1].id==1){
+                        /*ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
+                        Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                        casilla.setIcon(iconBotonDeVerdad);*/
+                        casilla.setBackground(Color.red);
+                    }
+                    else if(this.matrizJuego[i-1][j-1].id==2){
+                        ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
+                        Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                        casilla.setIcon(iconBotonDeVerdad);
+                        casilla.setBackground(Color.red);
+                    }
+                }  //Para establecer los límites de la arena
+                else{
+                    if(this.matrizJuego[i-1][j-1].id==0){
+                        casilla.setBackground(Color.blue);
+                    }
+                    else if(this.matrizJuego[i-1][j-1].id==1){
+                        /*ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
+                        Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                        casilla.setIcon(iconBotonDeVerdad);*/
+                        casilla.setBackground(Color.blue);
+                    }
+                    else if(this.matrizJuego[i-1][j-1].id==2){
+                        ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
+                        Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                        casilla.setIcon(iconBotonDeVerdad);
+                        casilla.setBackground(Color.blue);
+                    }
+                }   //Para establecer los límites de la arena
+                int finalJ = j;
+                int finalI = i;
+                casilla.addActionListener(new ActionListener() {
+                    private int mitadArena=getMitadArena();
+                    private int x= finalJ-1;
+                    private int y= finalI-1;
 
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if(quienVaTorres==1){
-                        if(x<=mitadArena){
-                            if(matrizJuego[x][y].id!=2){
-                                matrizJuego[x][y].id=2;
-                                try{
-                                    if(!torresTeam1[0].colocado){
-                                        matrizJuego[x][y].torreDentro=torresTeam1[0];
-                                        torresTeam1[0].colocado=true;
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(cantidadTorresColocacion!=0){
+                            if(quienVaTorres==1){
+                                if(x<=mitadArena){
+                                    if(matrizJuego[x][y].id!=2){
+                                        matrizJuego[x][y].id=2;
+                                        try{
+                                            if(!torresTeam1[0].colocado){
+                                                matrizJuego[x][y].torreDentro=torresTeam1[0];
+                                                torresTeam1[0].colocado=true;
+                                            }
+                                            else if(!torresTeam1[1].colocado){
+                                                matrizJuego[x][y].torreDentro=torresTeam1[1];
+                                                torresTeam1[1].colocado=true;
+                                            }
+                                            else if(!torresTeam1[2].colocado){
+                                                matrizJuego[x][y].torreDentro=torresTeam1[2];
+                                                torresTeam1[2].colocado=true;
+                                            }
+                                        }
+                                        catch (Exception ex){
+                                            System.out.println(ex.getMessage());
+                                        }
+                                        if(x<=this.x/2){
+                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
+                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                            casilla.setIcon(iconBotonDeVerdad);
+                                            casilla.setBackground(Color.red);
+                                        }  //Para establecer los límites de la arena
+                                        else{
+                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
+                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                            casilla.setIcon(iconBotonDeVerdad);
+                                            casilla.setBackground(Color.blue);
+                                            }
+                                        home.textoPorDefectoTurnos.setText("Jugador 2#, por favor eliga la ubicación de su torre (Quedan "+cantidadTorresColocacion+")");
+                                        quienVaTorres=2;
                                     }
-                                    else if(!torresTeam1[1].colocado){
-                                        matrizJuego[x][y].torreDentro=torresTeam1[1];
-                                        torresTeam1[1].colocado=true;
-                                    }
-                                    else if(!torresTeam1[2].colocado){
-                                        matrizJuego[x][y].torreDentro=torresTeam1[2];
-                                        torresTeam1[2].colocado=true;
+                                    else{
+                                        home.textoPorDefectoTurnos.setText("Error: No se puede colocar una torre en el lado contrario de la arena");
                                     }
                                 }
-                                catch (Exception ex){
-                                    System.out.println(ex.getMessage());
+                                else{
+                                    home.textoPorDefectoTurnos.setText("Error: No se puede colocar una torre en el lado contrario de la arena");
                                 }
-                                textoTurnos=2;
-                                cantidadTorresColocacion--;
+                                System.out.println(x+" "+y);
                             }
-                            else{
-                                textoTurnos=3;
+                            else if(quienVaTorres==2){
+                                if(x>mitadArena){
+                                    if(matrizJuego[x][y].id!=2){
+                                        matrizJuego[x][y].id=2;
+                                        try{
+                                            if(!torresTeam2[0].colocado){
+                                                matrizJuego[x][y].torreDentro=torresTeam2[0];
+                                                torresTeam2[0].colocado=true;
+                                            }
+                                            else if(!torresTeam2[1].colocado){
+                                                matrizJuego[x][y].torreDentro=torresTeam2[1];
+                                                torresTeam2[1].colocado=true;
+                                            }
+                                            else if(!torresTeam2[2].colocado){
+                                                matrizJuego[x][y].torreDentro=torresTeam2[2];
+                                                torresTeam2[2].colocado=true;
+                                            }
+                                        }
+                                        catch (Exception ex){
+                                            System.out.println(ex.getMessage());
+                                        }
+                                        ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
+                                        Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                        casilla.setIcon(iconBotonDeVerdad);
+                                        casilla.setBackground((x<=this.x/2)? Color.red:Color.blue);
+                                        cantidadTorresColocacion--;
+                                        if(cantidadTorresColocacion==0){
+                                            home.textoPorDefectoTurnos.setText("Torres colocadas. Ahora el jugador #1 debe colocar sus personajes.");
+                                            home.colocarBotonesDesdeArena(jugadoresTeam1.length,true);
+                                            estadoColocacionPersonajes=true;
+                                            /*JButton prueba=new JButton("Prueba");
+                                            prueba.setBounds(820,90,30,30);
+                                            prueba.addActionListener(new ActionListener() {
+
+                                                @Override
+                                                public void actionPerformed(ActionEvent e) {
+                                                    System.out.println("Pingas");
+                                                }
+                                            });
+                                            juego.add(prueba);*/
+                                        }
+                                        else{
+                                            home.textoPorDefectoTurnos.setText("Jugador #1, por favor eliga la ubicación de su torre (Quedan "+cantidadTorresColocacion+")");
+                                            quienVaTorres=1;
+                                        }
+                                    }
+                                    else{
+                                        home.textoPorDefectoTurnos.setText("Error: No se puede colocar una torre en el lado contrario de la arena");
+                                    }
+                                }
+                                else{
+                                    home.textoPorDefectoTurnos.setText("Error: No se puede colocar una torre en el lado contrario de la arena");
+                                }
+                                System.out.println(x+" "+y);
                             }
                         }
-                        else{
-                            textoTurnos=3;
+                        else {
+                            if(estadoColocacionPersonajes){
+                                if(!home.presionado){
+                                    home.textoPorDefectoTurnos.setText("Personaje no seleccionado, por favor seleccione un personaje para colocar en la arena");
+                                }
+                                else{
+                                    matrizJuego[x][y].id=1;
+                                    matrizJuego[x][y].personajeDentro=guardadoSeleccionado;
+                                    //ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
+                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\"+"champion"+guardadoSeleccionado.name+".png");
+                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                    casilla.setIcon(iconBotonDeVerdad);
+                                    casilla.setBackground((x<=this.x/2) ? Color.red:Color.blue);
+                                }
+                            }
                         }
-                        System.out.println(x+" "+y);
                     }
-                    else if(quienVaTorres==2){
-                        if(x>mitadArena){
-                            if(matrizJuego[x][y].id!=2){
-                                matrizJuego[x][y].id=2;
-                                try{
-                                    if(!torresTeam2[0].colocado){
-                                        matrizJuego[x][y].torreDentro=torresTeam2[0];
-                                        torresTeam2[0].colocado=true;
-                                    }
-                                    else if(!torresTeam2[1].colocado){
-                                        matrizJuego[x][y].torreDentro=torresTeam2[1];
-                                        torresTeam2[1].colocado=true;
-                                    }
-                                    else if(!torresTeam2[2].colocado){
-                                        matrizJuego[x][y].torreDentro=torresTeam2[2];
-                                        torresTeam2[2].colocado=true;
-                                    }
-                                }
-                                catch (Exception ex){
-                                    System.out.println(ex.getMessage());
-                                }
-                                textoTurnos=1;
-                                cantidadTorresColocacion--;
-                            }
-                            else{
-                                textoTurnos=3;
-                            }
-                        }
-                        else{
-                            textoTurnos=3;
-                        }
-                        System.out.println(x+" "+y);
-                    }
-                }
-            });
-            juego.add(casilla,Integer.valueOf(1));
-            puntoDibujoX+=widthHeight;
+                });
+                juego.add(casilla,Integer.valueOf(1));
+                puntoDibujoX+=widthHeight;
+            }
+            puntoDibujoY+=widthHeight;
+            puntoDibujoX=50;
         }
-        puntoDibujoY+=widthHeight;
-        puntoDibujoX=50;
-    }
-    return juego;
-    }
+        return juego;
+        }
 
     public int getMitadArena(){
         return this.x/2;

@@ -1,7 +1,6 @@
 package ui;
 
 import javax.swing.*;
-import javax.swing.text.TabExpander;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -68,24 +67,29 @@ public class home extends JFrame{
     private JButton PlayButtonMenu;
     private JButton SalirButtonMenu;
 
-    //Datos importantes para emepzar la partida
+    //Datos importantes para empezar la partida
     private int cantidadPersonajes;
     private String tipoArena;
     private Character[] listaJugadoresTeam1;
     private Character[] listaJugadoresTeam2;
-    private arena Arena;
+    public static arena Arena;
 
     //UI para la parte del juego//UI para la parte del juego//UI para la parte del juego
     //UI para la parte del juego//UI para la parte del juego//UI para la parte del juego
     //UI para la parte del juego//UI para la parte del juego//UI para la parte del juego
 
     //Paneles
-    private JLayeredPane juegoMain;
+    private static JLayeredPane juegoMain;
     private JPanel interfazJuego;
 
     //JLabel
     private JLabel imagenJuegoMain;
+    public static JLabel textoPorDefectoTurnos=new JLabel();
 
+    //Variables auxiliares
+    public static boolean presionado=false; //Variable para saber si un boton de colocacion de personaje ha sido presionado
+    //Jbutton
+    //public static JButton botonPersonaje =new JButton();
 
     public home() {
         setContentPane(Todo);
@@ -229,16 +233,20 @@ public class home extends JFrame{
 
                 Arena=new arena(Integer.parseInt(textFieldX.getText()),Integer.parseInt(textFieldY.getText()),tipoArena,listaJugadoresTeam1,listaJugadoresTeam2,listaTorresTeam1,listaTorresTeam2,Integer.parseInt(comboBoxTorres.getSelectedItem().toString()));
                 //Todo.setVisible(false);
-                JPanelChampions.setVisible(false);
-                JPanelAbajoXD.setVisible(false);
+                Todo.removeAll();
+                Todo.validate();
+                Todo.repaint();
+                //JPanelChampions.setVisible(false);
+                //JPanelAbajoXD.setVisible(false);
                 juegoMain=new JLayeredPane();
                 //interfazJuego=new JLayeredPane();
                 juegoMain.setLayout(null);
+                juegoMain.setOpaque(true);
                 //interfazJuego.setLayout(null);
                 juegoMain.setBounds(0,0,1300,600);
                 //interfazJuego.setBounds(900,0,400,600);
                 if(tipoArena=="Fuego"){
-                    juegoMain.setBackground(Color.RED);
+                    juegoMain.setBackground(Color.WHITE);
                     String tipoImagenCasilla=System.getProperty("user.dir")+"\\todo\\images\\texturaLavaTipoArena.png";
                     /*imagenJuegoMain=new JLabel();
                     imagenJuegoMain.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\texturaLavaTipoArena.png"));
@@ -248,32 +256,28 @@ public class home extends JFrame{
                     //prueba.setBounds(10,10,15,15);
                     //prueba.setText("Prueba");
                     //juegoMain.add(prueba);
-                    juegoMain=Arena.dibujarArena(juegoMain);
 
                 }
                 else if(tipoArena=="Aire"){
                     juegoMain.setBackground(Color.WHITE);
                     //Falta poner imagen
                     String tipoImagenCasilla=System.getProperty("user.dir")+"\\todo\\images\\texturaLavaTipoArena.png";
-                    juegoMain=Arena.dibujarArena(juegoMain);
-
                 }
                 else if(tipoArena=="Agua"){
-                    juegoMain.setBackground(Color.BLUE);
+                    juegoMain.setBackground(Color.WHITE);
                     String tipoImagenCasilla=System.getProperty("user.dir")+"\\todo\\images\\texturaAguaTipoArena.png";
-                    juegoMain=Arena.dibujarArena(juegoMain);
 
                 }
                 else if(tipoArena=="Tierra"){
                     juegoMain.setBackground(Color.WHITE);
                     //Falta poner imagen y color
                     String tipoImagenCasilla=System.getProperty("user.dir")+"\\todo\\images\\texturaLavaTipoArena.png";
-                    juegoMain=Arena.dibujarArena(juegoMain);
 
                 }
                 //interfazJuego.setBackground(Color.GREEN);
-                JLabel textoPorDefectoTurnos=new JLabel();
-                textoPorDefectoTurnos.setText("Jugador 1#, por favor eliga la ubicación de su torre (Quedan "+listaTorresTeam1.length+")");
+                //JLabel textoPorDefectoTurnos=new JLabel();
+                textoPorDefectoTurnos.setText("Jugador #1, por favor eliga la ubicación de su torre (Quedan "+listaTorresTeam1.length+")");
+                textoPorDefectoTurnos.setLayout(null);
                 textoPorDefectoTurnos.setBounds(810,50,500,50);
                 textoPorDefectoTurnos.setForeground(Color.BLACK);
                 //textoPorDefectoTurnos.setBackground(Color.decode("#d8e390"));
@@ -283,10 +287,14 @@ public class home extends JFrame{
                 interfazJuego.setLayout(null);
                 interfazJuego.setBounds(800,0,500,600);
                 interfazJuego.setBackground(Color.decode("#c18559"));
+                //interfazJuego.add(textoPorDefectoTurnos);
                 juegoMain.add(interfazJuego);
                 juegoMain.add(textoPorDefectoTurnos,Integer.valueOf(1));
+                juegoMain=Arena.dibujarArena(juegoMain);
+
                 add(juegoMain);
-                while(true){
+
+                /*while(true){
                     if(Arena.textoTurnos==1){
                         textoPorDefectoTurnos.setText("Jugador 1#, por favor eliga la ubicación de su torre (Quedan "+Arena.cantidadTorresColocacion+")");
                     }
@@ -297,7 +305,7 @@ public class home extends JFrame{
                         textoPorDefectoTurnos.setText("Error: No se puede colocar una torre en el lado contrario de la arena");
                     }
                 }
-                //add(interfazJuego);
+               */
             }
         });
         ConfirmarButton.addActionListener(new ActionListener() {
@@ -342,7 +350,7 @@ public class home extends JFrame{
                     Ability[] habilidadesT34= new Ability[2];
                     habilidadesT34[0]=habilidad1;
                     habilidadesT34[1]=habilidad2;
-                    Character t34=new Character("t34",0,600,58,"Tierra",habilidadesT34,250);
+                    Character t34=new Character("T-34",0,600,58,"Tierra",habilidadesT34,250);
                     //Colocarlo en la lista del team1
                     if(listaJugadoresTeam1[0]==null){
                         listaJugadoresTeam1[0]=t34;
@@ -368,7 +376,7 @@ public class home extends JFrame{
                     Ability[] habilidadesT34= new Ability[2];
                     habilidadesT34[0]=habilidad1;
                     habilidadesT34[1]=habilidad2;
-                    Character t34=new Character("t34",0,600,58,"Tierra",habilidadesT34,250);
+                    Character t34=new Character("T-34",0,600,58,"Tierra",habilidadesT34,250);
                     //Colocarlo en la lista del team1
                     if(listaJugadoresTeam2[0]==null){
                         listaJugadoresTeam2[0]=t34;
@@ -415,7 +423,7 @@ public class home extends JFrame{
                     Ability[] habilidadesBananinou = new Ability[2];
                     habilidadesBananinou[0] = habilidad1;
                     habilidadesBananinou[1] = habilidad2;
-                    Character bananinou = new Character("bananinou", 0, 530, 62, "Agua", habilidadesBananinou, 172);
+                    Character bananinou = new Character("Bana", 0, 530, 62, "Agua", habilidadesBananinou, 172);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam1[0] == null) {
                         listaJugadoresTeam1[0] = bananinou;
@@ -437,7 +445,7 @@ public class home extends JFrame{
                     Ability[] habilidadesBananinou = new Ability[2];
                     habilidadesBananinou[0] = habilidad1;
                     habilidadesBananinou[1] = habilidad2;
-                    Character bananinou = new Character("bananinou", 0, 530, 62, "Agua", habilidadesBananinou, 172);
+                    Character bananinou = new Character("Bana", 0, 530, 62, "Agua", habilidadesBananinou, 172);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam2[0] == null) {
                         listaJugadoresTeam2[0] = bananinou;
@@ -480,7 +488,7 @@ public class home extends JFrame{
                     Ability[] habilidadesAlakazam = new Ability[2];
                     habilidadesAlakazam[0] = habilidad1;
                     habilidadesAlakazam[1] = habilidad2;
-                    Character alakazam = new Character("alakazam", 0, 360, 85, "Aire", habilidadesAlakazam, 325);
+                    Character alakazam = new Character("Alakazam", 0, 360, 85, "Aire", habilidadesAlakazam, 325);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam1[0] == null) {
                         listaJugadoresTeam1[0] = alakazam;
@@ -502,7 +510,7 @@ public class home extends JFrame{
                     Ability[] habilidadesAlakazam = new Ability[2];
                     habilidadesAlakazam[0] = habilidad1;
                     habilidadesAlakazam[1] = habilidad2;
-                    Character alakazam = new Character("alakazam", 0, 360, 85, "Aire", habilidadesAlakazam, 325);
+                    Character alakazam = new Character("Alakazam", 0, 360, 85, "Aire", habilidadesAlakazam, 325);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam2[0] == null) {
                         listaJugadoresTeam2[0] = alakazam;
@@ -545,7 +553,7 @@ public class home extends JFrame{
                     Ability[] habilidadesRanniTheWitch = new Ability[2];
                     habilidadesRanniTheWitch[0] = habilidad1;
                     habilidadesRanniTheWitch[1] = habilidad2;
-                    Character ranniTheWitch = new Character("Ranni the witch", 0, 670, 55, "Fuego", habilidadesRanniTheWitch, 305);
+                    Character ranniTheWitch = new Character("RanniTheWitch", 0, 670, 55, "Fuego", habilidadesRanniTheWitch, 305);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam1[0] == null) {
                         listaJugadoresTeam1[0] = ranniTheWitch;
@@ -567,7 +575,7 @@ public class home extends JFrame{
                     Ability[] habilidadesRanniTheWitch = new Ability[2];
                     habilidadesRanniTheWitch[0] = habilidad1;
                     habilidadesRanniTheWitch[1] = habilidad2;
-                    Character ranniTheWitch = new Character("Ranni the witch", 0, 670, 55, "Fuego", habilidadesRanniTheWitch, 305);
+                    Character ranniTheWitch = new Character("RanniTheWitch", 0, 670, 55, "Fuego", habilidadesRanniTheWitch, 305);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam2[0] == null) {
                         listaJugadoresTeam2[0] = ranniTheWitch;
@@ -822,6 +830,33 @@ public class home extends JFrame{
         //JPanelTorres.add(comboBoxTorres);
     }
 
+    public static void colocarBotonesDesdeArena(int largoListaPersonajes,boolean quienListaJugadores){
+        int xCords=820;
+        for(int i=0;i<largoListaPersonajes;i++){
+            JButton botonPersonaje=new JButton((quienListaJugadores) ? Arena.jugadoresTeam1[i].name : Arena.jugadoresTeam2[i].name);
+            System.out.println(System.getProperty("user.dir")+"\\todo\\images\\"+((quienListaJugadores) ? Arena.jugadoresTeam1[i].name:Arena.jugadoresTeam2[i].name)+".png");
+            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\"+"champion"+((quienListaJugadores) ? Arena.jugadoresTeam1[i].name:Arena.jugadoresTeam2[i].name)+".png");
+            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(70,70,Image.SCALE_AREA_AVERAGING));
+            botonPersonaje.setIcon(iconBotonDeVerdad);
+            botonPersonaje.setBounds(xCords,90,70,70);
+            juegoMain.add(botonPersonaje,Integer.valueOf(2));
+            xCords+=100;
+            botonPersonaje.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(!presionado){
+                        botonPersonaje.setEnabled(false);
+                        textoPorDefectoTurnos.setText((quienListaJugadores) ? "Jugador #1 Coloque a su personaje en la arena de juego" : "jugador #2 Coloque a su personaje en la arena de juego");
+                        presionado=true;
+                    }
+                    else{
+                        textoPorDefectoTurnos.setText("No se puede seleccionar otro personaje para colocar, primero coloque a su personaje en la arena");
+                    }
+
+                }
+            });
+        }
+    }
 }
 
 

@@ -225,11 +225,11 @@ public class home extends JFrame{
                 System.out.println(tipoArena+" "+Integer.parseInt(textFieldX.getText())+" "+Integer.parseInt(textFieldY.getText())+" "+Integer.parseInt(comboBoxTorres.getSelectedItem().toString()));
                 Tower[] listaTorresTeam1=new Tower[Integer.parseInt(comboBoxTorres.getSelectedItem().toString())];
                 for(int X=0;X<listaTorresTeam1.length;X++){
-                    listaTorresTeam1[X]=new Tower(10000);
+                    listaTorresTeam1[X]=new Tower(10000,X);
                 }
                 Tower[]listaTorresTeam2=new Tower[Integer.parseInt(comboBoxTorres.getSelectedItem().toString())];
                 for(int X=0;X<listaTorresTeam2.length;X++){
-                    listaTorresTeam2[X]=new Tower(10000);
+                    listaTorresTeam2[X]=new Tower(10000,X);
                 }
 
                 Arena=new arena(Integer.parseInt(textFieldX.getText()),Integer.parseInt(textFieldY.getText()),tipoArena,listaJugadoresTeam1,listaJugadoresTeam2,listaTorresTeam1,listaTorresTeam2,Integer.parseInt(comboBoxTorres.getSelectedItem().toString()));
@@ -679,10 +679,48 @@ public class home extends JFrame{
                 //System.out.println("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes+1)+")");
                 if(TurnoJugadorText.getText().equals("Jugador 1 elige. (Cantidad restantes: "+(cantidadPersonajes)+")")){
                     TurnoJugadorText.setText("Jugador 2 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    //Inicialización del campeón freddy
+                    Ability habilidad1 = new Ability("Jumpscare", 80, 130);
+                    Ability habilidad2 = new Ability("Arararararar", 120, 200);
+                    Ability[] habilidadesFreddy = new Ability[2];
+                    habilidadesFreddy[0] = habilidad1;
+                    habilidadesFreddy[1] = habilidad2;
+                    Character Freddy = new Character("Prueba", 0, 320, 72, "Aire", habilidadesFreddy, 120);
+                    //Colocarlo en la lista del team1
+                    if (listaJugadoresTeam1[0] == null) {
+                        listaJugadoresTeam1[0] = Freddy;
+                    } else if (listaJugadoresTeam1[1] == null) {
+                        listaJugadoresTeam1[1] = Freddy;
+                    } else if (listaJugadoresTeam1[2] == null) {
+                        listaJugadoresTeam1[2] = Freddy;
+                    } else if (listaJugadoresTeam1[3] == null) {
+                        listaJugadoresTeam1[3] = Freddy;
+                    } else if (listaJugadoresTeam1[4] == null) {
+                        listaJugadoresTeam1[4] = Freddy;
+                    }
                 }
                 else{
                     cantidadPersonajes--;
                     TurnoJugadorText.setText("Jugador 1 elige. (Cantidad restantes: "+cantidadPersonajes+")");
+                    //Inicialización del campeón freddy
+                    Ability habilidad1 = new Ability("Jumpscare", 80, 130);
+                    Ability habilidad2 = new Ability("Arararararar", 120, 200);
+                    Ability[] habilidadesFreddy = new Ability[2];
+                    habilidadesFreddy[0] = habilidad1;
+                    habilidadesFreddy[1] = habilidad2;
+                    Character Freddy = new Character("Freddy", 0, 320, 72, "Fuego", habilidadesFreddy, 120);
+                    //Colocarlo en la lista del team1
+                    if (listaJugadoresTeam2[0] == null) {
+                        listaJugadoresTeam2[0] = Freddy;
+                    } else if (listaJugadoresTeam2[1] == null) {
+                        listaJugadoresTeam2[1] = Freddy;
+                    } else if (listaJugadoresTeam2[2] == null) {
+                        listaJugadoresTeam2[2] = Freddy;
+                    } else if (listaJugadoresTeam2[3] == null) {
+                        listaJugadoresTeam2[3] = Freddy;
+                    } else if (listaJugadoresTeam2[4] == null) {
+                        listaJugadoresTeam2[4] = Freddy;
+                    }
                     if(cantidadPersonajes==0){
                         buttonChampion1.setEnabled(false);
                         buttonChampion2.setEnabled(false);

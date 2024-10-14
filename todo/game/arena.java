@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 
 public class arena extends juego{
@@ -118,10 +119,13 @@ public class arena extends juego{
                 }   //Para establecer los límites de la arena
                 int finalJ = j;
                 int finalI = i;
+                int finalPuntoDibujoX = puntoDibujoX;
+                int finalPuntoDibujoY = puntoDibujoY;
                 casilla.addActionListener(new ActionListener() {
                     private int mitadArena=getMitadArena();
                     private int x= finalJ-1;
                     private int y= finalI-1;
+                    private int[] cords={finalPuntoDibujoX, finalPuntoDibujoY};
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -255,8 +259,10 @@ public class arena extends juego{
                                             home.presionado=false;
                                             home.cantidadPersonajesRestantes--;
                                             if(home.cantidadPersonajesRestantes==0){
-                                                home.textoPorDefectoTurnos.setText("Jugador #2 coloque sus personajes en su parte de la Arena");
-                                                home.colocarBotonesDesdeArena(jugadoresTeam1.length,false);
+                                                Random rand = new Random();
+                                                home.textoPorDefectoTurnos.setText("Partida empezada: Turno de: "+((rand.nextBoolean()) ? "jugador #1":"jugador #2"));
+                                                estadoColocacionPersonajes=false;
+
                                             }
                                         }
                                         else{
@@ -264,6 +270,9 @@ public class arena extends juego{
                                         }
                                     }
                                 }
+                            }
+                            else{
+
                             }
                         }
                     }
@@ -281,4 +290,41 @@ public class arena extends juego{
         return this.x/2;
     }
 
+    public void menuPersonaje(boolean quienJugador,int x,int y,int[] cords){
+        if(matrizJuego[x][y].personajeDentro!=null){
+            for(int i=0;i<jugadoresTeam1.length;i++){
+                if(matrizJuego[x][y].personajeDentro.name.equals(jugadoresTeam1[i].name)){
+                    if(quienJugador){
+                        //menuGeneral todo
+                        JPanel menuGeneral = new JPanel();
+                        JButton accionPersonaje =new JButton();
+                        JButton estadoPersonaje =new JButton();
+                        menuGeneral.setBounds(cords[0]-10,cords[1]-20,70,70);
+                        accionPersonaje.setBounds(cords[0]-5,cords[1]-15,60,20);
+                        estadoPersonaje.setBounds(cords[0]-5,cords[1]+10,60,20);
+
+                        //MenuAcciones
+                        JPanel menuAcciones = new JPanel();
+                        JButton movimiento = new JButton();
+                        JButton atacar = new JButton();
+                        JButton habilidad = new JButton();
+                        menuAcciones.setBounds(cords[0]-10,cords[1]-20,90,90);
+                        movimiento.setBounds(cords[0]-5,cords[1]-15,60,20);
+                        atacar.setBounds(cords[0]-5,cords[1]+10,60,20);
+                        habilidad.setBounds(cords[0]-5,cords[1]+30,60,20);
+
+                        //MenuEstado
+                        JPanel menuEstado= new JPanel();
+                        JLabel datosPersonaje =new JLabel();
+                        menuEstado.setBounds(cords[0]-10,cords[1]-20,70,70);
+                        datosPersonaje.setBounds(cords[0]-5,cords[1]-15,60,60);
+                    }
+                    else{
+
+                    }
+                }
+            }
+
+        }
+    }
 }

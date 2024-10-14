@@ -2,6 +2,9 @@ package game;
 import casillaObjetos.Character;
 import casillaObjetos.Tower;
 
+import java.util.Random;
+import java.util.random.*;
+
 public class juego {
     public Character[] jugadoresTeam1;
     public Character[] jugadoresTeam2;
@@ -37,6 +40,8 @@ public class juego {
         //tal
     }
 
-    public void  establecerTurno(){
+    public boolean establecerTurno(){
+        Random rand = new Random();
+        return (rand.nextBoolean());
     }
 }

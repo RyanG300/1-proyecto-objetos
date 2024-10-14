@@ -8,6 +8,9 @@ public class Character {
     private double damage;
     private String element;
     public Ability[] abilities;
+    private int deaths;
+    private int kills;
+    private int towerKills;
     public Character(String name, int level, double life, double damage, String element, Ability[] abilities,double mana) {
         this.name = name;
         this.level = level;
@@ -16,6 +19,9 @@ public class Character {
         this.element = element;
         this.abilities = abilities;
         this.mana = mana;
+        this.deaths = 0;
+        this.kills = 0;
+        this.towerKills = 0;
     }
 
     public String getElement() {
@@ -28,6 +34,30 @@ public class Character {
 
     public void setDamage(double damage) {
         this.damage = damage;
+    }
+
+    public int getDeaths() {
+        return deaths;
+    }
+
+    public void incrementDeaths() {
+        this.deaths++;
+    }
+
+    public int getKills() {
+        return kills;
+    }
+
+    public void incrementKills() {
+        this.kills++;
+    }
+
+    public int getTowerKills() {
+        return towerKills;
+    }
+
+    public void incrementTowerKills() {
+        this.towerKills++;
     }
 
     public void attack(Character enemy) {

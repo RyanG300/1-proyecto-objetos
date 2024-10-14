@@ -260,8 +260,10 @@ public class arena extends juego{
                                             home.cantidadPersonajesRestantes--;
                                             if(home.cantidadPersonajesRestantes==0){
                                                 Random rand = new Random();
-                                                home.textoPorDefectoTurnos.setText("Partida empezada: Turno de: "+((rand.nextBoolean()) ? "jugador #1":"jugador #2"));
+                                                boolean que =rand.nextBoolean();
+                                                home.textoPorDefectoTurnos.setText("Partida empezada: Turno de: "+((que) ? "jugador #1":"jugador #2"));
                                                 estadoColocacionPersonajes=false;
+                                                turno=(que) ? 1:2;
 
                                             }
                                         }
@@ -272,7 +274,7 @@ public class arena extends juego{
                                 }
                             }
                             else{
-
+                                menuPersonaje((turno == 1),x,y,cords,juego);
                             }
                         }
                     }
@@ -290,37 +292,321 @@ public class arena extends juego{
         return this.x/2;
     }
 
-    public void menuPersonaje(boolean quienJugador,int x,int y,int[] cords){
-        if(matrizJuego[x][y].personajeDentro!=null){
+    public void menuPersonaje(boolean quienJugador,int x,int y,int[] cords,JLayeredPane juego){
+        if(matrizJuego[x][y].personajeDentro!=null){ //Aqui se revisa si en el boton presionado hay un personaje
             for(int i=0;i<jugadoresTeam1.length;i++){
-                if(matrizJuego[x][y].personajeDentro.name.equals(jugadoresTeam1[i].name)){
+                if(matrizJuego[x][y].personajeDentro.name.equals(jugadoresTeam1[i].name)){ //Revisamos en ambas lista de jugadores si concuerda con el nombre
                     if(quienJugador){
                         //menuGeneral todo
                         JPanel menuGeneral = new JPanel();
                         JButton accionPersonaje =new JButton();
                         JButton estadoPersonaje =new JButton();
-                        menuGeneral.setBounds(cords[0]-10,cords[1]-20,70,70);
-                        accionPersonaje.setBounds(cords[0]-5,cords[1]-15,60,20);
-                        estadoPersonaje.setBounds(cords[0]-5,cords[1]+10,60,20);
+                        JButton salir =new JButton();
+                        menuGeneral.setBounds(cords[0]-10,cords[1]-20,100,100);
+                        accionPersonaje.setBounds(cords[0]-5,cords[1]-15,70,40);
+                        estadoPersonaje.setBounds(cords[0]-5,cords[1]+10,70,40);
+                        salir.setBounds(cords[0]-5,cords[1]+30,70,40);
+                        Font tipoLetra=new Font("Arial",Font.BOLD,10);
+                        accionPersonaje.setText("Acción");
+                        accionPersonaje.setFont(tipoLetra);
+                        estadoPersonaje.setText("Estado");
+                        estadoPersonaje.setFont(tipoLetra);
+                        salir.setText("Salir");
+                        salir.setFont(tipoLetra);
+                        menuGeneral.add(accionPersonaje);
+                        menuGeneral.add(estadoPersonaje);
+                        menuGeneral.add(salir);
+                        menuGeneral.setBackground(Color.ORANGE);
+                        juego.add(menuGeneral,Integer.valueOf(2));
 
                         //MenuAcciones
                         JPanel menuAcciones = new JPanel();
                         JButton movimiento = new JButton();
                         JButton atacar = new JButton();
                         JButton habilidad = new JButton();
-                        menuAcciones.setBounds(cords[0]-10,cords[1]-20,90,90);
+                        JButton salir2 =new JButton();
+                        menuAcciones.setBounds(cords[0]-10,cords[1]-20,110,110);
                         movimiento.setBounds(cords[0]-5,cords[1]-15,60,20);
                         atacar.setBounds(cords[0]-5,cords[1]+10,60,20);
                         habilidad.setBounds(cords[0]-5,cords[1]+30,60,20);
+                        salir2.setBounds(cords[0]-5,cords[1]+50,60,20);
+                        movimiento.setText("Movimiento");
+                        movimiento.setFont(tipoLetra);
+                        atacar.setText("Atacar");
+                        atacar.setFont(tipoLetra);
+                        habilidad.setText("Habilidades");
+                        habilidad.setFont(tipoLetra);
+                        salir2.setText("Volver");
+                        salir2.setFont(tipoLetra);
+                        menuAcciones.setBackground(Color.ORANGE);
+                        menuAcciones.add(movimiento);
+                        menuAcciones.add(atacar);
+                        menuAcciones.add(habilidad);
+                        menuAcciones.add(salir2);
+
+                        //MenuHabilidades
+                        JPanel menuHabilidades =new JPanel();
+                        JButton habilidad1 =new JButton();
+                        JButton habilidad2 =new JButton();
+                        JButton salir4 =new JButton();
+                        menuHabilidades.setBounds(cords[0]-10,cords[1]-20,110,110);
+                        habilidad1.setBounds(cords[0]-5,cords[1]-15,60,20);
+                        habilidad2.setBounds(cords[0]-5,cords[1]+10,60,20);
+                        salir4.setBounds(cords[0]-5,cords[1]+30,60,20);
+                        habilidad1.setText(matrizJuego[x][y].personajeDentro.abilities[0].nombre);
+                        habilidad1.setFont(tipoLetra);
+                        habilidad2.setText(matrizJuego[x][y].personajeDentro.abilities[1].nombre);
+                        habilidad2.setFont(tipoLetra);
+                        salir4.setText("Volver");
+                        salir4.setFont(tipoLetra);
+                        menuHabilidades.setBackground(Color.ORANGE);
+                        menuHabilidades.add(habilidad1);
+                        menuHabilidades.add(habilidad2);
+                        menuHabilidades.add(salir4);
 
                         //MenuEstado
                         JPanel menuEstado= new JPanel();
-                        JLabel datosPersonaje =new JLabel();
-                        menuEstado.setBounds(cords[0]-10,cords[1]-20,70,70);
+                        JTextArea datosPersonaje =new JTextArea();
+                        JButton salir3=new JButton();
+                        menuEstado.setBounds(cords[0]-10,cords[1]-20,100,100);
                         datosPersonaje.setBounds(cords[0]-5,cords[1]-15,60,60);
+                        salir3.setBounds(cords[0]-5,cords[1]+10,60,20);
+                        datosPersonaje.setText("Nombre: "+matrizJuego[x][y].personajeDentro.name+"\n"+"Elemento: "+matrizJuego[x][y].personajeDentro.getElement()+"\n"+"Vida: "+matrizJuego[x][y].personajeDentro.getLife());
+                        datosPersonaje.setForeground(Color.black);
+                        if(matrizJuego[x][y].personajeDentro.name=="RanniTheWitch"){
+                            datosPersonaje.setFont(new Font("Arial",Font.BOLD,8));
+                        }
+                        else{
+                            datosPersonaje.setFont(new Font("Arial",Font.BOLD,10));
+                        }
+                        menuEstado.setBackground(Color.ORANGE);
+                        menuEstado.add(datosPersonaje);
+                        salir3.setText("Volver");
+                        menuEstado.add(salir3);
+                        //Listener accionPersonaje
+                        accionPersonaje.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuGeneral.setVisible(false);
+                                juego.add(menuAcciones,Integer.valueOf(2));
+                            }
+                        });
+                        habilidad.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuAcciones.setVisible(false);
+                                juego.add(menuHabilidades,Integer.valueOf(2));
+                            }
+                        });
+                        estadoPersonaje.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuGeneral.setVisible(false);
+                                juego.add(menuEstado,Integer.valueOf(2));
+                            }
+                        });
+
+                        salir.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuGeneral.setVisible(false);
+                            }
+                        });
+                        salir2.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuAcciones.setVisible(false);
+                                menuGeneral.setVisible(true);
+                            }
+                        });
+                        salir3.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuEstado.setVisible(false);
+                                menuGeneral.setVisible(true);
+                            }
+                        });
+                        salir4.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuHabilidades.setVisible(false);
+                                menuGeneral.setVisible(true);
+                            }
+                        });
                     }
                     else{
+                        //MenuEstado
+                        JPanel menuEstado= new JPanel();
+                        JTextArea datosPersonaje =new JTextArea();
+                        JButton salir=new JButton();
+                        menuEstado.setBounds(cords[0]-10,cords[1]-20,100,100);
+                        datosPersonaje.setBounds(cords[0]-5,cords[1]-15,60,60);
+                        salir.setBounds(cords[0]-5,cords[1]+10,60,20);
+                        datosPersonaje.setText("Nombre: "+matrizJuego[x][y].personajeDentro.name+"\n"+"Elemento: "+matrizJuego[x][y].personajeDentro.getElement()+"\n"+"Vida: "+matrizJuego[x][y].personajeDentro.getLife());
+                        datosPersonaje.setForeground(Color.black);
+                        if(matrizJuego[x][y].personajeDentro.name=="RanniTheWitch"){
+                            datosPersonaje.setFont(new Font("Arial",Font.BOLD,8));
+                        }
+                        else{
+                            datosPersonaje.setFont(new Font("Arial",Font.BOLD,10));
+                        }
+                        menuEstado.setBackground(Color.ORANGE);
+                        menuEstado.add(datosPersonaje);
+                        salir.setText("Salir");
+                        salir.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuEstado.setVisible(false);
+                            }
+                        });
+                        menuEstado.add(salir);
+                        juego.add(menuEstado,Integer.valueOf(2));
+                    }
+                }
+                else if(matrizJuego[x][y].personajeDentro.name.equals(jugadoresTeam2[i].name)){
+                    if(!quienJugador){
+                        //menuGeneral todo
+                        JPanel menuGeneral = new JPanel();
+                        JButton accionPersonaje =new JButton();
+                        JButton estadoPersonaje =new JButton();
+                        JButton salir =new JButton();
+                        menuGeneral.setBounds(cords[0]-10,cords[1]-20,100,100);
+                        accionPersonaje.setBounds(cords[0]-5,cords[1]-15,70,40);
+                        estadoPersonaje.setBounds(cords[0]-5,cords[1]+10,70,40);
+                        salir.setBounds(cords[0]-5,cords[1]+30,70,40);
+                        Font tipoLetra=new Font("Arial",Font.BOLD,10);
+                        accionPersonaje.setText("Acción");
+                        accionPersonaje.setFont(tipoLetra);
+                        estadoPersonaje.setText("Estado");
+                        estadoPersonaje.setFont(tipoLetra);
+                        salir.setText("Salir");
+                        salir.setFont(tipoLetra);
+                        menuGeneral.add(accionPersonaje);
+                        menuGeneral.add(estadoPersonaje);
+                        menuGeneral.add(salir);
+                        menuGeneral.setBackground(Color.ORANGE);
+                        juego.add(menuGeneral,Integer.valueOf(2));
 
+                        //MenuAcciones
+                        JPanel menuAcciones = new JPanel();
+                        JButton movimiento = new JButton();
+                        JButton atacar = new JButton();
+                        JButton habilidad = new JButton();
+                        JButton salir2 =new JButton();
+                        menuAcciones.setBounds(cords[0]-10,cords[1]-20,110,110);
+                        movimiento.setBounds(cords[0]-5,cords[1]-15,60,20);
+                        atacar.setBounds(cords[0]-5,cords[1]+10,60,20);
+                        habilidad.setBounds(cords[0]-5,cords[1]+30,60,20);
+                        salir2.setBounds(cords[0]-5,cords[1]+50,60,20);
+                        movimiento.setText("Movimiento");
+                        movimiento.setFont(tipoLetra);
+                        atacar.setText("Atacar");
+                        atacar.setFont(tipoLetra);
+                        habilidad.setText("Habilidades");
+                        habilidad.setFont(tipoLetra);
+                        salir2.setText("Volver");
+                        salir2.setFont(tipoLetra);
+                        menuAcciones.add(movimiento);
+                        menuAcciones.add(atacar);
+                        menuAcciones.add(habilidad);
+                        menuAcciones.add(salir2);
+
+                        //MenuEstado
+                        JPanel menuEstado= new JPanel();
+                        JTextArea datosPersonaje =new JTextArea();
+                        JButton salir3=new JButton();
+                        menuEstado.setBounds(cords[0]-10,cords[1]-20,100,100);
+                        datosPersonaje.setBounds(cords[0]-5,cords[1]-15,60,60);
+                        salir3.setBounds(cords[0]-5,cords[1]+10,60,20);
+                        datosPersonaje.setText("Nombre: "+matrizJuego[x][y].personajeDentro.name+"\n"+"Elemento: "+matrizJuego[x][y].personajeDentro.getElement()+"\n"+"Vida: "+matrizJuego[x][y].personajeDentro.getLife());
+                        datosPersonaje.setForeground(Color.black);
+                        if(matrizJuego[x][y].personajeDentro.name=="RanniTheWitch"){
+                            datosPersonaje.setFont(new Font("Arial",Font.BOLD,8));
+                        }
+                        else{
+                            datosPersonaje.setFont(new Font("Arial",Font.BOLD,10));
+                        }
+                        menuEstado.setBackground(Color.ORANGE);
+                        menuEstado.add(datosPersonaje);
+                        salir3.setText("Volver");
+                        menuEstado.add(salir3);
+                        //Listener accionPersonaje
+                        accionPersonaje.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuGeneral.setVisible(false);
+                                juego.add(menuAcciones,Integer.valueOf(2));
+                            }
+                        });
+                        estadoPersonaje.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuGeneral.setVisible(false);
+                                juego.add(menuEstado,Integer.valueOf(2));
+                            }
+                        });
+
+                        salir.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuGeneral.setVisible(false);
+                            }
+                        });
+                        salir2.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuAcciones.setVisible(false);
+                                menuGeneral.setVisible(true);
+                            }
+                        });
+                        salir3.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuEstado.setVisible(false);
+                                menuGeneral.setVisible(true);
+                            }
+                        });
+                    }
+                    else{
+                        //MenuEstado
+                        //MenuEstado
+                        JPanel menuEstado= new JPanel();
+                        JTextArea datosPersonaje =new JTextArea();
+                        JButton salir=new JButton();
+                        menuEstado.setBounds(cords[0]-10,cords[1]-20,100,100);
+                        datosPersonaje.setBounds(cords[0]-5,cords[1]-15,60,60);
+                        salir.setBounds(cords[0]-5,cords[1]+10,60,20);
+                        datosPersonaje.setText("Nombre: "+matrizJuego[x][y].personajeDentro.name+"\n"+"Elemento: "+matrizJuego[x][y].personajeDentro.getElement()+"\n"+"Vida: "+matrizJuego[x][y].personajeDentro.getLife());
+                        datosPersonaje.setForeground(Color.black);
+                        if(matrizJuego[x][y].personajeDentro.name=="RanniTheWitch"){
+                            datosPersonaje.setFont(new Font("Arial",Font.BOLD,8));
+                        }
+                        else{
+                            datosPersonaje.setFont(new Font("Arial",Font.BOLD,10));
+                        }
+                        menuEstado.setBackground(Color.ORANGE);
+                        salir.setText("Salir");
+                        menuEstado.add(datosPersonaje);
+                        salir.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuEstado.setVisible(false);
+                            }
+                        });
+                        menuEstado.add(salir);
+                        juego.add(menuEstado,Integer.valueOf(2));
                     }
                 }
             }

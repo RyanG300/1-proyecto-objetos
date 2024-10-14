@@ -4,10 +4,10 @@ public class Character {
     public double mana;
     public String name;
     private int level;
-    double life;
+    public double life;
     private double damage;
     private String element;
-    private Ability[] abilities;
+    public Ability[] abilities;
     public Character(String name, int level, double life, double damage, String element, Ability[] abilities,double mana) {
         this.name = name;
         this.level = level;
@@ -45,5 +45,9 @@ public class Character {
     public void levelUp(){
         this.level++;
         this.damage *= 1.25;
+    }
+
+    public double getLife() {
+        return life;
     }
 }

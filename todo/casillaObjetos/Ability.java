@@ -2,7 +2,7 @@ package casillaObjetos;
 
 
 public class Ability {
-    private String nombre;
+    public String nombre;
     private double manaCost;
     private double damage;
 

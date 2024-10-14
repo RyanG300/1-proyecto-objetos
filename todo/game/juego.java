@@ -13,6 +13,7 @@ public class juego {
     public boolean torresTeam1Estado = true;
     public boolean torresTeam2Estado = true;
     public int cantidadTorres;
+    public int turno;
 
 
     public juego(Character[] jugadoresTeam1, Character[] jugadoresTeam2, Tower[] torresTeam1, Tower[] torresTeam2,int cantidadTorres) {

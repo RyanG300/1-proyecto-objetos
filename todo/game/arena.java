@@ -2,7 +2,6 @@ package game;
 import casillaObjetos.Character;
 import casillaObjetos.Tower;
 import casillaObjetos.casilla;
-import pruebaMovimiento.Arena;
 import ui.home;
 
 import javax.swing.*;
@@ -16,7 +15,7 @@ public class arena extends juego{
     public String tipoArena;
     private int x;
     private int y;
-    private int quienVaTorres=1;
+    private int quienVaTurnos =1;
     //public int textoTurnos;
     public int cantidadTorresColocacion= torresTeam1.length;
     public boolean estadoColocacionPersonajes=false;
@@ -127,7 +126,7 @@ public class arena extends juego{
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if(cantidadTorresColocacion!=0){
-                            if(quienVaTorres==1){
+                            if(quienVaTurnos ==1){
                                 if(x<=mitadArena){
                                     if(matrizJuego[x][y].id!=2){
                                         matrizJuego[x][y].id=2;
@@ -148,20 +147,11 @@ public class arena extends juego{
                                         catch (Exception ex){
                                             System.out.println(ex.getMessage());
                                         }
-                                        if(x<=this.x/2){
-                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
-                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
-                                            casilla.setIcon(iconBotonDeVerdad);
-                                            casilla.setBackground(Color.red);
-                                        }  //Para establecer los límites de la arena
-                                        else{
-                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
-                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
-                                            casilla.setIcon(iconBotonDeVerdad);
-                                            casilla.setBackground(Color.blue);
-                                            }
+                                        ImageIcon iconoBoton =new ImageIcon((x<=mitadArena) ? (System.getProperty("user.dir")+"\\todo\\images\\torreIconoRojo.png"):(System.getProperty("user.dir")+"\\todo\\images\\torreIconoAzul.png"));
+                                        Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                        casilla.setIcon(iconBotonDeVerdad);
                                         home.textoPorDefectoTurnos.setText("Jugador 2#, por favor eliga la ubicación de su torre (Quedan "+cantidadTorresColocacion+")");
-                                        quienVaTorres=2;
+                                        quienVaTurnos =2;
                                     }
                                     else{
                                         home.textoPorDefectoTurnos.setText("Error: No se puede colocar una torre en el lado contrario de la arena");
@@ -172,7 +162,7 @@ public class arena extends juego{
                                 }
                                 System.out.println(x+" "+y);
                             }
-                            else if(quienVaTorres==2){
+                            else if(quienVaTurnos ==2){
                                 if(x>mitadArena){
                                     if(matrizJuego[x][y].id!=2){
                                         matrizJuego[x][y].id=2;
@@ -193,11 +183,11 @@ public class arena extends juego{
                                         catch (Exception ex){
                                             System.out.println(ex.getMessage());
                                         }
-                                        ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
+                                        ImageIcon iconoBoton =new ImageIcon((x<=mitadArena) ? System.getProperty("user.dir")+"\\todo\\images\\torreIconoRojo.png":System.getProperty("user.dir")+"\\todo\\images\\torreIconoAzul.png");
                                         Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
                                         casilla.setIcon(iconBotonDeVerdad);
-                                        casilla.setBackground((x<=this.x/2)? Color.red:Color.blue);
                                         cantidadTorresColocacion--;
+                                        quienVaTurnos =1;
                                         if(cantidadTorresColocacion==0){
                                             home.textoPorDefectoTurnos.setText("Torres colocadas. Ahora el jugador #1 debe colocar sus personajes.");
                                             home.colocarBotonesDesdeArena(jugadoresTeam1.length,true);
@@ -215,7 +205,6 @@ public class arena extends juego{
                                         }
                                         else{
                                             home.textoPorDefectoTurnos.setText("Jugador #1, por favor eliga la ubicación de su torre (Quedan "+cantidadTorresColocacion+")");
-                                            quienVaTorres=1;
                                         }
                                     }
                                     else{
@@ -234,13 +223,46 @@ public class arena extends juego{
                                     home.textoPorDefectoTurnos.setText("Personaje no seleccionado, por favor seleccione un personaje para colocar en la arena");
                                 }
                                 else{
-                                    matrizJuego[x][y].id=1;
-                                    matrizJuego[x][y].personajeDentro=guardadoSeleccionado;
-                                    //ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\torreIcono.png");
-                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\"+"champion"+guardadoSeleccionado.name+".png");
-                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
-                                    casilla.setIcon(iconBotonDeVerdad);
-                                    casilla.setBackground((x<=this.x/2) ? Color.red:Color.blue);
+                                    if(quienVaTurnos==1){
+                                        if(x<=mitadArena){
+                                            matrizJuego[x][y].id=1;
+                                            matrizJuego[x][y].personajeDentro=guardadoSeleccionado;
+                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\"+"champion"+guardadoSeleccionado.name+".png");
+                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                            casilla.setIcon(iconBotonDeVerdad);
+                                            //casilla.setBackground((x<=this.x/2) ? Color.red:Color.blue);
+                                            home.presionado=false;
+                                            home.cantidadPersonajesRestantes--;
+                                            if(home.cantidadPersonajesRestantes==0){
+                                                home.cantidadPersonajesRestantes=jugadoresTeam1.length;
+                                                home.textoPorDefectoTurnos.setText("Jugador #2 coloque sus personajes en su parte de la Arena");
+                                                quienVaTurnos=2;
+                                                home.colocarBotonesDesdeArena(jugadoresTeam1.length,false);
+                                            }
+                                        }
+                                        else{
+                                            home.textoPorDefectoTurnos.setText("Error: No se puede colocar un personaje en el lado contrario");
+                                        }
+                                    }
+                                    else if(quienVaTurnos==2){
+                                        if(x>mitadArena){
+                                            matrizJuego[x][y].id=1;
+                                            matrizJuego[x][y].personajeDentro=guardadoSeleccionado;
+                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\"+"champion"+guardadoSeleccionado.name+".png");
+                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                            casilla.setIcon(iconBotonDeVerdad);
+                                            //casilla.setBackground((x<=this.x/2) ? Color.red:Color.blue);
+                                            home.presionado=false;
+                                            home.cantidadPersonajesRestantes--;
+                                            if(home.cantidadPersonajesRestantes==0){
+                                                home.textoPorDefectoTurnos.setText("Jugador #2 coloque sus personajes en su parte de la Arena");
+                                                home.colocarBotonesDesdeArena(jugadoresTeam1.length,false);
+                                            }
+                                        }
+                                        else{
+                                            home.textoPorDefectoTurnos.setText("Error: No se puede colocar un personaje en el lado contrario");
+                                        }
+                                    }
                                 }
                             }
                         }

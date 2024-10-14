@@ -88,6 +88,7 @@ public class home extends JFrame{
 
     //Variables auxiliares
     public static boolean presionado=false; //Variable para saber si un boton de colocacion de personaje ha sido presionado
+    public static int cantidadPersonajesRestantes; //Variable para saber el numero restante de personajes que faltan de colocar en la arena (Para ambos jugadores)
     //Jbutton
     //public static JButton botonPersonaje =new JButton();
 
@@ -841,13 +842,16 @@ public class home extends JFrame{
             botonPersonaje.setBounds(xCords,90,70,70);
             juegoMain.add(botonPersonaje,Integer.valueOf(2));
             xCords+=100;
+            int finalI = i;
             botonPersonaje.addActionListener(new ActionListener() {
+                private Character personajeBoton=(quienListaJugadores)? Arena.jugadoresTeam1[finalI]:Arena.jugadoresTeam2[finalI];
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if(!presionado){
-                        botonPersonaje.setEnabled(false);
+                        botonPersonaje.setVisible(false);
                         textoPorDefectoTurnos.setText((quienListaJugadores) ? "Jugador #1 Coloque a su personaje en la arena de juego" : "jugador #2 Coloque a su personaje en la arena de juego");
                         presionado=true;
+                        Arena.guardadoSeleccionado=personajeBoton;
                     }
                     else{
                         textoPorDefectoTurnos.setText("No se puede seleccionar otro personaje para colocar, primero coloque a su personaje en la arena");
@@ -856,6 +860,7 @@ public class home extends JFrame{
                 }
             });
         }
+        cantidadPersonajesRestantes=Arena.jugadoresTeam1.length;
     }
 }
 

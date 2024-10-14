@@ -1,6 +1,7 @@
 package ui;
 
 import javax.swing.*;
+import javax.swing.tree.ExpandVetoException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -86,11 +87,15 @@ public class home extends JFrame{
     private JLabel imagenJuegoMain;
     public static JLabel textoPorDefectoTurnos=new JLabel();
 
+    //JtextArea
+    public JTextArea eventosPartida=new JTextArea();
+
     //Variables auxiliares
     public static boolean presionado=false; //Variable para saber si un boton de colocacion de personaje ha sido presionado
     public static int cantidadPersonajesRestantes; //Variable para saber el numero restante de personajes que faltan de colocar en la arena (Para ambos jugadores)
     //Jbutton
     //public static JButton botonPersonaje =new JButton();
+    public static JButton pasarTurno=new JButton();
 
     public home() {
         setContentPane(Todo);
@@ -224,12 +229,15 @@ public class home extends JFrame{
                 ButtonEmpezar.setEnabled(false);
                 System.out.println(tipoArena+" "+Integer.parseInt(textFieldX.getText())+" "+Integer.parseInt(textFieldY.getText())+" "+Integer.parseInt(comboBoxTorres.getSelectedItem().toString()));
                 Tower[] listaTorresTeam1=new Tower[Integer.parseInt(comboBoxTorres.getSelectedItem().toString())];
+                int contador=0;
                 for(int X=0;X<listaTorresTeam1.length;X++){
-                    listaTorresTeam1[X]=new Tower(10000,X);
+                    listaTorresTeam1[X]=new Tower(10000,contador);
+                    contador++;
                 }
                 Tower[]listaTorresTeam2=new Tower[Integer.parseInt(comboBoxTorres.getSelectedItem().toString())];
                 for(int X=0;X<listaTorresTeam2.length;X++){
-                    listaTorresTeam2[X]=new Tower(10000,X);
+                    listaTorresTeam2[X]=new Tower(10000,contador);
+                    contador++;
                 }
 
                 Arena=new arena(Integer.parseInt(textFieldX.getText()),Integer.parseInt(textFieldY.getText()),tipoArena,listaJugadoresTeam1,listaJugadoresTeam2,listaTorresTeam1,listaTorresTeam2,Integer.parseInt(comboBoxTorres.getSelectedItem().toString()));
@@ -288,6 +296,26 @@ public class home extends JFrame{
                 interfazJuego.setLayout(null);
                 interfazJuego.setBounds(800,0,500,600);
                 interfazJuego.setBackground(Color.decode("#c18559"));
+                eventosPartida.setFont(new Font("Arial",Font.BOLD,14));
+                eventosPartida.setBounds(20,200,430,430);
+                eventosPartida.setBackground(Color.decode("#E0E0E0"));
+                eventosPartida.setForeground(Color.BLACK);
+                eventosPartida.setText("La partida aún no ha empezado.");
+                eventosPartida.setEditable(false);
+                pasarTurno.setText("Pasar turno");
+                pasarTurno.setBounds(20,130,150,30);
+                pasarTurno.setForeground(Color.BLACK);
+                pasarTurno.setFont(new Font("Arial",Font.BOLD,14));
+                pasarTurno.setEnabled(false);
+                pasarTurno.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Arena.turno=(Arena.establecerTurno()) ? 1:2;
+                        pasarTurno.setEnabled(false);
+                    }
+                });
+                interfazJuego.add(pasarTurno);
+                interfazJuego.add(eventosPartida);
                 //interfazJuego.add(textoPorDefectoTurnos);
                 juegoMain.add(interfazJuego);
                 juegoMain.add(textoPorDefectoTurnos,Integer.valueOf(1));

@@ -2,7 +2,7 @@ package casillaObjetos;
 
 public class Tower {
     public int id;
-    private double resistence;
+    public double resistence;
     public boolean colocado;
 
     public Tower(double resistence,int id) {

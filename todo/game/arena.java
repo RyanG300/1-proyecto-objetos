@@ -373,6 +373,7 @@ public class arena extends juego{
                         salir3.setBounds(cords[0]-5,cords[1]+10,60,20);
                         datosPersonaje.setText("Nombre: "+matrizJuego[x][y].personajeDentro.name+"\n"+"Elemento: "+matrizJuego[x][y].personajeDentro.getElement()+"\n"+"Vida: "+matrizJuego[x][y].personajeDentro.getLife());
                         datosPersonaje.setForeground(Color.black);
+                        datosPersonaje.setEditable(false);
                         if(matrizJuego[x][y].personajeDentro.name=="RanniTheWitch"){
                             datosPersonaje.setFont(new Font("Arial",Font.BOLD,8));
                         }
@@ -451,6 +452,7 @@ public class arena extends juego{
                         salir.setBounds(cords[0]-5,cords[1]+10,60,20);
                         datosPersonaje.setText("Nombre: "+matrizJuego[x][y].personajeDentro.name+"\n"+"Elemento: "+matrizJuego[x][y].personajeDentro.getElement()+"\n"+"Vida: "+matrizJuego[x][y].personajeDentro.getLife());
                         datosPersonaje.setForeground(Color.black);
+                        datosPersonaje.setEditable(false);
                         if(matrizJuego[x][y].personajeDentro.name=="RanniTheWitch"){
                             datosPersonaje.setFont(new Font("Arial",Font.BOLD,8));
                         }
@@ -513,10 +515,31 @@ public class arena extends juego{
                         habilidad.setFont(tipoLetra);
                         salir2.setText("Volver");
                         salir2.setFont(tipoLetra);
+                        menuAcciones.setBackground(Color.ORANGE);
                         menuAcciones.add(movimiento);
                         menuAcciones.add(atacar);
                         menuAcciones.add(habilidad);
                         menuAcciones.add(salir2);
+
+                        //MenuHabilidades
+                        JPanel menuHabilidades =new JPanel();
+                        JButton habilidad1 =new JButton();
+                        JButton habilidad2 =new JButton();
+                        JButton salir4 =new JButton();
+                        menuHabilidades.setBounds(cords[0]-10,cords[1]-20,110,110);
+                        habilidad1.setBounds(cords[0]-5,cords[1]-15,60,20);
+                        habilidad2.setBounds(cords[0]-5,cords[1]+10,60,20);
+                        salir4.setBounds(cords[0]-5,cords[1]+30,60,20);
+                        habilidad1.setText(matrizJuego[x][y].personajeDentro.abilities[0].nombre);
+                        habilidad1.setFont(tipoLetra);
+                        habilidad2.setText(matrizJuego[x][y].personajeDentro.abilities[1].nombre);
+                        habilidad2.setFont(tipoLetra);
+                        salir4.setText("Volver");
+                        salir4.setFont(tipoLetra);
+                        menuHabilidades.setBackground(Color.ORANGE);
+                        menuHabilidades.add(habilidad1);
+                        menuHabilidades.add(habilidad2);
+                        menuHabilidades.add(salir4);
 
                         //MenuEstado
                         JPanel menuEstado= new JPanel();
@@ -527,6 +550,7 @@ public class arena extends juego{
                         salir3.setBounds(cords[0]-5,cords[1]+10,60,20);
                         datosPersonaje.setText("Nombre: "+matrizJuego[x][y].personajeDentro.name+"\n"+"Elemento: "+matrizJuego[x][y].personajeDentro.getElement()+"\n"+"Vida: "+matrizJuego[x][y].personajeDentro.getLife());
                         datosPersonaje.setForeground(Color.black);
+                        datosPersonaje.setEditable(false);
                         if(matrizJuego[x][y].personajeDentro.name=="RanniTheWitch"){
                             datosPersonaje.setFont(new Font("Arial",Font.BOLD,8));
                         }
@@ -544,6 +568,14 @@ public class arena extends juego{
                             public void actionPerformed(ActionEvent e) {
                                 menuGeneral.setVisible(false);
                                 juego.add(menuAcciones,Integer.valueOf(2));
+                            }
+                        });
+                        habilidad.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuAcciones.setVisible(false);
+                                juego.add(menuHabilidades,Integer.valueOf(2));
                             }
                         });
                         estadoPersonaje.addActionListener(new ActionListener() {
@@ -578,6 +610,14 @@ public class arena extends juego{
                                 menuGeneral.setVisible(true);
                             }
                         });
+                        salir4.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuHabilidades.setVisible(false);
+                                menuGeneral.setVisible(true);
+                            }
+                        });
                     }
                     else{
                         //MenuEstado
@@ -590,6 +630,7 @@ public class arena extends juego{
                         salir.setBounds(cords[0]-5,cords[1]+10,60,20);
                         datosPersonaje.setText("Nombre: "+matrizJuego[x][y].personajeDentro.name+"\n"+"Elemento: "+matrizJuego[x][y].personajeDentro.getElement()+"\n"+"Vida: "+matrizJuego[x][y].personajeDentro.getLife());
                         datosPersonaje.setForeground(Color.black);
+                        datosPersonaje.setEditable(false);
                         if(matrizJuego[x][y].personajeDentro.name=="RanniTheWitch"){
                             datosPersonaje.setFont(new Font("Arial",Font.BOLD,8));
                         }
@@ -610,7 +651,62 @@ public class arena extends juego{
                     }
                 }
             }
+        }
+        else if(matrizJuego[x][y].id==2){
+            for(int i=0;i<torresTeam1.length;i++){
+                if(matrizJuego[x][y].torreDentro.id==torresTeam1[i].id){
+                    //menuTorre
+                    JPanel menuTorre = new JPanel();
+                    JTextArea textoTorre = new JTextArea();
+                    JButton salir = new JButton();
+                    menuTorre.setBounds(cords[0]-5,cords[1]-15,90,90);
+                    textoTorre.setBounds(cords[0]-5,cords[1]+10,60,20);
+                    salir.setBounds(cords[0]-5,cords[1]+10,60,20);
+                    Font tipoLetra=new Font("Arial",Font.BOLD,10);
+                    textoTorre.setForeground(Color.black);
+                    textoTorre.setEditable(false);
+                    textoTorre.setFont(tipoLetra);
+                    textoTorre.setText("Vida torre: "+String.valueOf((matrizJuego[x][y].torreDentro.resistence)));
+                    menuTorre.setBackground(Color.ORANGE);
+                    salir.setText("Salir");
+                    menuTorre.add(textoTorre);
+                    menuTorre.add(salir);
+                    juego.add(menuTorre,Integer.valueOf(2));
 
+                    salir.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            menuTorre.setVisible(false);
+                        }
+                    });
+                }
+                else if(matrizJuego[x][y].torreDentro.id==torresTeam2[i].id){
+                    //menuTorre
+                    JPanel menuTorre = new JPanel();
+                    JTextArea textoTorre = new JTextArea();
+                    JButton salir = new JButton();
+                    menuTorre.setBounds(cords[0]-5,cords[1]-15,90,90);
+                    textoTorre.setBounds(cords[0]-5,cords[1]+10,60,20);
+                    salir.setBounds(cords[0]-5,cords[1]+10,60,20);
+                    Font tipoLetra=new Font("Arial",Font.BOLD,10);
+                    textoTorre.setForeground(Color.black);
+                    textoTorre.setEditable(false);
+                    textoTorre.setFont(tipoLetra);
+                    textoTorre.setText("Vida torre: "+String.valueOf((matrizJuego[x][y].torreDentro.resistence)));
+                    menuTorre.setBackground(Color.ORANGE);
+                    salir.setText("Salir");
+                    menuTorre.add(textoTorre);
+                    menuTorre.add(salir);
+                    juego.add(menuTorre,Integer.valueOf(2));
+
+                    salir.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            menuTorre.setVisible(false);
+                        }
+                    });
+                }
+            }
         }
     }
 }

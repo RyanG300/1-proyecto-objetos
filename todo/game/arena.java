@@ -13,6 +13,7 @@ import java.util.Random;
 
 public class arena extends juego{
     public casilla[][] matrizJuego;
+    public JButton[][] matrizJuegoBottons;
     public String tipoArena;
     private int x;
     private int y;
@@ -35,8 +36,15 @@ public class arena extends juego{
                 matrizJuego[j][i] = new casilla(j,i);
             }
         }
+        JButton[][] matrizJuegoBottons = new JButton[x][y];
+        for(int i = 0; i < x; i++){
+            for(int j = 0; j < y; j++){
+                matrizJuegoBottons[j][i] = new JButton();
+            }
+        }
         tipoArena = tipo;
         this.matrizJuego=matrizJuego;
+        this.matrizJuegoBottons=matrizJuegoBottons;
     }
 
     public String getTipoArena(){
@@ -123,12 +131,14 @@ public class arena extends juego{
                 int finalPuntoDibujoY = puntoDibujoY;
                 casilla.addActionListener(new ActionListener() {
                     private int mitadArena=getMitadArena();
-                    private int x= finalJ-1;
-                    private int y= finalI-1;
-                    private int[] cords={finalPuntoDibujoX, finalPuntoDibujoY};
+                    public int x= finalJ-1;
+                    public int y= finalI-1;
+                    private int[] cordsDibujo ={finalPuntoDibujoX, finalPuntoDibujoY};
+                    public int p;
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        //System.out.println(x+" "+y);
                         if(cantidadTorresColocacion!=0){
                             if(quienVaTurnos ==1){
                                 if(x<=mitadArena){
@@ -228,7 +238,7 @@ public class arena extends juego{
                                 }
                                 else{
                                     if(quienVaTurnos==1){
-                                        if(x<=mitadArena){
+                                        if(x<=mitadArena-1){
                                             matrizJuego[x][y].id=1;
                                             matrizJuego[x][y].personajeDentro=guardadoSeleccionado;
                                             ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\"+"champion"+guardadoSeleccionado.name+".png");
@@ -249,7 +259,7 @@ public class arena extends juego{
                                         }
                                     }
                                     else if(quienVaTurnos==2){
-                                        if(x>mitadArena){
+                                        if(x>mitadArena-1){
                                             matrizJuego[x][y].id=1;
                                             matrizJuego[x][y].personajeDentro=guardadoSeleccionado;
                                             ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\"+"champion"+guardadoSeleccionado.name+".png");
@@ -274,12 +284,16 @@ public class arena extends juego{
                                 }
                             }
                             else{
-                                menuPersonaje((turno == 1),x,y,cords,juego);
+                                if(casilla.getColorModel().equals(Color.ORANGE)){
+                                    System.out.println("Pingas");
+                                }
+                                menuPersonaje((turno == 1),x,y, cordsDibujo,juego);
                             }
                         }
                     }
                 });
-                juego.add(casilla,Integer.valueOf(1));
+                matrizJuegoBottons[j-1][i-1]=casilla;
+                juego.add(matrizJuegoBottons[j-1][i-1],Integer.valueOf(1));
                 puntoDibujoX+=widthHeight;
             }
             puntoDibujoY+=widthHeight;
@@ -293,6 +307,7 @@ public class arena extends juego{
     }
 
     public void menuPersonaje(boolean quienJugador,int x,int y,int[] cords,JLayeredPane juego){
+        System.out.println(x+" "+y);
         if(matrizJuego[x][y].personajeDentro!=null){ //Aqui se revisa si en el boton presionado hay un personaje
             for(int i=0;i<jugadoresTeam1.length;i++){
                 if(matrizJuego[x][y].personajeDentro.name.equals(jugadoresTeam1[i].name)){ //Revisamos en ambas lista de jugadores si concuerda con el nombre
@@ -384,6 +399,22 @@ public class arena extends juego{
                         menuEstado.add(datosPersonaje);
                         salir3.setText("Volver");
                         menuEstado.add(salir3);
+
+                        //panelAtaque
+                        JPanel panelAtaque=new JPanel();
+                        JTextArea denegadoAtaque =new JTextArea();
+                        JButton salir5 =new JButton();
+                        panelAtaque.setBounds(cords[0]-10,cords[1]-20,100,100);
+                        denegadoAtaque.setBounds(cords[0]-5,cords[1]-15,60,60);
+                        salir5.setBounds(cords[0]-5,cords[1]+10,60,20);
+                        denegadoAtaque.setText("No hay objetivos en el área de ataque.");
+                        denegadoAtaque.setFont(tipoLetra);
+                        denegadoAtaque.setForeground(Color.black);
+                        denegadoAtaque.setEditable(false);
+                        panelAtaque.setBackground(Color.ORANGE);
+                        panelAtaque.add(denegadoAtaque);
+
+
                         //Listener accionPersonaje
                         accionPersonaje.addActionListener(new ActionListener() {
 
@@ -409,7 +440,62 @@ public class arena extends juego{
                                 juego.add(menuEstado,Integer.valueOf(2));
                             }
                         });
-
+                        atacar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                System.out.println(x+" "+y);
+                                menuAcciones.setVisible(false);
+                                try {
+                                    matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try{
+                                    matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
+                                try{
+                                    matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try{
+                                    matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                            }
+                        });
                         salir.addActionListener(new ActionListener() {
 
                             @Override
@@ -439,6 +525,14 @@ public class arena extends juego{
                             public void actionPerformed(ActionEvent e) {
                                 menuHabilidades.setVisible(false);
                                 menuGeneral.setVisible(true);
+                            }
+                        });
+                        salir5.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                panelAtaque.setVisible(false);
+                                menuAcciones.setVisible(true);
+
                             }
                         });
                     }
@@ -561,6 +655,22 @@ public class arena extends juego{
                         menuEstado.add(datosPersonaje);
                         salir3.setText("Volver");
                         menuEstado.add(salir3);
+
+                        //panelAtaque
+                        JPanel panelAtaque=new JPanel();
+                        JTextArea denegadoAtaque =new JTextArea();
+                        JButton salir5 =new JButton();
+                        panelAtaque.setBounds(cords[0]-10,cords[1]-20,100,100);
+                        denegadoAtaque.setBounds(cords[0]-5,cords[1]-15,60,60);
+                        salir5.setBounds(cords[0]-5,cords[1]+10,60,20);
+                        denegadoAtaque.setText("No hay objetivos en el área de ataque.");
+                        denegadoAtaque.setFont(tipoLetra);
+                        denegadoAtaque.setForeground(Color.black);
+                        denegadoAtaque.setEditable(false);
+                        panelAtaque.setBackground(Color.ORANGE);
+                        panelAtaque.add(denegadoAtaque);
+
+
                         //Listener accionPersonaje
                         accionPersonaje.addActionListener(new ActionListener() {
 
@@ -586,7 +696,62 @@ public class arena extends juego{
                                 juego.add(menuEstado,Integer.valueOf(2));
                             }
                         });
-
+                        atacar.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                System.out.println(x+" "+y);
+                                menuAcciones.setVisible(false);
+                                try {
+                                    matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try{
+                                    matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
+                                try{
+                                    matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try{
+                                    matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                            }
+                        });
                         salir.addActionListener(new ActionListener() {
 
                             @Override
@@ -616,6 +781,14 @@ public class arena extends juego{
                             public void actionPerformed(ActionEvent e) {
                                 menuHabilidades.setVisible(false);
                                 menuGeneral.setVisible(true);
+                            }
+                        });
+                        salir5.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                panelAtaque.setVisible(false);
+                                menuAcciones.setVisible(true);
+
                             }
                         });
                     }

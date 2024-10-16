@@ -54,7 +54,7 @@ public class juego {
         while(true){
             Random rand = new Random();
             int randomJugador=rand.nextInt(jugadoresTeam.length);
-            for(int i=0;i<=jugadoresTeam.length;i++){
+            for(int i=0;i<jugadoresTeam.length;i++){
                 if(primeraVuelta){
                     primeraVuelta=false;
                     break;

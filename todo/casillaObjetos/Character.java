@@ -5,16 +5,20 @@ public class Character {
     public String name;
     private int level;
     public double life;
-    private double damage;
-    private String element;
+    public double FixedLife;
+    public double damage;
+    public String element;
     public Ability[] abilities;
     private int deaths;
     private int kills;
     private int towerKills;
+    public boolean turnoRealizadoPersonaje=false;
+
     public Character(String name, int level, double life, double damage, String element, Ability[] abilities,double mana) {
         this.name = name;
         this.level = level;
         this.life = life;
+        this.FixedLife = life;
         this.damage = damage;
         this.element = element;
         this.abilities = abilities;
@@ -30,6 +34,14 @@ public class Character {
 
     public double getDamage() {
         return damage;
+    }
+
+    public void setLife() { //Para recuperar la vida al revivir
+        this.life = this.FixedLife;
+    }
+
+    public void TakesDamagePerAttack(double damage) {
+        this.life-=damage;
     }
 
     public void setDamage(double damage) {

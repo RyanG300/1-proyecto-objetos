@@ -88,7 +88,7 @@ public class home extends JFrame{
     public static JLabel textoPorDefectoTurnos=new JLabel();
 
     //JtextArea
-    public JTextArea eventosPartida=new JTextArea();
+    public static JTextArea eventosPartida=new JTextArea();
 
     //Variables auxiliares
     public static boolean presionado=false; //Variable para saber si un boton de colocacion de personaje ha sido presionado
@@ -121,6 +121,7 @@ public class home extends JFrame{
         setResizable(false);
         //setLayout(null);
         setSize(1300, 600);
+
 
         //Estos son los checkBox que determinan el tipo de la arena de juego.
         fuegoCheckBox.addActionListener(new ActionListener() {
@@ -300,8 +301,13 @@ public class home extends JFrame{
                 eventosPartida.setBounds(20,200,430,430);
                 eventosPartida.setBackground(Color.decode("#E0E0E0"));
                 eventosPartida.setForeground(Color.BLACK);
-                eventosPartida.setText("La partida aún no ha empezado.");
+                eventosPartida.append("La partida aún no ha empezado.\n");
                 eventosPartida.setEditable(false);
+                eventosPartida.setLineWrap(true);
+                JScrollPane scroll=new JScrollPane(eventosPartida);
+                //scroll.setBounds(410,200,20,430);
+                //scroll.createVerticalScrollBar();
+                //scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
                 pasarTurno.setText("Pasar turno");
                 pasarTurno.setBounds(20,130,150,30);
                 pasarTurno.setForeground(Color.BLACK);
@@ -314,6 +320,7 @@ public class home extends JFrame{
                         pasarTurno.setEnabled(false);
                     }
                 });
+                //interfazJuego.add(scroll);
                 interfazJuego.add(pasarTurno);
                 interfazJuego.add(eventosPartida);
                 //interfazJuego.add(textoPorDefectoTurnos);

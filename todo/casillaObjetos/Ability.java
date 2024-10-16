@@ -3,8 +3,8 @@ package casillaObjetos;
 
 public class Ability {
     public String nombre;
-    private double manaCost;
-    private double damage;
+    public double manaCost;
+    public double damage;
 
     public Ability(String nombre, double manaCost, double damage) {
         this.nombre = nombre;

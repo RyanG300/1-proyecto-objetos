@@ -45,4 +45,39 @@ public class juego {
         Random rand = new Random();
         return (rand.nextBoolean());
     }
+
+    public int establecerTurnoPersonaje(Character[] jugadoresTeam){
+        int contador=0;
+        boolean primeraVuelta=true;
+        boolean repito=false;
+        int[] arrayNumero=new int[jugadoresTeam.length];
+        while(true){
+            Random rand = new Random();
+            int randomJugador=rand.nextInt(jugadoresTeam.length);
+            for(int i=0;i<=jugadoresTeam.length;i++){
+                if(primeraVuelta){
+                    primeraVuelta=false;
+                    break;
+                }
+                if(arrayNumero[i]==randomJugador){
+                    contador++;
+                    repito=true;
+                    if(contador>5){
+                        turno=(turno==1) ? 2:1;
+                        return -5;
+                    }
+                }
+            }
+            if(repito){
+                repito=false;
+            }
+            else{
+                if(!jugadoresTeam[randomJugador].turnoRealizadoPersonaje){
+                    return randomJugador;
+                }
+                arrayNumero[contador]=randomJugador;
+            }
+
+        }
+    }
 }

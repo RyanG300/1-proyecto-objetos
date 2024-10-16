@@ -6,6 +6,8 @@ public class casilla {
     public boolean canMove;
     public Character personajeDentro;
     public Tower torreDentro;
+    public boolean bajaAtaque=false;
+    public boolean  habilidadBajoAtaque=false;
 
     public casilla(int x,int y){
         cords=new int[]{x,y};

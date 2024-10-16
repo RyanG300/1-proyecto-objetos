@@ -812,18 +812,21 @@ public class arena extends juego{
                                 menuAcciones.setVisible(false);
                                 try {
                                     matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y+1].bajaAtaque=true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
                                     matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x][y+1].bajaAtaque=true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
                                     matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y+1].bajaAtaque=true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
@@ -831,30 +834,35 @@ public class arena extends juego{
                                 matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
                                 try{
                                     matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y].bajaAtaque=true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
                                     matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y].bajaAtaque=true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
                                     matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x][y-1].bajaAtaque=true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
                                     matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y-1].bajaAtaque=true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
                                     matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y-1].bajaAtaque=true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");

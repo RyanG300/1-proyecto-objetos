@@ -325,6 +325,129 @@ public class arena extends juego{
                                                     }
                                                 }
 
+                                                //Establecemos de nuevo las casillas a no bajoAtaque
+                                                try {
+                                                    if(matrizJuego[x+1][y+1].cords[0]<=mitadArena-1){
+                                                        matrizJuegoBottons[x+1][y+1].setBackground(Color.red);
+                                                    }
+                                                    else{
+                                                        matrizJuegoBottons[x+1][y+1].setBackground(Color.blue);
+                                                    }
+                                                    matrizJuego[x+1][y+1].bajoAtaque =false;
+                                                    matrizJuego[x+1][y+1].habilidad1BajoAtaque =false;
+                                                    matrizJuego[x+1][y+1].habilidad2BajoAtaque =false;
+                                                }
+                                                catch (Exception ex){
+                                                    System.out.println("Nada xdxd");
+                                                }
+                                                try{
+                                                    if(matrizJuego[x][y+1].cords[0]<=mitadArena-1){
+                                                        matrizJuegoBottons[x][y+1].setBackground(Color.RED);
+                                                    }
+                                                    else{
+                                                        matrizJuegoBottons[x][y+1].setBackground(Color.blue);
+                                                    }
+                                                    matrizJuego[x][y+1].bajoAtaque =false;
+                                                    matrizJuego[x][y+1].habilidad1BajoAtaque =false;
+                                                    matrizJuego[x][y+1].habilidad2BajoAtaque =false;
+                                                }
+                                                catch (Exception ex){
+                                                    System.out.println("Nada xdxd");
+                                                }
+                                                try {
+                                                    if(matrizJuego[x-1][y+1].cords[0]<=mitadArena-1){
+                                                        matrizJuegoBottons[x-1][y+1].setBackground(Color.RED);
+                                                    }
+                                                    else{
+                                                        matrizJuegoBottons[x-1][y+1].setBackground(Color.blue);
+                                                    }
+                                                    matrizJuego[x-1][y+1].bajoAtaque =false;
+                                                    matrizJuego[x-1][y+1].habilidad1BajoAtaque=false;
+                                                    matrizJuego[x-1][y+1].habilidad2BajoAtaque=false;
+                                                }
+                                                catch (Exception ex){
+                                                    System.out.println("Nada xdxd");
+                                                }
+                                                if(matrizJuego[x][y].cords[0]<=mitadArena-1){
+                                                    matrizJuegoBottons[x][y].setBackground(Color.RED);
+                                                }
+                                                else{
+                                                    matrizJuegoBottons[x][y].setBackground(Color.blue);
+                                                }
+                                                matrizJuego[x][y].bajoAtaque =false;
+                                                matrizJuego[x][y].habilidad1BajoAtaque=false;
+                                                matrizJuego[x][y].habilidad2BajoAtaque=false;
+                                                try{
+                                                    if(matrizJuego[x-1][y].cords[0]<=mitadArena-1){
+                                                        matrizJuegoBottons[x-1][y].setBackground(Color.RED);
+                                                    }
+                                                    else{
+                                                        matrizJuegoBottons[x-1][y].setBackground(Color.blue);
+                                                    }
+                                                    matrizJuego[x-1][y].bajoAtaque =false;
+                                                    matrizJuego[x-1][y].habilidad1BajoAtaque=false;
+                                                    matrizJuego[x-1][y].habilidad2BajoAtaque=false;
+                                                }
+                                                catch (Exception ex){
+                                                    System.out.println("Nada xdxd");
+                                                }
+                                                try{
+                                                    if(matrizJuego[x+1][y].cords[0]<=mitadArena-1){
+                                                        matrizJuegoBottons[x+1][y].setBackground(Color.RED);
+                                                    }
+                                                    else{
+                                                        matrizJuegoBottons[x+1][y].setBackground(Color.blue);
+                                                    }
+                                                    matrizJuego[x+1][y].bajoAtaque =false;
+                                                    matrizJuego[x+1][y].habilidad1BajoAtaque=false;
+                                                    matrizJuego[x+1][y].habilidad2BajoAtaque=false;
+                                                }
+                                                catch (Exception ex){
+                                                    System.out.println("Nada xdxd");
+                                                }
+                                                try {
+                                                    if(matrizJuego[x][y-1].cords[0]<=mitadArena-1){
+                                                        matrizJuegoBottons[x][y-1].setBackground(Color.RED);
+                                                    }
+                                                    else{
+                                                        matrizJuegoBottons[x][y-1].setBackground(Color.blue);
+                                                    }
+                                                    matrizJuego[x][y-1].bajoAtaque =false;
+                                                    matrizJuego[x][y-1].habilidad1BajoAtaque=false;
+                                                    matrizJuego[x][y-1].habilidad2BajoAtaque=false;
+                                                }
+                                                catch (Exception ex){
+                                                    System.out.println("Nada xdxd");
+                                                }
+                                                try {
+                                                    if(matrizJuego[x-1][y-1].cords[0]<=mitadArena-1){
+                                                        matrizJuegoBottons[x-1][y-1].setBackground(Color.RED);
+                                                    }
+                                                    else{
+                                                        matrizJuegoBottons[x-1][y-1].setBackground(Color.blue);
+                                                    }
+                                                    matrizJuego[x-1][y-1].bajoAtaque =false;
+                                                    matrizJuego[x-1][y-1].habilidad1BajoAtaque=false;
+                                                    matrizJuego[x-1][y-1].habilidad2BajoAtaque=false;
+                                                }
+                                                catch (Exception ex){
+                                                    System.out.println("Nada xdxd");
+                                                }
+                                                try {
+                                                    if(matrizJuego[x+1][y-1].cords[0]<=mitadArena-1){
+                                                        matrizJuegoBottons[x+1][y-1].setBackground(Color.RED);
+                                                    }
+                                                    else{
+                                                        matrizJuegoBottons[x+1][y-1].setBackground(Color.blue);
+                                                    }
+                                                    matrizJuego[x+1][y-1].bajoAtaque =false;
+                                                    matrizJuego[x+1][y-1].habilidad1BajoAtaque=false;
+                                                    matrizJuego[x+1][y-1].habilidad2BajoAtaque=false;
+                                                }
+                                                catch (Exception ex){
+                                                    System.out.println("Nada xdxd");
+                                                }
+
                                                 /*double totalDamage = guardadoSeleccionado.getDamage()+ ((Objects.equals(tipoArena, guardadoSeleccionado.getElement())) ? guardadoSeleccionado.getDamage()*0.1 : 0);
                                                 (jugadoresTeam1[r]).TakesDamegePerAttack(totalDamage);
                                                 matrizJuego[x][y].personajeDentro.TakesDamegePerAttack(totalDamage);
@@ -869,6 +992,135 @@ public class arena extends juego{
                                 }
                             }
                         });
+                        habilidad1.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                System.out.println(x+" "+y);
+                                menuAcciones.setVisible(false);
+                                try {
+                                    matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y+1].habilidad1BajoAtaque=true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try{
+                                    matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x][y+1].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y+1].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
+                                try{
+                                    matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try{
+                                    matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x][y-1].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y-1].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y-1].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+
+                            }
+                        });
+                        habilidad2.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                System.out.println(x+" "+y);
+                                menuAcciones.setVisible(false);
+                                try {
+                                    matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y+1].habilidad2BajoAtaque=true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try{
+                                    matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x][y+1].habilidad2BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y+1].habilidad2BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
+                                try{
+                                    matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y].habilidad2BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try{
+                                    matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y].habilidad2BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x][y-1].habilidad2BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y-1].habilidad2BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y-1].habilidad2BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                            }
+                        });
                         salir.addActionListener(new ActionListener() {
 
                             @Override
@@ -1076,18 +1328,21 @@ public class arena extends juego{
                                 menuAcciones.setVisible(false);
                                 try {
                                     matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y+1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
                                     matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x][y+1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
                                     matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y+1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
@@ -1095,30 +1350,164 @@ public class arena extends juego{
                                 matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
                                 try{
                                     matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
                                     matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
                                     matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x][y-1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
                                     matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y-1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
                                     matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y-1].bajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                            }
+                        });
+                        habilidad1.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                System.out.println(x+" "+y);
+                                menuAcciones.setVisible(false);
+                                try {
+                                    matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y+1].habilidad1BajoAtaque=true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try{
+                                    matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x][y+1].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y+1].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
+                                try{
+                                    matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try{
+                                    matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x][y-1].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y-1].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y-1].habilidad1BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+
+                            }
+                        });
+                        habilidad2.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                System.out.println(x+" "+y);
+                                menuAcciones.setVisible(false);
+                                try {
+                                    matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y+1].habilidad2BajoAtaque=true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try{
+                                    matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x][y+1].habilidad2BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y+1].habilidad2BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
+                                try{
+                                    matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y].habilidad2BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try{
+                                    matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y].habilidad2BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x][y-1].habilidad2BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x-1][y-1].habilidad2BajoAtaque =true;
+                                }
+                                catch (Exception ex){
+                                    System.out.println("Nada xdxd");
+                                }
+                                try {
+                                    matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                    matrizJuego[x+1][y-1].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");

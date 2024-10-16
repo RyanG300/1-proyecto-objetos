@@ -90,6 +90,6 @@ public class Character {
     }
 
     public double getLife() {
-        return life;
+        return this.life;
     }
 }

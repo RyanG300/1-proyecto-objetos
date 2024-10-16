@@ -294,26 +294,26 @@ public class arena extends juego{
                                 temp3.setText("habilidad1");
                                 temp5.setText("habilidad2");
                                 temp4.setText("movimiento");
-                                if(casilla.getText().equals(temp.getText()) || casilla.getText().equals(temp3.getText()) || casilla.getText().equals(temp5.getText())){ //Logica para el ataque
+                                if(matrizJuego[x][y].bajoAtaque || matrizJuego[x][y].habilidad1BajoAtaque || matrizJuego[x][y].habilidad2BajoAtaque){ //Logica para el ataque
                                     if(matrizJuego[x][y].personajeDentro!=null){
                                         for(int r=0;r<jugadoresTeam1.length;x++){
                                             if(Objects.equals(matrizJuego[x][y].personajeDentro.name, jugadoresTeam1[r].name)){ //Buscamos si la persona a la que se le esta atacando esta en la lista uno, si no luego se ve en la lista 2
 
                                                 //Vemos si el tipo de elemento de la arena concuerda con el que esta atacando, si es asi la victima recibe más daño
                                                 //Aqui se calcula el daño tanto por ataque común como por habilidad
-                                                if(casilla.getText().equals(temp.getText())){
+                                                if(matrizJuego[x][y].bajoAtaque){
                                                     double totalDamage=guardadoSeleccionado.getDamage()+((Objects.equals(guardadoSeleccionado.getElement(), tipoArena)) ? guardadoSeleccionado.getDamage()*0.1 : 0);
                                                     jugadoresTeam1[r].TakesDamagePerAttack(totalDamage);
                                                     matrizJuego[x][y].personajeDentro.TakesDamagePerAttack(totalDamage);
                                                     home.eventosPartida.append("(Attack) El personaje "+jugadoresTeam1[r].name+" [Jugador 1] ha recibido un total de "+totalDamage+" punto de daño de parte de "+guardadoSeleccionado.name+" [jugador 2] quedándose a "+ jugadoresTeam1[r].getLife()+" puntos de vida.\n");
                                                 }
-                                                else if (casilla.getText().equals(temp3.getText()) || casilla.getText().equals(temp5.getText())) {
+                                                else if (matrizJuego[x][y].habilidad1BajoAtaque || matrizJuego[x][y].habilidad2BajoAtaque) {
                                                     if(guardadoSeleccionado.mana>=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText())) ? 0:1 ].manaCost){
-                                                        double totalDamage=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText())) ? 0:1 ].damage+((Objects.equals(guardadoSeleccionado.getElement(), tipoArena)) ? guardadoSeleccionado.getDamage()*0.1 : 0);
-                                                        guardadoSeleccionado.mana-=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost;
+                                                        double totalDamage=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque) ? 0:1 ].damage+((Objects.equals(guardadoSeleccionado.getElement(), tipoArena)) ? guardadoSeleccionado.getDamage()*0.1 : 0);
+                                                        guardadoSeleccionado.mana-=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost;
                                                         for(int b=0;b<jugadoresTeam2.length;b++){
                                                             if(jugadoresTeam2[b].name==guardadoSeleccionado.name){
-                                                                jugadoresTeam2[b].mana-=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost;
+                                                                jugadoresTeam2[b].mana-=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost;
                                                             }
                                                         }
                                                         matrizJuego[x][y].personajeDentro.TakesDamagePerAttack(totalDamage);
@@ -360,19 +360,19 @@ public class arena extends juego{
                                             }
                                             else if(Objects.equals(matrizJuego[x][y].personajeDentro.name, jugadoresTeam2[r].name)){
                                                 //Aqui se calcula el daño tanto por ataque común como por habilidad
-                                                if(casilla.getText().equals(temp.getText())){
+                                                if(matrizJuego[x][y].bajoAtaque){
                                                     double totalDamage = guardadoSeleccionado.getDamage()+ ((Objects.equals(tipoArena, guardadoSeleccionado.getElement())) ? guardadoSeleccionado.getDamage()*0.1 : 0);
                                                     (jugadoresTeam2[r]).TakesDamagePerAttack(totalDamage);
                                                     matrizJuego[x][y].personajeDentro.TakesDamagePerAttack(totalDamage);
                                                     home.eventosPartida.append("(Attack) El personaje "+jugadoresTeam2[r].name+" [Jugador 2] ha recibido un total de "+totalDamage+" punto de daño de parte de "+guardadoSeleccionado.name+" [Jugador 1] quedándose a "+ jugadoresTeam2[r].getLife()+" puntos de vida.\n");
                                                 }
-                                                else if (casilla.getText().equals(temp3.getText()) || casilla.getText().equals(temp5.getText())) {
-                                                    if(guardadoSeleccionado.mana>=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText())) ? 0:1 ].manaCost){
-                                                        double totalDamage=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText())) ? 0:1 ].damage+((Objects.equals(guardadoSeleccionado.getElement(), tipoArena)) ? guardadoSeleccionado.getDamage()*0.1 : 0);
-                                                        guardadoSeleccionado.mana-=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost;
+                                                else if (matrizJuego[x][y].habilidad1BajoAtaque || matrizJuego[x][y].habilidad2BajoAtaque) {
+                                                    if(guardadoSeleccionado.mana>=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque) ? 0:1 ].manaCost){
+                                                        double totalDamage=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque) ? 0:1 ].damage+((Objects.equals(guardadoSeleccionado.getElement(), tipoArena)) ? guardadoSeleccionado.getDamage()*0.1 : 0);
+                                                        guardadoSeleccionado.mana-=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost;
                                                         for(int b=0;b<jugadoresTeam1.length;b++){
                                                             if(jugadoresTeam1[b].name==guardadoSeleccionado.name){
-                                                                jugadoresTeam1[b].mana-=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost;
+                                                                jugadoresTeam1[b].mana-=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost;
                                                             }
                                                         }
                                                         matrizJuego[x][y].personajeDentro.TakesDamagePerAttack(totalDamage);
@@ -435,19 +435,19 @@ public class arena extends juego{
                                                     break;
                                                 }
                                                 //Aqui se calcula el daño tanto por ataque común como por habilidad
-                                                if(casilla.getText().equals(temp.getText())){
+                                                if(matrizJuego[x][y].bajoAtaque){
                                                     double totalDamage=guardadoSeleccionado.getDamage()+((Objects.equals(guardadoSeleccionado.getElement(), tipoArena)) ? guardadoSeleccionado.getDamage()*0.1 : 0);
                                                     matrizJuego[x][y].torreDentro.receiveDamage(totalDamage);
                                                     torresTeam1[r].receiveDamage(totalDamage);
                                                     home.eventosPartida.append("(Tower attack) La torre ubicada en ["+x+", "+y+"] [Jugador 1] ha recibido un total de "+totalDamage+" puntos de daño de parte del personaje "+guardadoSeleccionado.name+" [Jugador 2].\n");
                                                 }
-                                                else if (casilla.getText().equals(temp3.getText()) || casilla.getText().equals(temp5.getText())) {
-                                                    if(guardadoSeleccionado.mana>=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText())) ? 0:1 ].manaCost){
-                                                        double totalDamage=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText())) ? 0:1 ].damage+((Objects.equals(guardadoSeleccionado.getElement(), tipoArena)) ? guardadoSeleccionado.getDamage()*0.1 : 0);
-                                                        guardadoSeleccionado.mana-=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost;
+                                                else if (matrizJuego[x][y].habilidad1BajoAtaque || matrizJuego[x][y].habilidad2BajoAtaque) {
+                                                    if(guardadoSeleccionado.mana>=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque) ? 0:1 ].manaCost){
+                                                        double totalDamage=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque) ? 0:1 ].damage+((Objects.equals(guardadoSeleccionado.getElement(), tipoArena)) ? guardadoSeleccionado.getDamage()*0.1 : 0);
+                                                        guardadoSeleccionado.mana-=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost;
                                                         for(int b=0;b<jugadoresTeam2.length;b++){
                                                             if(jugadoresTeam2[b].name==guardadoSeleccionado.name){
-                                                                jugadoresTeam2[b].mana-=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost;
+                                                                jugadoresTeam2[b].mana-=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost;
                                                             }
                                                         }
                                                         matrizJuego[x][y].torreDentro.receiveDamage(totalDamage);
@@ -509,19 +509,19 @@ public class arena extends juego{
                                                     break;
                                                 }
                                                 //Aqui se calcula el daño tanto por ataque común como por habilidad
-                                                if(casilla.getText().equals(temp.getText())){
+                                                if(matrizJuego[x][y].bajoAtaque){
                                                     double totalDamage=guardadoSeleccionado.getDamage()+((Objects.equals(guardadoSeleccionado.getElement(), tipoArena)) ? guardadoSeleccionado.getDamage()*0.1 : 0);
                                                     matrizJuego[x][y].torreDentro.receiveDamage(totalDamage);
                                                     torresTeam2[r].receiveDamage(totalDamage);
                                                     home.eventosPartida.append("(Tower attack) La torre ubicada en ["+x+", "+y+"] [Jugador 2] ha recibido un total de "+totalDamage+" puntos de daño de parte del personaje "+guardadoSeleccionado.name+" [Jugador 1].\n");
                                                 }
-                                                else if (casilla.getText().equals(temp3.getText()) || casilla.getText().equals(temp5.getText())) {
-                                                    if(guardadoSeleccionado.mana>=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText())) ? 0:1 ].manaCost){
-                                                        double totalDamage=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText())) ? 0:1 ].damage+((Objects.equals(guardadoSeleccionado.getElement(), tipoArena)) ? guardadoSeleccionado.getDamage()*0.1 : 0);
-                                                        guardadoSeleccionado.mana-=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost;
+                                                else if (matrizJuego[x][y].habilidad1BajoAtaque || matrizJuego[x][y].habilidad2BajoAtaque) {
+                                                    if(guardadoSeleccionado.mana>=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque) ? 0:1 ].manaCost){
+                                                        double totalDamage=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque) ? 0:1 ].damage+((Objects.equals(guardadoSeleccionado.getElement(), tipoArena)) ? guardadoSeleccionado.getDamage()*0.1 : 0);
+                                                        guardadoSeleccionado.mana-=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost;
                                                         for(int b=0;b<jugadoresTeam1.length;b++){
                                                             if(jugadoresTeam1[b].name==guardadoSeleccionado.name){
-                                                                jugadoresTeam1[b].mana-=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost;
+                                                                jugadoresTeam1[b].mana-=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost;
                                                             }
                                                         }
                                                         matrizJuego[x][y].torreDentro.receiveDamage(totalDamage);
@@ -577,31 +577,31 @@ public class arena extends juego{
                                         }
                                     } //Si hay una torre en la casilla atacada
                                     else{
-                                            if(casilla.getText().equals(temp.getText())) {
+                                            if(matrizJuego[x][y].bajoAtaque) {
                                                 home.eventosPartida.append("(Attack) El personaje "+guardadoSeleccionado.name+" "+((turno==1)?"[jugador 1]":"[jugador 2]")+ " ha atacado en la casilla ["+x+", "+y+"].\n");
                                             }
-                                            else if(casilla.getText().equals(temp3.getText()) || casilla.getText().equals(temp5.getText())) {
+                                            else if(matrizJuego[x][y].habilidad1BajoAtaque || matrizJuego[x][y].habilidad2BajoAtaque) {
                                                 for(int j=0;j<jugadoresTeam1.length;j++){
                                                     if(Objects.equals(guardadoSeleccionado.name, jugadoresTeam1[j].name)){
-                                                        if(guardadoSeleccionado.mana>=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost){
-                                                            guardadoSeleccionado.mana-=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost;
-                                                            jugadoresTeam1[j].mana-=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost;
-                                                            home.eventosPartida.append("(Ability) El personaje "+guardadoSeleccionado.name+" "+((turno==1)?"[jugador 1]":"[jugador 2]")+" ha usado la habilidad "+guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].nombre+" en la casilla ["+x+", "+y+"].\n");
+                                                        if(guardadoSeleccionado.mana>=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost){
+                                                            guardadoSeleccionado.mana-=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost;
+                                                            jugadoresTeam1[j].mana-=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost;
+                                                            home.eventosPartida.append("(Ability) El personaje "+guardadoSeleccionado.name+" "+((turno==1)?"[jugador 1]":"[jugador 2]")+" ha usado la habilidad "+guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].nombre+" en la casilla ["+x+", "+y+"].\n");
                                                             break;
                                                         }
                                                         else{
-                                                            home.eventosPartida.append("(Ability)El personaje "+guardadoSeleccionado.name+" "+((turno==1)?"[jugador 1]":"[jugador 2]")+" ha usado la habilidad "+guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].nombre+" en la casilla ["+x+", "+y+"]. Sin embargo no se realizo el ataque por falta de maná. \n");
+                                                            home.eventosPartida.append("(Ability)El personaje "+guardadoSeleccionado.name+" "+((turno==1)?"[jugador 1]":"[jugador 2]")+" ha usado la habilidad "+guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].nombre+" en la casilla ["+x+", "+y+"]. Sin embargo no se realizo el ataque por falta de maná. \n");
                                                         }
                                                     }
                                                     else if(Objects.equals(guardadoSeleccionado.name, jugadoresTeam2[j].name)){
-                                                        if(guardadoSeleccionado.mana>=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost){
-                                                            guardadoSeleccionado.mana-=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost;
-                                                            jugadoresTeam2[j].mana-=guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].manaCost;
-                                                            home.eventosPartida.append("(Ability) El personaje "+guardadoSeleccionado.name+" "+((turno==1)?"[jugador 1]":"[jugador 2]")+" ha usado la habilidad "+guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].nombre+" en la casilla ["+x+", "+y+"].\n");
+                                                        if(guardadoSeleccionado.mana>=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost){
+                                                            guardadoSeleccionado.mana-=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost;
+                                                            jugadoresTeam2[j].mana-=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost;
+                                                            home.eventosPartida.append("(Ability) El personaje "+guardadoSeleccionado.name+" "+((turno==1)?"[jugador 1]":"[jugador 2]")+" ha usado la habilidad "+guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].nombre+" en la casilla ["+x+", "+y+"].\n");
                                                             break;
                                                         }
                                                         else{
-                                                            home.eventosPartida.append("(Ability)El personaje "+guardadoSeleccionado.name+" "+((turno==1)?"[jugador 1]":"[jugador 2]")+" ha usado la habilidad "+guardadoSeleccionado.abilities[(casilla.getText().equals(temp3.getText()))?0:1].nombre+" en la casilla ["+x+", "+y+"]. Sin embargo no se realizo el ataque por falta de maná. \n");
+                                                            home.eventosPartida.append("(Ability)El personaje "+guardadoSeleccionado.name+" "+((turno==1)?"[jugador 1]":"[jugador 2]")+" ha usado la habilidad "+guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].nombre+" en la casilla ["+x+", "+y+"]. Sin embargo no se realizo el ataque por falta de maná. \n");
                                                         }
                                                     }
                                                 }
@@ -812,21 +812,21 @@ public class arena extends juego{
                                 menuAcciones.setVisible(false);
                                 try {
                                     matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y+1].bajaAtaque=true;
+                                    matrizJuego[x+1][y+1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
                                     matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y+1].bajaAtaque=true;
+                                    matrizJuego[x][y+1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
                                     matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y+1].bajaAtaque=true;
+                                    matrizJuego[x-1][y+1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
@@ -834,35 +834,35 @@ public class arena extends juego{
                                 matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
                                 try{
                                     matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y].bajaAtaque=true;
+                                    matrizJuego[x-1][y].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
                                     matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y].bajaAtaque=true;
+                                    matrizJuego[x+1][y].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
                                     matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y-1].bajaAtaque=true;
+                                    matrizJuego[x][y-1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
                                     matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y-1].bajaAtaque=true;
+                                    matrizJuego[x-1][y-1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
                                     matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y-1].bajaAtaque=true;
+                                    matrizJuego[x+1][y-1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");

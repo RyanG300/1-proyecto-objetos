@@ -1,6 +1,7 @@
 package game;
 import casillaObjetos.Character;
 import casillaObjetos.Tower;
+import ui.home;
 
 import java.util.Random;
 import java.util.random.*;
@@ -37,8 +38,30 @@ public class juego {
         System.out.println(x + " " + y); //Esto evidentemete no, falta codigo
     }
 
-    public void establecerGanador(){
-        //tal
+    public boolean establecerGanador(){
+        int contador=0;
+        for(int a=0;a<torresTeam1.length;a++){
+            if(torresTeam1[a].destroyed){
+                contador++;
+            }
+        }
+        if(contador==torresTeam1.length){
+            home.eventosPartida.append("El ganador es el jugador 2.");
+            home.textoPorDefectoTurnos.setText("El ganador es el jugador 2.");
+            return true;
+        }
+        contador=0;
+        for(int a=0;a<torresTeam2.length;a++){
+            if(torresTeam2[a].destroyed){
+                contador++;
+            }
+        }
+        if(contador==torresTeam2.length){
+            home.eventosPartida.append("El ganador es el jugador 1.");
+            home.textoPorDefectoTurnos.setText("El ganador es el jugador 1.");
+            return true;
+        }
+        return false;
     }
 
     public boolean establecerTurno(){
@@ -54,6 +77,7 @@ public class juego {
             }
         }
         if(contador==jugadoresTeam.length){
+            home.eventosPartida.setText("");
             return -5;
         }
         while(true){

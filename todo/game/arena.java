@@ -421,6 +421,7 @@ public class arena extends juego{
                                                 if(jugadoresTeam1[r].getLife()<=0){ //Si el personaje que recibio daño se queda a cero muere y se elimina de la arena de juego
                                                     arena.matrizJuego[x][y].personajeDentro=null;
                                                     jugadoresTeam1[r].setLife();
+                                                    jugadoresTeam1[r].dead=true;
                                                     casilla.setIcon(null);
                                                     home.eventosPartida.append("(Dead) el personaje "+jugadoresTeam1[r].name +" [Jugador 1] ha muerto en combate.\n");
                                                 }
@@ -430,6 +431,116 @@ public class arena extends juego{
                                                         turno=(turno==1)?2:1;
                                                         for(int i=0;i<jugadoresTeam2.length;i++){
                                                             jugadoresTeam2[i].turnoRealizadoPersonaje=false;
+                                                            jugadoresTeam2[i].resetMove();
+                                                            boolean salir=false;
+                                                            if(jugadoresTeam2[i].dead){
+                                                                jugadoresTeam2[i].dead=false;
+                                                                for(int q=0;q<matrizJuego.length;q++){
+                                                                    for(int z=0;z<matrizJuego[q].length;z++){
+                                                                        if(matrizJuego[z][q].torreDentro!=null){
+                                                                            for(int u=0;u<torresTeam2.length;u++){
+                                                                                if(matrizJuego[z][q].torreDentro.id==torresTeam2[u].id){
+                                                                                    try {
+                                                                                        if(matrizJuego[z+1][q].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z+1][q].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z+1][q-1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z+1][q-1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z+1][q+1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z+1][q+1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z-1][q+1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z-1][q+1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z-1][q-1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z-1][q-1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z-1][q].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z-1][q].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z][q+1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z][q+1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z][q-1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z][q-1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        if(salir){
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                    if(salir){
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                         temp2 =establecerTurnoPersonaje(jugadoresTeam1);
                                                         home.eventosPartida.append("(Turn player) Es el turno del jugador uno.\n");
@@ -561,6 +672,7 @@ public class arena extends juego{
                                                 if(jugadoresTeam2[r].getLife()<=0){ //Si el personaje que recibio daño se queda a cero muere y se elimina de la arena de juego
                                                     arena.matrizJuego[x][y].personajeDentro=null;
                                                     jugadoresTeam2[r].setLife();
+                                                    jugadoresTeam2[r].dead=true;
                                                     casilla.setIcon(null);
                                                     home.eventosPartida.append("(Dead) el personaje "+jugadoresTeam2[r].name +" [Jugador 2] ha muerto en combate.\n");
                                                 }
@@ -570,6 +682,116 @@ public class arena extends juego{
                                                         turno=(turno==1)?2:1;
                                                         for(int i=0;i<jugadoresTeam1.length;i++){
                                                             jugadoresTeam1[i].turnoRealizadoPersonaje=false;
+                                                            jugadoresTeam1[i].resetMove();
+                                                            boolean salir=false;
+                                                            if(jugadoresTeam1[i].dead){
+                                                                jugadoresTeam1[i].dead=false;
+                                                                for(int q=0;q<matrizJuego.length;q++){
+                                                                    for(int z=0;z<matrizJuego[q].length;z++){
+                                                                        if(matrizJuego[z][q].torreDentro!=null){
+                                                                            for(int u=0;u<torresTeam1.length;u++){
+                                                                                if(matrizJuego[z][q].torreDentro.id==torresTeam1[u].id){
+                                                                                    try {
+                                                                                        if(matrizJuego[z+1][q].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z+1][q].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z+1][q-1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z+1][q-1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z+1][q+1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z+1][q+1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z-1][q+1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z-1][q+1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z-1][q-1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z-1][q-1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z-1][q].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z-1][q].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z][q+1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z][q+1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z][q-1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z][q-1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        if(salir){
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                    if(salir){
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                         home.eventosPartida.append("(Turn player) Es el turno del jugador 2.\n");
                                                         home.textoPorDefectoTurnos.setText("Turno de jugador 2#");
@@ -709,6 +931,9 @@ public class arena extends juego{
                                                             break;
                                                         }
                                                     }
+                                                    if(establecerTurno()){
+                                                        System.out.println("Pasan cosas");
+                                                    }
                                                 }
                                                 //Establecemos los turnos
                                                 else{
@@ -717,6 +942,116 @@ public class arena extends juego{
                                                         turno=(turno==1)?2:1;
                                                         for(int i=0;i<jugadoresTeam2.length;i++){
                                                             jugadoresTeam2[i].turnoRealizadoPersonaje=false;
+                                                            jugadoresTeam2[i].resetMove();
+                                                            boolean salir=false;
+                                                            if(jugadoresTeam2[i].dead){
+                                                                jugadoresTeam2[i].dead=false;
+                                                                for(int q=0;q<matrizJuego.length;q++){
+                                                                    for(int z=0;z<matrizJuego[q].length;z++){
+                                                                        if(matrizJuego[z][q].torreDentro!=null){
+                                                                            for(int u=0;u<torresTeam2.length;u++){
+                                                                                if(matrizJuego[z][q].torreDentro.id==torresTeam2[u].id){
+                                                                                    try {
+                                                                                        if(matrizJuego[z+1][q].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z+1][q].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z+1][q-1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z+1][q-1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z+1][q+1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z+1][q+1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z-1][q+1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z-1][q+1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z-1][q-1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z-1][q-1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z-1][q].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z-1][q].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z][q+1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z][q+1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z][q-1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z][q-1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        if(salir){
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                    if(salir){
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                         temp2 =establecerTurnoPersonaje(jugadoresTeam1);
                                                         home.eventosPartida.append("(Turn player) Es el turno del jugador uno.\n");
@@ -852,6 +1187,9 @@ public class arena extends juego{
                                                             break;
                                                         }
                                                     }
+                                                    if(establecerTurno()){
+                                                        System.out.println("Pasan cosas");
+                                                    }
                                                 }
                                                 //Y aqui se revisa los turnos
                                                 else{
@@ -860,6 +1198,116 @@ public class arena extends juego{
                                                         turno=(turno==1)?2:1;
                                                         for(int i=0;i<jugadoresTeam1.length;i++){
                                                             jugadoresTeam1[i].turnoRealizadoPersonaje=false;
+                                                            jugadoresTeam2[i].resetMove();
+                                                            boolean salir=false;
+                                                            if(jugadoresTeam1[i].dead){
+                                                                jugadoresTeam1[i].dead=false;
+                                                                for(int q=0;q<matrizJuego.length;q++){
+                                                                    for(int z=0;z<matrizJuego[q].length;z++){
+                                                                        if(matrizJuego[z][q].torreDentro!=null){
+                                                                            for(int u=0;u<torresTeam1.length;u++){
+                                                                                if(matrizJuego[z][q].torreDentro.id==torresTeam1[u].id){
+                                                                                    try {
+                                                                                        if(matrizJuego[z+1][q].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z+1][q].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z+1][q-1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z+1][q-1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z+1][q+1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z+1][q+1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z-1][q+1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z-1][q+1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z-1][q-1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z-1][q-1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z-1][q].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z-1][q].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z][q+1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z][q+1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    try {
+                                                                                        if(matrizJuego[z][q-1].personajeDentro==null){
+                                                                                            ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                            Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                            arena.matrizJuegoBottons[z][q-1].setIcon(iconBotonDeVerdad);
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    catch (Exception ae){
+                                                                                        ae.printStackTrace();
+                                                                                    }
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        if(salir){
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                    if(salir){
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                         home.eventosPartida.append("(Turn player) Es el turno del jugador 2.\n");
                                                         home.textoPorDefectoTurnos.setText("Turno de jugador 2#");
@@ -954,6 +1402,116 @@ public class arena extends juego{
                                             if(turno==1){
                                                 for(int i=0;i<jugadoresTeam1.length;i++){
                                                     jugadoresTeam1[i].turnoRealizadoPersonaje=false;
+                                                    jugadoresTeam1[i].resetMove();
+                                                    boolean salir=false;
+                                                    if(jugadoresTeam1[i].dead){
+                                                        jugadoresTeam1[i].dead=false;
+                                                        for(int q=0;q<matrizJuego.length;q++){
+                                                            for(int z=0;z<matrizJuego[q].length;z++){
+                                                                if(matrizJuego[z][q].torreDentro!=null){
+                                                                    for(int u=0;u<torresTeam1.length;u++){
+                                                                        if(matrizJuego[z][q].torreDentro.id==torresTeam1[u].id){
+                                                                            try {
+                                                                                if(matrizJuego[z+1][q].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z+1][q].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z+1][q-1].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z+1][q-1].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z+1][q+1].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z+1][q+1].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z-1][q+1].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z-1][q+1].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z-1][q-1].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z-1][q-1].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z-1][q].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z-1][q].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z][q+1].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z][q+1].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z][q-1].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z][q-1].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                }
+                                                                if(salir){
+                                                                    break;
+                                                                }
+                                                            }
+                                                            if(salir){
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                                 home.eventosPartida.append("(turn player) Es el turno del jugador 2.\n");
                                                 home.textoPorDefectoTurnos.setText("Turno de jugador 2#");
@@ -966,6 +1524,116 @@ public class arena extends juego{
                                             else{
                                                 for(int i=0;i<jugadoresTeam2.length;i++){
                                                     jugadoresTeam2[i].turnoRealizadoPersonaje=false;
+                                                    jugadoresTeam2[i].resetMove();
+                                                    boolean salir=false;
+                                                    if(jugadoresTeam2[i].dead){
+                                                        jugadoresTeam2[i].dead=false;
+                                                        for(int q=0;q<matrizJuego.length;q++){
+                                                            for(int z=0;z<matrizJuego[q].length;z++){
+                                                                if(matrizJuego[z][q].torreDentro!=null){
+                                                                    for(int u=0;u<torresTeam2.length;u++){
+                                                                        if(matrizJuego[z][q].torreDentro.id==torresTeam2[u].id){
+                                                                            try {
+                                                                                if(matrizJuego[z+1][q].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z+1][q].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z+1][q-1].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z+1][q-1].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z+1][q+1].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z+1][q+1].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z-1][q+1].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z-1][q+1].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z-1][q-1].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z-1][q-1].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z-1][q].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z-1][q].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z][q+1].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z][q+1].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            try {
+                                                                                if(matrizJuego[z][q-1].personajeDentro==null){
+                                                                                    ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+jugadoresTeam1[i].name+".png");
+                                                                                    Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                                                                    arena.matrizJuegoBottons[z][q-1].setIcon(iconBotonDeVerdad);
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            catch (Exception ae){
+                                                                                ae.printStackTrace();
+                                                                            }
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                }
+                                                                if(salir){
+                                                                    break;
+                                                                }
+                                                            }
+                                                            if(salir){
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                                 home.eventosPartida.append("(turn player) Es el turno del jugador 1.\n");
                                                 home.textoPorDefectoTurnos.setText("Turno de jugador 1#");
@@ -1007,16 +1675,40 @@ public class arena extends juego{
                                 }
                                 else if(arena.matrizJuego[x][y].EnMovimiento){
                                     guardadoSeleccionado=arena.matrizJuego[guardadoCords[0]][guardadoCords[1]].personajeDentro;
-                                    arena.matrizJuego[guardadoCords[0]][guardadoCords[1]].personajeDentro=null;
-                                    arena.matrizJuegoBottons[guardadoCords[0]][guardadoCords[1]].setIcon(null);
-                                    if(guardadoCords[0]<=mitadArena-1){
-                                        arena.matrizJuegoBottons[guardadoCords[0]][guardadoCords[1]].setBackground(Color.red);
+                                    if(guardadoSeleccionado.move==1){
+                                        arena.matrizJuego[guardadoCords[0]][guardadoCords[1]].personajeDentro=null;
+                                        arena.matrizJuegoBottons[guardadoCords[0]][guardadoCords[1]].setIcon(null);
+                                        if(guardadoCords[0]<=mitadArena-1){
+                                            arena.matrizJuegoBottons[guardadoCords[0]][guardadoCords[1]].setBackground(Color.red);
+                                        }
+                                        else{
+                                            arena.matrizJuegoBottons[guardadoCords[0]][guardadoCords[1]].setBackground(Color.blue);
+                                        }
+                                        arena.matrizJuego[x][y].personajeDentro=guardadoSeleccionado;
+                                        ImageIcon iconoBoton =new ImageIcon(System.getProperty("user.dir")+"\\todo\\images\\champion"+guardadoSeleccionado.name+".png");
+                                        Icon iconBotonDeVerdad =new ImageIcon(iconoBoton.getImage().getScaledInstance(widthHeight,widthHeight,Image.SCALE_AREA_AVERAGING));
+                                        arena.matrizJuegoBottons[x][y].setIcon(iconBotonDeVerdad);
+                                        casilla.setIcon(iconBotonDeVerdad);
+                                        casilla.repaint();
+                                        casilla.revalidate();
+                                        for(int subY=0;subY<arena.matrizJuego.length;subY++){
+                                            for(int subX=0;subX<arena.matrizJuego[y].length;subX++){
+                                                if(arena.matrizJuego[subX][subY].EnMovimiento){
+                                                    arena.matrizJuego[subX][subY].EnMovimiento=false;
+                                                    if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
+                                                        matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                    }
+                                                    else{
+                                                        matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                     else{
-                                        arena.matrizJuegoBottons[guardadoCords[0]][guardadoCords[1]].setBackground(Color.blue);
+                                        home.eventosPartida.append("(not move) Sin puntos de movimiento restante.");
                                     }
-                                    arena.matrizJuego[x][y].personajeDentro=guardadoSeleccionado;
-                                    arena.matrizJuegoBottons[x][y].setIcon(System.getProperty("user.dir")+"\\todo\\images\\"+);
+
                                 }
                                 menuPersonaje((turno == 1),x,y, cordsDibujo,juego);
                             }

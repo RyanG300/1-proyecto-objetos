@@ -13,6 +13,9 @@ public class Character {
     private int kills;
     private int towerKills;
     public boolean turnoRealizadoPersonaje=false;
+    public static int move;
+    public static int fixedMove;
+    public static boolean dead=false;
 
     public Character(String name, int level, double life, double damage, String element, Ability[] abilities,double mana) {
         this.name = name;
@@ -26,6 +29,9 @@ public class Character {
         this.deaths = 0;
         this.kills = 0;
         this.towerKills = 0;
+        this.move = 1;
+        this.fixedMove = this.move;
+
     }
 
     public String getElement() {
@@ -91,5 +97,9 @@ public class Character {
 
     public double getLife() {
         return this.life;
+    }
+
+    public void resetMove(){
+        move= fixedMove;
     }
 }

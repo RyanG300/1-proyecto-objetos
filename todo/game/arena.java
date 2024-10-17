@@ -23,7 +23,7 @@ public class arena extends juego{
     public int cantidadTorresColocacion= torresTeam1.length;
     public static boolean estadoColocacionPersonajes=false;
     public static Character guardadoSeleccionado; //Espacio de guardado de un personaje para moverlo como atacar con el
-
+    public static  int[] guardadoCords;
 
     public arena(int x, int y,String tipo, Character[] jugadoresTeam1, Character[] jugadoresTeam2, Tower[] torres1,Tower[] torres2,int cantidadTorres){
         super(jugadoresTeam1,jugadoresTeam2,torres1,torres2,cantidadTorres);
@@ -315,47 +315,46 @@ public class arena extends juego{
                                             if(Objects.equals(arena.matrizJuego[x][y].personajeDentro.name, jugadoresTeam1[r].name)){
                                                 //Buscamos si la persona a la que se le esta atacando esta en la lista uno, si no luego se ve en la lista 2
                                                 //Primero quitamos la etiqueta de bajo ataque a las casillas
-                                                for(int subY=0;subY<arena.matrizJuego.length;subY++){
-                                                    for(int subX=0;subX<arena.matrizJuego[y].length;subX++){
-                                                        if(arena.matrizJuego[subX][subY].bajoAtaque){
-                                                            arena.matrizJuego[subX][subY].bajoAtaque=false;
-                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
-                                                            }
-                                                            else{
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
-                                                            }
-                                                        }
-                                                        else if(arena.matrizJuego[subX][subY].habilidad1BajoAtaque){
-                                                            arena.matrizJuego[subX][subY].habilidad1BajoAtaque=false;
-                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
-                                                            }
-                                                            else{
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
-                                                            }
-                                                        }
-                                                        else if(arena.matrizJuego[subX][subY].habilidad2BajoAtaque){
-                                                            arena.matrizJuego[subX][subY].habilidad2BajoAtaque=false;
-                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
-                                                            }
-                                                            else{
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
-                                                            }
-                                                        }
-                                                    }
-                                                }
-
                                                 boolean ataqueAliado=false;
                                                 for(int t=0;t<jugadoresTeam1.length;t++){
-                                                    if(Objects.equals(jugadoresTeam1[r].name, guardadoSeleccionado.name)){
+                                                    if(Objects.equals(jugadoresTeam1[t].name, guardadoSeleccionado.name)){
                                                         home.eventosPartida.append("(Error) No se puede atacar a un personaje aliado. \n");
                                                         ataqueAliado=true;
                                                         break;
                                                     }
                                                 }
                                                 if(ataqueAliado){
+                                                    for(int subY=0;subY<arena.matrizJuego.length;subY++){
+                                                        for(int subX=0;subX<arena.matrizJuego[y].length;subX++){
+                                                            if(arena.matrizJuego[subX][subY].bajoAtaque){
+                                                                arena.matrizJuego[subX][subY].bajoAtaque=false;
+                                                                if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                                }
+                                                                else{
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                                }
+                                                            }
+                                                            else if(arena.matrizJuego[subX][subY].habilidad1BajoAtaque){
+                                                                arena.matrizJuego[subX][subY].habilidad1BajoAtaque=false;
+                                                                if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                                }
+                                                                else{
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                                }
+                                                            }
+                                                            else if(arena.matrizJuego[subX][subY].habilidad2BajoAtaque){
+                                                                arena.matrizJuego[subX][subY].habilidad2BajoAtaque=false;
+                                                                if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                                }
+                                                                else{
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
                                                     break;
                                                 }
                                                 if(matrizJuego[x][y].bajoAtaque){
@@ -386,6 +385,39 @@ public class arena extends juego{
                                                 (jugadoresTeam1[r]).TakesDamegePerAttack(totalDamage);
                                                 matrizJuego[x][y].personajeDentro.TakesDamegePerAttack(totalDamage);
                                                 home.eventosPartida.append("(Attack) El personaje "+jugadoresTeam1[r].name+" [Jugador 1] ha recibido un total de "+totalDamage+" punto de daño de parte de "+guardadoSeleccionado.name+" [jugador 2] quedándose a "+ jugadoresTeam1[r].getLife()+" puntos de vida.\n");*/
+                                                for(int subY=0;subY<arena.matrizJuego.length;subY++){
+                                                    for(int subX=0;subX<arena.matrizJuego[y].length;subX++){
+                                                        if(arena.matrizJuego[subX][subY].bajoAtaque){
+                                                            arena.matrizJuego[subX][subY].bajoAtaque=false;
+                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                            }
+                                                            else{
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                            }
+                                                        }
+                                                        else if(arena.matrizJuego[subX][subY].habilidad1BajoAtaque){
+                                                            arena.matrizJuego[subX][subY].habilidad1BajoAtaque=false;
+                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                            }
+                                                            else{
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                            }
+                                                        }
+                                                        else if(arena.matrizJuego[subX][subY].habilidad2BajoAtaque){
+                                                            arena.matrizJuego[subX][subY].habilidad2BajoAtaque=false;
+                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                            }
+                                                            else{
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+
                                                 if(jugadoresTeam1[r].getLife()<=0){ //Si el personaje que recibio daño se queda a cero muere y se elimina de la arena de juego
                                                     arena.matrizJuego[x][y].personajeDentro=null;
                                                     jugadoresTeam1[r].setLife();
@@ -401,6 +433,7 @@ public class arena extends juego{
                                                         }
                                                         temp2 =establecerTurnoPersonaje(jugadoresTeam1);
                                                         home.eventosPartida.append("(Turn player) Es el turno del jugador uno.\n");
+                                                        home.textoPorDefectoTurnos.setText("Turno de jugador 1#");
                                                         home.eventosPartida.append("(turn character) Es el turno del personaje "+jugadoresTeam1[temp2].name+".\n");
                                                         jugadoresTeam1[temp2].turnoRealizadoPersonaje=true;
                                                         guardadoSeleccionado=jugadoresTeam1[temp2];
@@ -421,46 +454,46 @@ public class arena extends juego{
                                                 //Primero calculamos si no fue daño aliado
                                                 //Establecemos de nuevo las casillas a no bajoAtaque
                                                 //Primero quitamos la etiqueta de bajo ataque a las casillas
-                                                for(int subY=0;subY<arena.matrizJuego.length;subY++){
-                                                    for(int subX=0;subX<arena.matrizJuego[y].length;subX++){
-                                                        if(arena.matrizJuego[subX][subY].bajoAtaque){
-                                                            arena.matrizJuego[subX][subY].bajoAtaque=false;
-                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
-                                                            }
-                                                            else{
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
-                                                            }
-                                                        }
-                                                        else if(arena.matrizJuego[subX][subY].habilidad1BajoAtaque){
-                                                            arena.matrizJuego[subX][subY].habilidad1BajoAtaque=false;
-                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
-                                                            }
-                                                            else{
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
-                                                            }
-                                                        }
-                                                        else if(arena.matrizJuego[subX][subY].habilidad2BajoAtaque){
-                                                            arena.matrizJuego[subX][subY].habilidad2BajoAtaque=false;
-                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
-                                                            }
-                                                            else{
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
-                                                            }
-                                                        }
-                                                    }
-                                                }
                                                 boolean ataqueAliado=false;
                                                 for(int t=0;t<jugadoresTeam2.length;t++){
-                                                    if(Objects.equals(jugadoresTeam2[r].name, guardadoSeleccionado.name)){
+                                                    if(Objects.equals(jugadoresTeam2[t].name, guardadoSeleccionado.name)){
                                                         home.eventosPartida.append("(Error) No se puede atacar a un personaje aliado. \n");
                                                         ataqueAliado=true;
                                                         break;
                                                     }
                                                 }
                                                 if(ataqueAliado){
+                                                    for(int subY=0;subY<arena.matrizJuego.length;subY++){
+                                                        for(int subX=0;subX<arena.matrizJuego[y].length;subX++){
+                                                            if(arena.matrizJuego[subX][subY].bajoAtaque){
+                                                                arena.matrizJuego[subX][subY].bajoAtaque=false;
+                                                                if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                                }
+                                                                else{
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                                }
+                                                            }
+                                                            else if(arena.matrizJuego[subX][subY].habilidad1BajoAtaque){
+                                                                arena.matrizJuego[subX][subY].habilidad1BajoAtaque=false;
+                                                                if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                                }
+                                                                else{
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                                }
+                                                            }
+                                                            else if(arena.matrizJuego[subX][subY].habilidad2BajoAtaque){
+                                                                arena.matrizJuego[subX][subY].habilidad2BajoAtaque=false;
+                                                                if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                                }
+                                                                else{
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
                                                     break;
                                                 }
 
@@ -471,7 +504,7 @@ public class arena extends juego{
                                                     arena.matrizJuego[x][y].personajeDentro.TakesDamagePerAttack(totalDamage);
                                                     home.eventosPartida.append("(Attack) El personaje "+jugadoresTeam2[r].name+" [Jugador 2] ha recibido un total de "+totalDamage+" punto de daño de parte de "+guardadoSeleccionado.name+" [Jugador 1] quedándose a "+ jugadoresTeam2[r].getLife()+" puntos de vida.\n");
                                                 }
-                                                else if (arena.matrizJuego[x][y].habilidad1BajoAtaque || matrizJuego[x][y].habilidad2BajoAtaque) {
+                                                else if (arena.matrizJuego[x][y].habilidad1BajoAtaque || arena.matrizJuego[x][y].habilidad2BajoAtaque) {
                                                     if(guardadoSeleccionado.mana>=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque) ? 0:1 ].manaCost){
                                                         double totalDamage=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque) ? 0:1 ].damage+((Objects.equals(guardadoSeleccionado.getElement(), tipoArena)) ? guardadoSeleccionado.getDamage()*0.1 : 0);
                                                         guardadoSeleccionado.mana-=guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque)?0:1].manaCost;
@@ -493,6 +526,38 @@ public class arena extends juego{
                                                 (jugadoresTeam2[r]).TakesDamagePerAttack(totalDamage);
                                                 matrizJuego[x][y].personajeDentro.TakesDamagePerAttack(totalDamage);
                                                 home.eventosPartida.append("(Attack) El personaje "+jugadoresTeam2[r].name+" [Jugador 2] ha recibido un total de "+totalDamage+" punto de daño de parte de "+guardadoSeleccionado.name+" [Jugador 1] quedándose a "+ jugadoresTeam2[r].getLife()+" puntos de vida.\n");*/
+                                                for(int subY=0;subY<arena.matrizJuego.length;subY++){
+                                                    for(int subX=0;subX<arena.matrizJuego[y].length;subX++){
+                                                        if(arena.matrizJuego[subX][subY].bajoAtaque){
+                                                            arena.matrizJuego[subX][subY].bajoAtaque=false;
+                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                            }
+                                                            else{
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                            }
+                                                        }
+                                                        else if(arena.matrizJuego[subX][subY].habilidad1BajoAtaque){
+                                                            arena.matrizJuego[subX][subY].habilidad1BajoAtaque=false;
+                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                            }
+                                                            else{
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                            }
+                                                        }
+                                                        else if(arena.matrizJuego[subX][subY].habilidad2BajoAtaque){
+                                                            arena.matrizJuego[subX][subY].habilidad2BajoAtaque=false;
+                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                            }
+                                                            else{
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
                                                 if(jugadoresTeam2[r].getLife()<=0){ //Si el personaje que recibio daño se queda a cero muere y se elimina de la arena de juego
                                                     arena.matrizJuego[x][y].personajeDentro=null;
                                                     jugadoresTeam2[r].setLife();
@@ -507,6 +572,7 @@ public class arena extends juego{
                                                             jugadoresTeam1[i].turnoRealizadoPersonaje=false;
                                                         }
                                                         home.eventosPartida.append("(Turn player) Es el turno del jugador 2.\n");
+                                                        home.textoPorDefectoTurnos.setText("Turno de jugador 2#");
                                                         temp2 =establecerTurnoPersonaje(jugadoresTeam2);
                                                         home.eventosPartida.append("(turn character) Es el turno del personaje "+jugadoresTeam2[temp2].name+".\n");
                                                         jugadoresTeam2[temp2].turnoRealizadoPersonaje=true;
@@ -533,37 +599,6 @@ public class arena extends juego{
                                                 //Revisamos si la torre atacada esta en la lista torresTeam1
                                                 //Establecemos de nuevo las casillas a no bajoAtaque
                                                 //Primero quitamos la etiqueta de bajo ataque a las casillas
-                                                for(int subY=0;subY<arena.matrizJuego.length;subY++){
-                                                    for(int subX=0;subX<arena.matrizJuego[y].length;subX++){
-                                                        if(arena.matrizJuego[subX][subY].bajoAtaque){
-                                                            arena.matrizJuego[subX][subY].bajoAtaque=false;
-                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
-                                                            }
-                                                            else{
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
-                                                            }
-                                                        }
-                                                        else if(arena.matrizJuego[subX][subY].habilidad1BajoAtaque){
-                                                            arena.matrizJuego[subX][subY].habilidad1BajoAtaque=false;
-                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
-                                                            }
-                                                            else{
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
-                                                            }
-                                                        }
-                                                        else if(arena.matrizJuego[subX][subY].habilidad2BajoAtaque){
-                                                            arena.matrizJuego[subX][subY].habilidad2BajoAtaque=false;
-                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
-                                                            }
-                                                            else{
-                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
-                                                            }
-                                                        }
-                                                    }
-                                                }
                                                 boolean ataqueAliado=false;
                                                 for(int t=0;t<jugadoresTeam1.length;t++){
                                                     if(Objects.equals(jugadoresTeam1[t].name, guardadoSeleccionado.name)){
@@ -573,6 +608,37 @@ public class arena extends juego{
                                                     }
                                                 }
                                                 if(ataqueAliado){
+                                                    for(int subY=0;subY<arena.matrizJuego.length;subY++){
+                                                        for(int subX=0;subX<arena.matrizJuego[y].length;subX++){
+                                                            if(arena.matrizJuego[subX][subY].bajoAtaque){
+                                                                arena.matrizJuego[subX][subY].bajoAtaque=false;
+                                                                if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                                }
+                                                                else{
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                                }
+                                                            }
+                                                            else if(arena.matrizJuego[subX][subY].habilidad1BajoAtaque){
+                                                                arena.matrizJuego[subX][subY].habilidad1BajoAtaque=false;
+                                                                if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                                }
+                                                                else{
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                                }
+                                                            }
+                                                            else if(arena.matrizJuego[subX][subY].habilidad2BajoAtaque){
+                                                                arena.matrizJuego[subX][subY].habilidad2BajoAtaque=false;
+                                                                if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                                }
+                                                                else{
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
                                                     break;
                                                 }
                                                 //Aqui se calcula el daño tanto por ataque común como por habilidad
@@ -599,51 +665,6 @@ public class arena extends juego{
                                                         home.eventosPartida.append("(Tower attack) La torre ubicada en ["+x+", "+y+"] [Jugador 1] fue atacada con la habilidad "+guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque) ? 0:1]+" por "+guardadoSeleccionado.name+" [Jugador 2]. Sin embargo, debido a la falta de maná el ataque no se realizó.\n");
                                                     }
                                                 }
-
-                                                //Calculamos la vida restante de la torre
-                                                if(torresTeam1[r].resistence<=0){
-                                                    arena.matrizJuego[x][y].torreDentro=null;
-                                                    torresTeam1[r].setDestroyed();
-                                                    casilla.setIcon(null);
-                                                    home.eventosPartida.append("(Tower destroyed) La torre ubicada en ["+x+", "+y+"] [Jugador 1] ha sido destruida por el personaje "+guardadoSeleccionado.name+" [Jugador 2].\n");
-                                                    for(int y=0;y<jugadoresTeam2.length;y++){
-                                                        if(Objects.equals(guardadoSeleccionado.name, jugadoresTeam2[y].name)){
-                                                            jugadoresTeam2[y].levelUp();
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                                //Establecemos los turnos
-                                                else{
-                                                    int temp2 =establecerTurnoPersonaje(jugadoresTeam2);
-                                                    if(temp2==-5){
-                                                        turno=(turno==1)?2:1;
-                                                        for(int i=0;i<jugadoresTeam2.length;i++){
-                                                            jugadoresTeam2[i].turnoRealizadoPersonaje=false;
-                                                        }
-                                                        temp2 =establecerTurnoPersonaje(jugadoresTeam1);
-                                                        home.eventosPartida.append("(Turn player) Es el turno del jugador uno.\n");
-                                                        home.eventosPartida.append("(turn character) Es el turno del personaje "+jugadoresTeam1[temp2].name+".\n");
-                                                        jugadoresTeam1[temp2].turnoRealizadoPersonaje=true;
-                                                        guardadoSeleccionado=jugadoresTeam1[temp2];
-
-                                                    }
-                                                    else{
-                                                        for(int i=0;i<jugadoresTeam2.length;i++){
-                                                            if(guardadoSeleccionado.name.equals(jugadoresTeam2[i].name)){
-                                                                jugadoresTeam2[i].turnoRealizadoPersonaje=true;
-                                                                break;
-                                                            }
-                                                        }
-                                                        home.eventosPartida.append("(turn character) Es el turno del personaje "+jugadoresTeam2[temp2].name+".\n");
-                                                        guardadoSeleccionado=jugadoresTeam2[temp2];
-                                                    }
-
-                                                }
-                                            }
-                                            else if(Objects.equals(arena.matrizJuego[x][y].torreDentro.id ,torresTeam2[r].id)){
-                                                //Establecemos de nuevo las casillas a no bajoAtaque
-                                                //Primero quitamos la etiqueta de bajo ataque a las casillas
                                                 for(int subY=0;subY<arena.matrizJuego.length;subY++){
                                                     for(int subX=0;subX<arena.matrizJuego[y].length;subX++){
                                                         if(arena.matrizJuego[subX][subY].bajoAtaque){
@@ -675,6 +696,52 @@ public class arena extends juego{
                                                         }
                                                     }
                                                 }
+
+                                                //Calculamos la vida restante de la torre
+                                                if(torresTeam1[r].resistence<=0){
+                                                    arena.matrizJuego[x][y].torreDentro=null;
+                                                    torresTeam1[r].setDestroyed();
+                                                    casilla.setIcon(null);
+                                                    home.eventosPartida.append("(Tower destroyed) La torre ubicada en ["+x+", "+y+"] [Jugador 1] ha sido destruida por el personaje "+guardadoSeleccionado.name+" [Jugador 2].\n");
+                                                    for(int y=0;y<jugadoresTeam2.length;y++){
+                                                        if(Objects.equals(guardadoSeleccionado.name, jugadoresTeam2[y].name)){
+                                                            jugadoresTeam2[y].levelUp();
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                                //Establecemos los turnos
+                                                else{
+                                                    int temp2 =establecerTurnoPersonaje(jugadoresTeam2);
+                                                    if(temp2==-5){
+                                                        turno=(turno==1)?2:1;
+                                                        for(int i=0;i<jugadoresTeam2.length;i++){
+                                                            jugadoresTeam2[i].turnoRealizadoPersonaje=false;
+                                                        }
+                                                        temp2 =establecerTurnoPersonaje(jugadoresTeam1);
+                                                        home.eventosPartida.append("(Turn player) Es el turno del jugador uno.\n");
+                                                        home.textoPorDefectoTurnos.setText("Turno de jugador 1#");
+                                                        home.eventosPartida.append("(turn character) Es el turno del personaje "+jugadoresTeam1[temp2].name+".\n");
+                                                        jugadoresTeam1[temp2].turnoRealizadoPersonaje=true;
+                                                        guardadoSeleccionado=jugadoresTeam1[temp2];
+
+                                                    }
+                                                    else{
+                                                        for(int i=0;i<jugadoresTeam2.length;i++){
+                                                            if(guardadoSeleccionado.name.equals(jugadoresTeam2[i].name)){
+                                                                jugadoresTeam2[i].turnoRealizadoPersonaje=true;
+                                                                break;
+                                                            }
+                                                        }
+                                                        home.eventosPartida.append("(turn character) Es el turno del personaje "+jugadoresTeam2[temp2].name+".\n");
+                                                        guardadoSeleccionado=jugadoresTeam2[temp2];
+                                                    }
+
+                                                }
+                                            }
+                                            else if(Objects.equals(arena.matrizJuego[x][y].torreDentro.id ,torresTeam2[r].id)){
+                                                //Establecemos de nuevo las casillas a no bajoAtaque
+                                                //Primero quitamos la etiqueta de bajo ataque a las casillas
                                                 boolean ataqueAliado=false;
                                                 for(int t=0;t<jugadoresTeam2.length;t++){
                                                     if(Objects.equals(jugadoresTeam2[t].name, guardadoSeleccionado.name)){
@@ -684,6 +751,37 @@ public class arena extends juego{
                                                     }
                                                 }
                                                 if(ataqueAliado){
+                                                    for(int subY=0;subY<arena.matrizJuego.length;subY++){
+                                                        for(int subX=0;subX<arena.matrizJuego[y].length;subX++){
+                                                            if(arena.matrizJuego[subX][subY].bajoAtaque){
+                                                                arena.matrizJuego[subX][subY].bajoAtaque=false;
+                                                                if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                                }
+                                                                else{
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                                }
+                                                            }
+                                                            else if(arena.matrizJuego[subX][subY].habilidad1BajoAtaque){
+                                                                arena.matrizJuego[subX][subY].habilidad1BajoAtaque=false;
+                                                                if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                                }
+                                                                else{
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                                }
+                                                            }
+                                                            else if(arena.matrizJuego[subX][subY].habilidad2BajoAtaque){
+                                                                arena.matrizJuego[subX][subY].habilidad2BajoAtaque=false;
+                                                                if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                                }
+                                                                else{
+                                                                    matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
                                                     break;
                                                 }
                                                 //Aqui se calcula el daño tanto por ataque común como por habilidad
@@ -710,6 +808,37 @@ public class arena extends juego{
                                                         home.eventosPartida.append("(Tower attack) La torre ubicada en ["+x+", "+y+"] [Jugador 2] fue atacada con la habilidad "+guardadoSeleccionado.abilities[(matrizJuego[x][y].habilidad1BajoAtaque) ? 0:1]+" por "+guardadoSeleccionado.name+" [Jugador 1]. Sin embargo, debido a la falta de maná el ataque no se realizó.\n");
                                                     }
                                                 }
+                                                for(int subY=0;subY<arena.matrizJuego.length;subY++){
+                                                    for(int subX=0;subX<arena.matrizJuego[y].length;subX++){
+                                                        if(arena.matrizJuego[subX][subY].bajoAtaque){
+                                                            arena.matrizJuego[subX][subY].bajoAtaque=false;
+                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                            }
+                                                            else{
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                            }
+                                                        }
+                                                        else if(arena.matrizJuego[subX][subY].habilidad1BajoAtaque){
+                                                            arena.matrizJuego[subX][subY].habilidad1BajoAtaque=false;
+                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                            }
+                                                            else{
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                            }
+                                                        }
+                                                        else if(arena.matrizJuego[subX][subY].habilidad2BajoAtaque){
+                                                            arena.matrizJuego[subX][subY].habilidad2BajoAtaque=false;
+                                                            if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.red);
+                                                            }
+                                                            else{
+                                                                matrizJuegoBottons[subX][subY].setBackground(Color.blue);
+                                                            }
+                                                        }
+                                                    }
+                                                }
 
                                                 //Aqui se revisa si la torre ha sido destruida
                                                 if(torresTeam2[r].resistence<=0){
@@ -733,6 +862,7 @@ public class arena extends juego{
                                                             jugadoresTeam1[i].turnoRealizadoPersonaje=false;
                                                         }
                                                         home.eventosPartida.append("(Turn player) Es el turno del jugador 2.\n");
+                                                        home.textoPorDefectoTurnos.setText("Turno de jugador 2#");
                                                         temp2 =establecerTurnoPersonaje(jugadoresTeam1);
                                                         home.eventosPartida.append("(turn character) Es el turno del personaje "+jugadoresTeam2[temp2].name+".\n");
                                                         jugadoresTeam1[temp2].turnoRealizadoPersonaje=true;
@@ -761,7 +891,7 @@ public class arena extends juego{
                                             for(int subX=0;subX<arena.matrizJuego[y].length;subX++){
                                                 if(arena.matrizJuego[subX][subY].bajoAtaque){
                                                     arena.matrizJuego[subX][subY].bajoAtaque=false;
-                                                    if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
+                                                    if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
                                                         matrizJuegoBottons[subX][subY].setBackground(Color.red);
                                                     }
                                                     else{
@@ -770,7 +900,7 @@ public class arena extends juego{
                                                 }
                                                 else if(arena.matrizJuego[subX][subY].habilidad1BajoAtaque){
                                                     arena.matrizJuego[subX][subY].habilidad1BajoAtaque=false;
-                                                    if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
+                                                    if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
                                                         matrizJuegoBottons[subX][subY].setBackground(Color.red);
                                                     }
                                                     else{
@@ -779,7 +909,7 @@ public class arena extends juego{
                                                 }
                                                 else if(arena.matrizJuego[subX][subY].habilidad2BajoAtaque){
                                                     arena.matrizJuego[subX][subY].habilidad2BajoAtaque=false;
-                                                    if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena){
+                                                    if(arena.matrizJuego[subX][subY].cords[0]<=mitadArena-1){
                                                         matrizJuegoBottons[subX][subY].setBackground(Color.red);
                                                     }
                                                     else{
@@ -826,6 +956,7 @@ public class arena extends juego{
                                                     jugadoresTeam1[i].turnoRealizadoPersonaje=false;
                                                 }
                                                 home.eventosPartida.append("(turn player) Es el turno del jugador 2.\n");
+                                                home.textoPorDefectoTurnos.setText("Turno de jugador 2#");
                                                 temp2=establecerTurnoPersonaje(jugadoresTeam2);
                                                 home.eventosPartida.append("(turn character) Es el turno del personaje "+jugadoresTeam2[temp2].name+".\n");
                                                 jugadoresTeam2[temp2].turnoRealizadoPersonaje=true;
@@ -837,6 +968,7 @@ public class arena extends juego{
                                                     jugadoresTeam2[i].turnoRealizadoPersonaje=false;
                                                 }
                                                 home.eventosPartida.append("(turn player) Es el turno del jugador 1.\n");
+                                                home.textoPorDefectoTurnos.setText("Turno de jugador 1#");
                                                 temp2=establecerTurnoPersonaje(jugadoresTeam1);
                                                 home.eventosPartida.append("(turn character) Es el turno del personaje "+jugadoresTeam1[temp2].name+".\n");
                                                 jugadoresTeam1[temp2].turnoRealizadoPersonaje=true;
@@ -872,6 +1004,19 @@ public class arena extends juego{
                                         }
 
                                     } //Si no hay nada en la casilla atacada
+                                }
+                                else if(arena.matrizJuego[x][y].EnMovimiento){
+                                    guardadoSeleccionado=arena.matrizJuego[guardadoCords[0]][guardadoCords[1]].personajeDentro;
+                                    arena.matrizJuego[guardadoCords[0]][guardadoCords[1]].personajeDentro=null;
+                                    arena.matrizJuegoBottons[guardadoCords[0]][guardadoCords[1]].setIcon(null);
+                                    if(guardadoCords[0]<=mitadArena-1){
+                                        arena.matrizJuegoBottons[guardadoCords[0]][guardadoCords[1]].setBackground(Color.red);
+                                    }
+                                    else{
+                                        arena.matrizJuegoBottons[guardadoCords[0]][guardadoCords[1]].setBackground(Color.blue);
+                                    }
+                                    arena.matrizJuego[x][y].personajeDentro=guardadoSeleccionado;
+                                    arena.matrizJuegoBottons[x][y].setIcon(System.getProperty("user.dir")+"\\todo\\images\\"+);
                                 }
                                 menuPersonaje((turno == 1),x,y, cordsDibujo,juego);
                             }
@@ -1038,60 +1183,60 @@ public class arena extends juego{
                             public void actionPerformed(ActionEvent e) {
                                 System.out.println(x+" "+y);
                                 menuAcciones.setVisible(false);
-                                guardadoSeleccionado=matrizJuego[x][y].personajeDentro;
+                                guardadoSeleccionado=arena.matrizJuego[x][y].personajeDentro;
                                 try {
-                                    matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y+1].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y+1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
-                                    matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y+1].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x][y+1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y+1].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y+1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
-                                matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
+                                arena.matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
                                 try{
-                                    matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
-                                    matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y-1].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x][y-1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y-1].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y-1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y-1].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y-1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
@@ -1103,60 +1248,60 @@ public class arena extends juego{
                             public void actionPerformed(ActionEvent e) {
                                 System.out.println(x+" "+y);
                                 menuHabilidades.setVisible(false);
-                                guardadoSeleccionado=matrizJuego[x][y].personajeDentro;
+                                guardadoSeleccionado=arena.matrizJuego[x][y].personajeDentro;
                                 try {
-                                    matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y+1].habilidad1BajoAtaque=true;
+                                    arena.matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y+1].habilidad1BajoAtaque=true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
-                                    matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y+1].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x][y+1].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y+1].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y+1].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
-                                matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
+                                arena.matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
                                 try{
-                                    matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
-                                    matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y-1].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x][y-1].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y-1].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y-1].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y-1].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y-1].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
@@ -1171,61 +1316,123 @@ public class arena extends juego{
                                 menuHabilidades.setVisible(false);
                                 guardadoSeleccionado=matrizJuego[x][y].personajeDentro;
                                 try {
-                                    matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y+1].habilidad2BajoAtaque=true;
+                                    arena.matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y+1].habilidad2BajoAtaque=true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
-                                    matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y+1].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x][y+1].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y+1].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y+1].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
-                                matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
+                                arena.matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
                                 try{
-                                    matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
-                                    matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y-1].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x][y-1].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y-1].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y-1].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y-1].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y-1].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
+                                }
+                            }
+                        });
+                        movimiento.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuAcciones.setVisible(false);
+                                int contador=0;
+                                try{
+                                    if(arena.matrizJuego[x+1][y].personajeDentro==null && arena.matrizJuego[x+1][y].torreDentro==null){
+                                        arena.matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                        arena.matrizJuego[x+1][y].EnMovimiento=true;
+                                    }
+                                    else{
+                                        contador++;
+                                    }
+                                }
+                                catch (Exception ex){
+                                    contador++;
+                                }
+                                try{
+                                    if(arena.matrizJuego[x-1][y].personajeDentro==null && arena.matrizJuego[x-1][y].torreDentro==null){
+                                        arena.matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                        arena.matrizJuego[x-1][y].EnMovimiento=true;
+                                    }
+                                    else{
+                                        contador++;
+                                    }
+
+                                }
+                                catch (Exception ex){
+                                    contador++;
+                                }
+                                try{
+                                    if(arena.matrizJuego[x][y+1].personajeDentro==null && arena.matrizJuego[x][y+1].torreDentro==null){
+                                        arena.matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                        arena.matrizJuego[x][y+1].EnMovimiento=true;
+                                    }
+                                    else{
+                                        contador++;
+                                    }
+                                }
+                                catch (Exception ex){
+                                    contador++;
+                                }
+                                try{
+                                    if(arena.matrizJuego[x][y-1].personajeDentro==null && arena.matrizJuego[x][y-1].torreDentro==null){
+                                        arena.matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                        arena.matrizJuego[x][y-1].EnMovimiento=true;
+                                    }
+                                    else{
+                                        contador++;
+                                    }
+                                }
+                                catch (Exception ex){
+                                    contador++;
+                                }
+                                if(contador==4){
+                                    home.eventosPartida.append("(No move) Sin movimientos posibles.");
+                                }
+                                else{
+                                    arena.guardadoCords=new int[]{x,y};
                                 }
                             }
                         });
@@ -1443,59 +1650,59 @@ public class arena extends juego{
                                 System.out.println(x+" "+y);
                                 menuAcciones.setVisible(false);
                                 try {
-                                    matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y+1].bajoAtaque =true;
-                                    guardadoSeleccionado=matrizJuego[x][y].personajeDentro;
+                                    arena.matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y+1].bajoAtaque =true;
+                                    guardadoSeleccionado=arena.matrizJuego[x][y].personajeDentro;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
-                                    matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y+1].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x][y+1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y+1].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y+1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
-                                matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
+                                arena.matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
                                 try{
-                                    matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
-                                    matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y-1].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x][y-1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y-1].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y-1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y-1].bajoAtaque =true;
+                                    arena.matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y-1].bajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
@@ -1507,60 +1714,60 @@ public class arena extends juego{
                             public void actionPerformed(ActionEvent e) {
                                 System.out.println(x+" "+y);
                                 menuHabilidades.setVisible(false);
-                                guardadoSeleccionado=matrizJuego[x][y].personajeDentro;
+                                guardadoSeleccionado=arena.matrizJuego[x][y].personajeDentro;
                                 try {
-                                    matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y+1].habilidad1BajoAtaque=true;
+                                    arena.matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y+1].habilidad1BajoAtaque=true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
-                                    matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y+1].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x][y+1].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y+1].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y+1].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
-                                matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
+                                arena.matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
                                 try{
-                                    matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
-                                    matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y-1].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x][y-1].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y-1].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y-1].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y-1].habilidad1BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y-1].habilidad1BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
@@ -1573,63 +1780,125 @@ public class arena extends juego{
                             public void actionPerformed(ActionEvent e) {
                                 System.out.println(x+" "+y);
                                 menuHabilidades.setVisible(false);
-                                guardadoSeleccionado=matrizJuego[x][y].personajeDentro;
+                                guardadoSeleccionado=arena.matrizJuego[x][y].personajeDentro;
                                 try {
-                                    matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y+1].habilidad2BajoAtaque=true;
+                                    arena.matrizJuegoBottons[x+1][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y+1].habilidad2BajoAtaque=true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
-                                    matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y+1].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x][y+1].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y+1].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y+1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y+1].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
-                                matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
+                                arena.matrizJuegoBottons[x][y].setBackground(Color.ORANGE);
                                 try{
-                                    matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try{
-                                    matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x][y-1].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x][y-1].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x-1][y-1].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x-1][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x-1][y-1].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
                                 }
                                 try {
-                                    matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
-                                    matrizJuego[x+1][y-1].habilidad2BajoAtaque =true;
+                                    arena.matrizJuegoBottons[x+1][y-1].setBackground(Color.ORANGE);
+                                    arena.matrizJuego[x+1][y-1].habilidad2BajoAtaque =true;
                                 }
                                 catch (Exception ex){
                                     System.out.println("Nada xdxd");
+                                }
+                            }
+                        });
+                        movimiento.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                menuAcciones.setVisible(false);
+                                int contador=0;
+                                try{
+                                    if(arena.matrizJuego[x+1][y].personajeDentro==null && arena.matrizJuego[x+1][y].torreDentro==null){
+                                        arena.matrizJuegoBottons[x+1][y].setBackground(Color.ORANGE);
+                                        arena.matrizJuego[x+1][y].EnMovimiento=true;
+                                    }
+                                    else{
+                                        contador++;
+                                    }
+                                }
+                                catch (Exception ex){
+                                    contador++;
+                                }
+                                try{
+                                    if(arena.matrizJuego[x-1][y].personajeDentro==null && arena.matrizJuego[x-1][y].torreDentro==null){
+                                        arena.matrizJuegoBottons[x-1][y].setBackground(Color.ORANGE);
+                                        arena.matrizJuego[x-1][y].EnMovimiento=true;
+                                    }
+                                    else{
+                                        contador++;
+                                    }
+
+                                }
+                                catch (Exception ex){
+                                    contador++;
+                                }
+                                try{
+                                    if(arena.matrizJuego[x][y+1].personajeDentro==null && arena.matrizJuego[x][y+1].torreDentro==null){
+                                        arena.matrizJuegoBottons[x][y+1].setBackground(Color.ORANGE);
+                                        arena.matrizJuego[x][y+1].EnMovimiento=true;
+                                    }
+                                    else{
+                                        contador++;
+                                    }
+                                }
+                                catch (Exception ex){
+                                    contador++;
+                                }
+                                try{
+                                    if(arena.matrizJuego[x][y-1].personajeDentro==null && arena.matrizJuego[x][y-1].torreDentro==null){
+                                        arena.matrizJuegoBottons[x][y-1].setBackground(Color.ORANGE);
+                                        arena.matrizJuego[x][y-1].EnMovimiento=true;
+                                    }
+                                    else{
+                                        contador++;
+                                    }
+                                }
+                                catch (Exception ex){
+                                    contador++;
+                                }
+                                if(contador==4){
+                                    home.eventosPartida.append("(No move) Sin movimientos posibles.");
+                                }
+                                else{
+                                    arena.guardadoCords=new int[]{x,y};
                                 }
                             }
                         });
@@ -1763,4 +2032,7 @@ public class arena extends juego{
             }
         }
     }
+
 }
+
+

@@ -71,8 +71,8 @@ public class home extends JFrame{
     //Datos importantes para empezar la partida
     private int cantidadPersonajes;
     private String tipoArena;
-    private Character[] listaJugadoresTeam1;
-    private Character[] listaJugadoresTeam2;
+    public static Character[] listaJugadoresTeam1;
+    public static Character[] listaJugadoresTeam2;
     public static arena Arena;
 
     //UI para la parte del juego//UI para la parte del juego//UI para la parte del juego

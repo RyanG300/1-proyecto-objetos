@@ -743,7 +743,7 @@ public class home extends JFrame{
                     Ability[] habilidadesFreddy = new Ability[2];
                     habilidadesFreddy[0] = habilidad1;
                     habilidadesFreddy[1] = habilidad2;
-                    Character Freddy = new Character("Freddy", 0, 320, 72, "Fuego", habilidadesFreddy, 120);
+                    Character Freddy = new Character("Jose", 0, 320, 72, "Fuego", habilidadesFreddy, 120);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam2[0] == null) {
                         listaJugadoresTeam2[0] = Freddy;

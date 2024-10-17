@@ -386,22 +386,22 @@ public class home extends JFrame{
                     Ability[] habilidadesT34= new Ability[2];
                     habilidadesT34[0]=habilidad1;
                     habilidadesT34[1]=habilidad2;
-                    Character t34=new Character("T-34",0,600,58,"Tierra",habilidadesT34,250);
+                   // Character t34=new Character("T-34",0,600,58,"Tierra",habilidadesT34,250);
                     //Colocarlo en la lista del team1
                     if(listaJugadoresTeam1[0]==null){
-                        listaJugadoresTeam1[0]=t34;
+                        //  listaJugadoresTeam1[0]=t34;
                     }
                     else if(listaJugadoresTeam1[1]==null){
-                        listaJugadoresTeam1[1]=t34;
+                    //    listaJugadoresTeam1[1]=t34;
                     }
                     else if(listaJugadoresTeam1[2]==null){
-                        listaJugadoresTeam1[2]=t34;
+                      //  listaJugadoresTeam1[2]=t34;
                     }
                     else if(listaJugadoresTeam1[3]==null){
-                        listaJugadoresTeam1[3]=t34;
+                       // listaJugadoresTeam1[3]=t34;
                     }
                     else if(listaJugadoresTeam1[4]==null){
-                        listaJugadoresTeam1[4]=t34;
+                       // listaJugadoresTeam1[4]=t34;
                     }
                 }
                 else{
@@ -412,22 +412,22 @@ public class home extends JFrame{
                     Ability[] habilidadesT34= new Ability[2];
                     habilidadesT34[0]=habilidad1;
                     habilidadesT34[1]=habilidad2;
-                    Character t34=new Character("T-34",0,600,58,"Tierra",habilidadesT34,250);
+                    //Character t34=new Character("T-34",0,600,58,"Tierra",habilidadesT34,250);
                     //Colocarlo en la lista del team1
                     if(listaJugadoresTeam2[0]==null){
-                        listaJugadoresTeam2[0]=t34;
+                       // listaJugadoresTeam2[0]=t34;
                     }
                     else if(listaJugadoresTeam2[1]==null){
-                        listaJugadoresTeam2[1]=t34;
+                       // listaJugadoresTeam2[1]=t34;
                     }
                     else if(listaJugadoresTeam2[2]==null){
-                        listaJugadoresTeam2[2]=t34;
+                       // listaJugadoresTeam2[2]=t34;
                     }
                     else if(listaJugadoresTeam2[3]==null){
-                        listaJugadoresTeam2[3]=t34;
+                        //listaJugadoresTeam2[3]=t34;
                     }
                     else if(listaJugadoresTeam2[4]==null){
-                        listaJugadoresTeam2[4]=t34;
+                       // listaJugadoresTeam2[4]=t34;
                     }
                     if(cantidadPersonajes==0){
                         buttonChampion2.setEnabled(false);
@@ -459,18 +459,18 @@ public class home extends JFrame{
                     Ability[] habilidadesBananinou = new Ability[2];
                     habilidadesBananinou[0] = habilidad1;
                     habilidadesBananinou[1] = habilidad2;
-                    Character bananinou = new Character("Bana", 0, 530, 62, "Agua", habilidadesBananinou, 172);
+                    //Character bananinou = new Character("Bana", 0, 530, 62, "Agua", habilidadesBananinou, 172);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam1[0] == null) {
-                        listaJugadoresTeam1[0] = bananinou;
+                      //  listaJugadoresTeam1[0] = bananinou;
                     } else if (listaJugadoresTeam1[1] == null) {
-                        listaJugadoresTeam1[1] = bananinou;
+                      //  listaJugadoresTeam1[1] = bananinou;
                     } else if (listaJugadoresTeam1[2] == null) {
-                        listaJugadoresTeam1[2] = bananinou;
+                      //  listaJugadoresTeam1[2] = bananinou;
                     } else if (listaJugadoresTeam1[3] == null) {
-                        listaJugadoresTeam1[3] = bananinou;
+                     //  listaJugadoresTeam1[3] = bananinou;
                     } else if (listaJugadoresTeam1[4] == null) {
-                        listaJugadoresTeam1[4] = bananinou;
+                      //  listaJugadoresTeam1[4] = bananinou;
                     }
                 }
                 else {
@@ -481,18 +481,18 @@ public class home extends JFrame{
                     Ability[] habilidadesBananinou = new Ability[2];
                     habilidadesBananinou[0] = habilidad1;
                     habilidadesBananinou[1] = habilidad2;
-                    Character bananinou = new Character("Bana", 0, 530, 62, "Agua", habilidadesBananinou, 172);
+                  //  Character bananinou = new Character("Bana", 0, 530, 62, "Agua", habilidadesBananinou, 172);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam2[0] == null) {
-                        listaJugadoresTeam2[0] = bananinou;
+                   //     listaJugadoresTeam2[0] = bananinou;
                     } else if (listaJugadoresTeam2[1] == null) {
-                        listaJugadoresTeam2[1] = bananinou;
+                    //    listaJugadoresTeam2[1] = bananinou;
                     } else if (listaJugadoresTeam2[2] == null) {
-                        listaJugadoresTeam2[2] = bananinou;
+                     //   listaJugadoresTeam2[2] = bananinou;
                     } else if (listaJugadoresTeam2[3] == null) {
-                        listaJugadoresTeam2[3] = bananinou;
+                       // listaJugadoresTeam2[3] = bananinou;
                     } else if (listaJugadoresTeam2[4] == null) {
-                        listaJugadoresTeam2[4] = bananinou;
+                     //   listaJugadoresTeam2[4] = bananinou;
                     }
                     if (cantidadPersonajes == 0) {
                         buttonChampion1.setEnabled(false);
@@ -524,18 +524,18 @@ public class home extends JFrame{
                     Ability[] habilidadesAlakazam = new Ability[2];
                     habilidadesAlakazam[0] = habilidad1;
                     habilidadesAlakazam[1] = habilidad2;
-                    Character alakazam = new Character("Alakazam", 0, 360, 85, "Aire", habilidadesAlakazam, 325);
+                  //  Character alakazam = new Character("Alakazam", 0, 360, 85, "Aire", habilidadesAlakazam, 325);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam1[0] == null) {
-                        listaJugadoresTeam1[0] = alakazam;
+                    //    listaJugadoresTeam1[0] = alakazam;
                     } else if (listaJugadoresTeam1[1] == null) {
-                        listaJugadoresTeam1[1] = alakazam;
+                     //   listaJugadoresTeam1[1] = alakazam;
                     } else if (listaJugadoresTeam1[2] == null) {
-                        listaJugadoresTeam1[2] = alakazam;
+                    //    listaJugadoresTeam1[2] = alakazam;
                     } else if (listaJugadoresTeam1[3] == null) {
-                        listaJugadoresTeam1[3] = alakazam;
+                    //    listaJugadoresTeam1[3] = alakazam;
                     } else if (listaJugadoresTeam1[4] == null) {
-                        listaJugadoresTeam1[4] = alakazam;
+                        //listaJugadoresTeam1[4] = alakazam;
                     }
                 }
                 else{
@@ -546,18 +546,18 @@ public class home extends JFrame{
                     Ability[] habilidadesAlakazam = new Ability[2];
                     habilidadesAlakazam[0] = habilidad1;
                     habilidadesAlakazam[1] = habilidad2;
-                    Character alakazam = new Character("Alakazam", 0, 360, 85, "Aire", habilidadesAlakazam, 325);
+                    //Character alakazam = new Character("Alakazam", 0, 360, 85, "Aire", habilidadesAlakazam, 325);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam2[0] == null) {
-                        listaJugadoresTeam2[0] = alakazam;
+                     //   listaJugadoresTeam2[0] = alakazam;
                     } else if (listaJugadoresTeam2[1] == null) {
-                        listaJugadoresTeam2[1] = alakazam;
+                      //  listaJugadoresTeam2[1] = alakazam;
                     } else if (listaJugadoresTeam2[2] == null) {
-                        listaJugadoresTeam2[2] = alakazam;
+                        //listaJugadoresTeam2[2] = alakazam;
                     } else if (listaJugadoresTeam2[3] == null) {
-                        listaJugadoresTeam2[3] = alakazam;
+                        //listaJugadoresTeam2[3] = alakazam;
                     } else if (listaJugadoresTeam2[4] == null) {
-                        listaJugadoresTeam2[4] = alakazam;
+                        //listaJugadoresTeam2[4] = alakazam;
                     }
                     if(cantidadPersonajes==0){
                         buttonChampion1.setEnabled(false);
@@ -589,18 +589,18 @@ public class home extends JFrame{
                     Ability[] habilidadesRanniTheWitch = new Ability[2];
                     habilidadesRanniTheWitch[0] = habilidad1;
                     habilidadesRanniTheWitch[1] = habilidad2;
-                    Character ranniTheWitch = new Character("RanniTheWitch", 0, 670, 55, "Fuego", habilidadesRanniTheWitch, 305);
+                   // Character ranniTheWitch = new Character("RanniTheWitch", 0, 670, 55, "Fuego", habilidadesRanniTheWitch, 305);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam1[0] == null) {
-                        listaJugadoresTeam1[0] = ranniTheWitch;
+                      //  listaJugadoresTeam1[0] = ranniTheWitch;
                     } else if (listaJugadoresTeam1[1] == null) {
-                        listaJugadoresTeam1[1] = ranniTheWitch;
+                      //  listaJugadoresTeam1[1] = ranniTheWitch;
                     } else if (listaJugadoresTeam1[2] == null) {
-                        listaJugadoresTeam1[2] = ranniTheWitch;
+                       // listaJugadoresTeam1[2] = ranniTheWitch;
                     } else if (listaJugadoresTeam1[3] == null) {
-                        listaJugadoresTeam1[3] = ranniTheWitch;
+                       // listaJugadoresTeam1[3] = ranniTheWitch;
                     } else if (listaJugadoresTeam1[4] == null) {
-                        listaJugadoresTeam1[4] = ranniTheWitch;
+                        //listaJugadoresTeam1[4] = ranniTheWitch;
                     }
                 }
                 else{
@@ -611,18 +611,18 @@ public class home extends JFrame{
                     Ability[] habilidadesRanniTheWitch = new Ability[2];
                     habilidadesRanniTheWitch[0] = habilidad1;
                     habilidadesRanniTheWitch[1] = habilidad2;
-                    Character ranniTheWitch = new Character("RanniTheWitch", 0, 670, 55, "Fuego", habilidadesRanniTheWitch, 305);
+                    //Character ranniTheWitch = new Character("RanniTheWitch", 0, 670, 55, "Fuego", habilidadesRanniTheWitch, 305);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam2[0] == null) {
-                        listaJugadoresTeam2[0] = ranniTheWitch;
+                       // listaJugadoresTeam2[0] = ranniTheWitch;
                     } else if (listaJugadoresTeam2[1] == null) {
-                        listaJugadoresTeam2[1] = ranniTheWitch;
+                       // listaJugadoresTeam2[1] = ranniTheWitch;
                     } else if (listaJugadoresTeam2[2] == null) {
-                        listaJugadoresTeam2[2] = ranniTheWitch;
+                        //listaJugadoresTeam2[2] = ranniTheWitch;
                     } else if (listaJugadoresTeam2[3] == null) {
-                        listaJugadoresTeam2[3] = ranniTheWitch;
+                        //listaJugadoresTeam2[3] = ranniTheWitch;
                     } else if (listaJugadoresTeam2[4] == null) {
-                        listaJugadoresTeam2[4] = ranniTheWitch;
+                        //listaJugadoresTeam2[4] = ranniTheWitch;
                     }
                     if(cantidadPersonajes==0){
                         buttonChampion1.setEnabled(false);
@@ -654,18 +654,18 @@ public class home extends JFrame{
                     Ability[] habilidadesFreddy = new Ability[2];
                     habilidadesFreddy[0] = habilidad1;
                     habilidadesFreddy[1] = habilidad2;
-                    Character Freddy = new Character("Freddy", 0, 320, 72, "Aire", habilidadesFreddy, 120);
+                    //Character Freddy = new Character("Freddy", 0, 320, 72, "Aire", habilidadesFreddy, 120);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam1[0] == null) {
-                        listaJugadoresTeam1[0] = Freddy;
+                      //  listaJugadoresTeam1[0] = Freddy;
                     } else if (listaJugadoresTeam1[1] == null) {
-                        listaJugadoresTeam1[1] = Freddy;
+                        //listaJugadoresTeam1[1] = Freddy;
                     } else if (listaJugadoresTeam1[2] == null) {
-                        listaJugadoresTeam1[2] = Freddy;
+                        //listaJugadoresTeam1[2] = Freddy;
                     } else if (listaJugadoresTeam1[3] == null) {
-                        listaJugadoresTeam1[3] = Freddy;
+                        //listaJugadoresTeam1[3] = Freddy;
                     } else if (listaJugadoresTeam1[4] == null) {
-                        listaJugadoresTeam1[4] = Freddy;
+                        //listaJugadoresTeam1[4] = Freddy;
                     }
                 }
                 else{
@@ -677,18 +677,18 @@ public class home extends JFrame{
                     Ability[] habilidadesFreddy = new Ability[2];
                     habilidadesFreddy[0] = habilidad1;
                     habilidadesFreddy[1] = habilidad2;
-                    Character Freddy = new Character("Freddy", 0, 320, 72, "Fuego", habilidadesFreddy, 120);
+                   // Character Freddy = new Character("Freddy", 0, 320, 72, "Fuego", habilidadesFreddy, 120);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam2[0] == null) {
-                        listaJugadoresTeam2[0] = Freddy;
+                      //  listaJugadoresTeam2[0] = Freddy;
                     } else if (listaJugadoresTeam2[1] == null) {
-                        listaJugadoresTeam2[1] = Freddy;
+                        //listaJugadoresTeam2[1] = Freddy;
                     } else if (listaJugadoresTeam2[2] == null) {
-                        listaJugadoresTeam2[2] = Freddy;
+                      //  listaJugadoresTeam2[2] = Freddy;
                     } else if (listaJugadoresTeam2[3] == null) {
-                        listaJugadoresTeam2[3] = Freddy;
+                      //  listaJugadoresTeam2[3] = Freddy;
                     } else if (listaJugadoresTeam2[4] == null) {
-                        listaJugadoresTeam2[4] = Freddy;
+                       // listaJugadoresTeam2[4] = Freddy;
                     }
                     if(cantidadPersonajes==0){
                         buttonChampion1.setEnabled(false);
@@ -720,18 +720,18 @@ public class home extends JFrame{
                     Ability[] habilidadesFreddy = new Ability[2];
                     habilidadesFreddy[0] = habilidad1;
                     habilidadesFreddy[1] = habilidad2;
-                    Character Freddy = new Character("Prueba", 0, 320, 72, "Aire", habilidadesFreddy, 120);
+                  //  Character Freddy = new Character("Prueba", 0, 320, 72, "Aire", habilidadesFreddy, 120);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam1[0] == null) {
-                        listaJugadoresTeam1[0] = Freddy;
+                        // listaJugadoresTeam1[0] = Freddy;
                     } else if (listaJugadoresTeam1[1] == null) {
-                        listaJugadoresTeam1[1] = Freddy;
+                       // listaJugadoresTeam1[1] = Freddy;
                     } else if (listaJugadoresTeam1[2] == null) {
-                        listaJugadoresTeam1[2] = Freddy;
+                        //listaJugadoresTeam1[2] = Freddy;
                     } else if (listaJugadoresTeam1[3] == null) {
-                        listaJugadoresTeam1[3] = Freddy;
+                       // listaJugadoresTeam1[3] = Freddy;
                     } else if (listaJugadoresTeam1[4] == null) {
-                        listaJugadoresTeam1[4] = Freddy;
+                       // listaJugadoresTeam1[4] = Freddy;
                     }
                 }
                 else{
@@ -743,18 +743,18 @@ public class home extends JFrame{
                     Ability[] habilidadesFreddy = new Ability[2];
                     habilidadesFreddy[0] = habilidad1;
                     habilidadesFreddy[1] = habilidad2;
-                    Character Freddy = new Character("Jose", 0, 320, 72, "Fuego", habilidadesFreddy, 120);
+                    //Character Freddy = new Character("Jose", 0, 320, 72, "Fuego", habilidadesFreddy, 120);
                     //Colocarlo en la lista del team1
                     if (listaJugadoresTeam2[0] == null) {
-                        listaJugadoresTeam2[0] = Freddy;
+                     //   listaJugadoresTeam2[0] = Freddy;
                     } else if (listaJugadoresTeam2[1] == null) {
-                        listaJugadoresTeam2[1] = Freddy;
+                      //  listaJugadoresTeam2[1] = Freddy;
                     } else if (listaJugadoresTeam2[2] == null) {
-                        listaJugadoresTeam2[2] = Freddy;
+                      //  listaJugadoresTeam2[2] = Freddy;
                     } else if (listaJugadoresTeam2[3] == null) {
-                        listaJugadoresTeam2[3] = Freddy;
+                      //  listaJugadoresTeam2[3] = Freddy;
                     } else if (listaJugadoresTeam2[4] == null) {
-                        listaJugadoresTeam2[4] = Freddy;
+                      //  listaJugadoresTeam2[4] = Freddy;
                     }
                     if(cantidadPersonajes==0){
                         buttonChampion1.setEnabled(false);

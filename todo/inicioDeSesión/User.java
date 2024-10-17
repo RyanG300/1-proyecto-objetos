@@ -1,29 +1,58 @@
 package inicioDeSesión;
 
-
-import java.util.ArrayList;
-import java.util.List;
 import casillaObjetos.Character;
+import casillaObjetos.CharacterRepository;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class User {
     private String userName;
     private int matchesPlayed;
     private int matchesWon;
     private int matchesLost;
-    private float performance;
-    private List<Character> characters;
-
+    private Map<String, CharacterStats> charactersStatsMap;
 
     public User(String userName) {
         this.userName = userName;
         this.matchesPlayed = 0;
         this.matchesWon = 0;
         this.matchesLost = 0;
-        this.characters = new ArrayList<>();
+        this.charactersStatsMap = new HashMap<>();
+
+        for (Character character : CharacterRepository.CHARACTERS) {
+            charactersStatsMap.put(character.getName(), new CharacterStats());
+        }
     }
 
-    public void addCharacter(Character character) {
-        characters.add(character);
+
+
+    public void updateCharacterStats(String characterName, boolean kill, boolean towerKill, boolean death) {
+        CharacterStats stats = charactersStatsMap.get(characterName);
+        if (stats != null) {
+            if (kill) stats.incrementKills();
+            if (towerKill) stats.incrementTowerKills();
+            if (death) stats.incrementDeaths();
+        }
+    }
+
+    public static User loadOrCreateUser(String userName) {
+        User user = JsonHandler.loadUserData(userName);
+        if (user == null || !user.userName.equals(userName)) {
+            user = new User(userName);
+            JsonHandler.saveUserData(user); // Guardar el nuevo jugador
+        }
+
+        return user;
+    }
+
+    public void setMatchesPlayed(int matchesPlayed) {
+        this.matchesPlayed = matchesPlayed;
+    }
+
+    public void setMatchesWon(int matchesWon) {
+        this.matchesWon = matchesWon;
     }
 
     public void incrementMatchesPlayed() {
@@ -38,28 +67,29 @@ public class User {
         matchesLost++;
     }
 
-    public int getTotalDeaths(){
-        return characters.stream().mapToInt(Character::getDeaths).sum();
+    public void incrementCharacterKills(String characterName) {
+        CharacterStats stats = charactersStatsMap.get(characterName);
+        if (stats != null) {
+            stats.incrementKills();
+        }
     }
 
-    public int getTotalTowerKills(){
-        return characters.stream().mapToInt(Character::getTowerKills).sum();
+    public void incrementCharacterDeaths(String characterName) {
+        CharacterStats stats = charactersStatsMap.get(characterName);
+        if (stats != null) {
+            stats.incrementDeaths();
+        }
     }
 
-    public double getTotalKills(){
-        return characters.stream().mapToInt(Character::getKills).sum();
-    }
-
-    public double getPerformance() {
-        return matchesPlayed > 0 ? (double) matchesWon / matchesPlayed * 100 : 0;
+    public void incrementCharacterTowerKills(String characterName) {
+        CharacterStats stats = charactersStatsMap.get(characterName);
+        if (stats != null) {
+            stats.incrementTowerKills();
+        }
     }
 
     public String getUserName() {
         return userName;
-    }
-
-    public List<Character> getCharacters() {
-        return characters;
     }
 
     public int getMatchesPlayed() {
@@ -72,5 +102,76 @@ public class User {
 
     public int getMatchesLost() {
         return matchesLost;
+    }
+
+    public CharacterStats getCharacterStats(String characterName) {
+        return charactersStatsMap.get(characterName);
+    }
+
+    public void initializeCharacterStats(String characterName) {
+        charactersStatsMap.putIfAbsent(characterName, new CharacterStats());
+    }
+
+    public String getCharacterWithMostKills() {
+        return charactersStatsMap.entrySet().stream()
+                .max(Map.Entry.comparingByValue((a, b) -> Integer.compare(a.getKills(), b.getKills())))
+                .map(Map.Entry::getKey)
+                .orElse(null);
+    }
+
+    public String getCharacterWithMostDeaths() {
+        return charactersStatsMap.entrySet().stream()
+                .max(Map.Entry.comparingByValue((a, b) -> Integer.compare(a.getDeaths(), b.getDeaths())))
+                .map(Map.Entry::getKey)
+                .orElse(null);
+    }
+
+    public String getCharacterWithMostTowerKills() {
+        return charactersStatsMap.entrySet().stream()
+                .max(Map.Entry.comparingByValue((a, b) -> Integer.compare(a.getTowerKills(), b.getTowerKills())))
+                .map(Map.Entry::getKey)
+                .orElse(null);
+    }
+
+
+    public static class CharacterStats implements Comparable<CharacterStats> {
+        private int kills;
+        private int deaths;
+        private int towerKills;
+
+        public CharacterStats() {
+            this.kills = 0;
+            this.deaths = 0;
+            this.towerKills = 0;
+        }
+
+        @Override
+        public int compareTo(CharacterStats other) {
+            return Integer.compare(this.kills, other.kills);
+        }
+
+        public int getKills() {
+            return kills;
+        }
+
+        public void incrementKills() {
+            kills++;
+        }
+
+        public int getDeaths() {
+            return deaths;
+        }
+
+        public void incrementDeaths() {
+            deaths++;
+        }
+
+        public int getTowerKills() {
+            return towerKills;
+        }
+
+        public void incrementTowerKills() {
+            towerKills++;
+        }
     }
 }

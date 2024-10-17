@@ -1,6 +1,7 @@
 package inicioDeSesión;
 
-import ui.home;
+
+import casillaObjetos.SelectCharacter;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -9,13 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginFrame extends JFrame {
-    private UserService userService;
     private JTextField usernameField1;
     private JTextField usernameField2;
     private JButton loginButton;
 
     public LoginFrame() {
-        userService = new UserService();
         setTitle("Login");
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -78,8 +77,8 @@ public class LoginFrame extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String name1 = usernameField1.getText();
-                String name2 = usernameField2.getText();
+                String name1 = usernameField1.getText().toLowerCase();
+                String name2 = usernameField2.getText().toLowerCase();
 
 
                 if (name1.isEmpty() || name2.isEmpty()) {
@@ -93,21 +92,15 @@ public class LoginFrame extends JFrame {
                 }
 
                 // Obtener o crear usuario
-                User user1 = userService.getUser(name1);
-                if (user1 == null) {
-                    user1 = new User(name1);
-                    userService.addUser(user1);
-                }
+                User user1 = null;
+                user1 = User.loadOrCreateUser(name1);
 
-                User user2 = userService.getUser(name2);
-                if (user2 == null) {
-                    user2 = new User(name2);
-                    userService.addUser(user2);
-                }
 
-                // Mostrar la ventana de estadísticas y cerrar la ventana de login
-                //new MainFrame(user1, user2).setVisible(true);
-                new home();
+                User user2 = null;
+                user2 = User.loadOrCreateUser(name2);
+
+                // Mostrar la ventana de selección de personaje
+                new SelectCharacter(user1, user2, 3).setVisible(true);
                 dispose(); // Cerramos la ventana de login
             }
         });

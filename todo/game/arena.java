@@ -1016,7 +1016,7 @@ public class arena extends juego{
                                         arena.matrizJuegoBottons[guardadoCords[0]][guardadoCords[1]].setBackground(Color.blue);
                                     }
                                     arena.matrizJuego[x][y].personajeDentro=guardadoSeleccionado;
-                                    arena.matrizJuegoBottons[x][y].setIcon(System.getProperty("user.dir")+"\\todo\\images\\"+);
+                                    //arena.matrizJuegoBottons[x][y].setIcon(System.getProperty("user.dir")+"\\todo\\images\\"+);
                                 }
                                 menuPersonaje((turno == 1),x,y, cordsDibujo,juego);
                             }

@@ -1,5 +1,7 @@
 package casillaObjetos;
 
+import java.awt.*;
+
 public class Character {
     public double mana;
     public String name;
@@ -13,13 +15,15 @@ public class Character {
     private int kills;
     private int towerKills;
     public boolean turnoRealizadoPersonaje=false;
+    private Image aspect;
+    int movements;
     public static int move;
     public static int fixedMove;
     public static boolean dead=false;
 
-    public Character(String name, int level, double life, double damage, String element, Ability[] abilities,double mana) {
+    public Character(String name, double life, double damage, String element, Ability[] abilities,double mana, int movements, Image aspect) {
         this.name = name;
-        this.level = level;
+        this.level = 1;
         this.life = life;
         this.FixedLife = life;
         this.damage = damage;
@@ -29,6 +33,8 @@ public class Character {
         this.deaths = 0;
         this.kills = 0;
         this.towerKills = 0;
+        this.movements = movements;
+        this.aspect = aspect;
         this.move = 1;
         this.fixedMove = this.move;
 
@@ -38,8 +44,8 @@ public class Character {
         return element;
     }
 
-    public double getDamage() {
-        return damage;
+    public int getDamage() {
+        return (int) damage;
     }
 
     public void setLife() { //Para recuperar la vida al revivir
@@ -95,8 +101,24 @@ public class Character {
         this.damage *= 1.25;
     }
 
-    public double getLife() {
-        return this.life;
+    public int getLife() {
+        return (int) this.life;
+    }
+
+    public int getMana() {
+        return (int) this.mana;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Image getAspect() {
+        return aspect;
+    }
+
+    public Ability[] getAbilities() {
+        return abilities;
     }
 
     public void resetMove(){

@@ -1709,6 +1709,16 @@ public class arena extends juego{
                                         home.eventosPartida.append("(not move) Sin puntos de movimiento restante.");
                                     }
 
+                                    arena.matrizJuego[guardadoCords[0]][guardadoCords[1]].personajeDentro=null;
+                                    arena.matrizJuegoBottons[guardadoCords[0]][guardadoCords[1]].setIcon(null);
+                                    if(guardadoCords[0]<=mitadArena-1){
+                                        arena.matrizJuegoBottons[guardadoCords[0]][guardadoCords[1]].setBackground(Color.red);
+                                    }
+                                    else{
+                                        arena.matrizJuegoBottons[guardadoCords[0]][guardadoCords[1]].setBackground(Color.blue);
+                                    }
+                                    arena.matrizJuego[x][y].personajeDentro=guardadoSeleccionado;
+                                    //arena.matrizJuegoBottons[x][y].setIcon(System.getProperty("user.dir")+"\\todo\\images\\"+);
                                 }
                                 menuPersonaje((turno == 1),x,y, cordsDibujo,juego);
                             }

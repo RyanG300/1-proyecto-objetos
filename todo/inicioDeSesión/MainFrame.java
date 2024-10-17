@@ -14,9 +14,9 @@ public class MainFrame extends JFrame {
         setSize(400, 300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        displayStatistics();
+        //displayStatistics();
     }
-
+/*
     private void displayStatistics() {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(0, 1));
@@ -30,5 +30,5 @@ public class MainFrame extends JFrame {
         panel.add(new JLabel("Total Kills: " + user1.getTotalKills()));
         panel.add(new JLabel("Performance: " + user1.getPerformance() + "%"));
         add(panel);
-    }
+   */
 }
